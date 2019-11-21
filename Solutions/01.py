@@ -1,10 +1,10 @@
 '''
 Problem:
 
-Given an array of n integers and a target number, find whether the array contains 2 numbers which sum up to the target number.
+Given n integers and a target number, find whether 2 of the given numbers sum up to the target number.
 '''
 
-# FUNCTION TO CHECK WHETHER THE TARGET SUM CAN BE REACHED
+# FUNCTION TO PERFORM THE OPERATION
 def target_sum(arr, len_arr, target):
     cache = {} # Initialized a cache to store the location and the element (for memorization)
     # NOTE: It is not mandatory to use a dictionary, a set(hash list) can also be used if the aim is just to check if the target sum can be reached, without specifying the position of the elements to add
@@ -27,4 +27,11 @@ ans = target_sum(Arr, len(Arr), target)
 if (ans[0]):
     print("The Target sum can be achieved by adding elements {} (pos: {}) and {} (pos: {})".format(Arr[ans[2]], ans[2], Arr[ans[1]], ans[1]))
 else:
-    print("The Target sum cannot be achieved")
+    print("The Target sum cannot be achieved by adding the given elements")
+
+'''
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(n)
+'''
