@@ -21,16 +21,55 @@ def prod(Arr, length):
     
     return prod_Arr
 
+# FUNCTION TO PERFORM THE OPERATION (WITHOUT DIVISION)
+def prod_no_div(Arr, length):
+    output = [None] * length # Create an empty output list
+    product = 1 # Set initial product run forward
+    
+    # Calculating the cumulative product (before the i'th element)
+    for i in range(length):
+        output[i] = product
+        product = product * Arr[i]
+
+    product = 1
+    
+    # Calculating the cumulative product (after the i'th element)
+    for i in range(length-1, -1, -1):
+        output[i] *= product
+        product *= Arr[i]
+        
+    return output 
+
 # DRIVER CODE
 Arr = [int(i) for i in input("Enter the array elements separated by a space: ").split()]
 length = len(Arr)
-ans = prod(Arr, length)
 
-print(("The resultant elements are: " + "{} " * length).format(*ans))
+ans1 = prod(Arr, length)
+ans2 = prod_no_div(Arr, length)
+
+print(("The resultant elements are (Using Division): " + "{} " * length).format(*ans1))
+print(("The resultant elements are (Without Division): " + "{} " * length).format(*ans2))
 
 '''
 SPECS:
 
 TIME COMPLEXITY: O(n)
-SPACE COMPLEXITY: O(n) IN THIS SOLUTION, IF OVERWRITING THE ORIGINAL ARRAY IS ALLOWED, IT BECOMES O(1)
+SPACE COMPLEXITY: O(n) in this solution, if overwriting the original array is allowed, it becomes O(1)
+
+NOTE:
+If division is not allowed, it becomes a bit complex and using O(n) Space becomes mandatory
+
+OR
+
+You could make your own simple division function using the code below :)
+
+# WORKS ONLY FOR PERFECTLY DIVISIBLE NUMBERS
+def div(num, divisor):
+    quotient = 0
+
+    while (num > 0):
+        num -= divisor
+        quotient += 1
+    
+    return quotient
 '''
