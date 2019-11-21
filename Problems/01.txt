@@ -1,0 +1,14 @@
+PROBLEM 1:
+
+Given n integers and a target number, find whether 2 of the given numbers sum up to the target number.
+
+
+EXAMPLE:
+
+numbers = 1, 7, 3, 5, 4, 23, 27
+target = 11
+Output = True
+
+numbers = 1, 7, 3, 5, 4, 23, 27
+target = 2
+Output = False
