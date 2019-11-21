@@ -1,0 +1,12 @@
+PROBLEM 1:
+
+Given n integers, find the product of the numbers except the number at i'th position.
+
+
+EXAMPLE:
+
+numbers = 1, 2, 3, 4
+Output = 24, 12, 8, 6
+
+numbers = 1, 2, 3, 4, 5
+Output = 120, 60, 40, 30, 24

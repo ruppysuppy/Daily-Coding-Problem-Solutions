@@ -1,7 +1,7 @@
 '''
 Problem:
 
-Given n integers, find the product of the numbers except the number at i'th position
+Given n integers, find the product of the numbers except the number at i'th position.
 Eg: [1, 2, 3, 4] => [24, 12, 8, 6]
 Explaination: At pos 0, result = 2x3x4; at pos 1 result = 1x3x4; at pos 2 result = 1x2x4; at pos 3 result = 1x2x3 [USING 0 BASED INDEX]
 '''
