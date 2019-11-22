@@ -1,4 +1,4 @@
-PROBLEM 1:
+PROBLEM 2:
 
 Given n integers, find the product of the numbers except the number at i'th position.
 
