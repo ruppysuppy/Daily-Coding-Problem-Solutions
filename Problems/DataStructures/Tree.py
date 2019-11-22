@@ -63,6 +63,8 @@ class Binary_Tree():
 
     Functions:
     find_height: function to calculate the height of a Binary Tree (uses height_helper in the Node Class)
+
+    NOTE: This class does not have the add node function and nodes have to be added manually
     '''
 
     # Initialize function (Automatically called upon creating an object instance)
