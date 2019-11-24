@@ -94,3 +94,15 @@ print(tree.serialize())
 generated_tree = deserialize("'root','left','left.left','None','None','None','right','None','None'")
 
 print(generated_tree.serialize())
+
+'''
+SPECS:
+
+SERIALIZE: (n = Number of Nodes)
+TIME COMPLEXITY: O(n) 
+SPACE COMPLEXITY: O(n)
+
+DESERIALIZE: (n = Number of Characters in the string)
+TIME COMPLEXITY: O(n) 
+SPACE COMPLEXITY: O(n)
+'''
