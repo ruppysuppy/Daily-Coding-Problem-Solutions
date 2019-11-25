@@ -1,0 +1,17 @@
+PROBLEM 8:
+
+Given a Binary tree, find the number of universal sub-trees.
+An universal sub-tree is a sub tree, where the value of all the nodes is same.
+
+
+EXAMPLE:
+
+Input =
+   0
+  / \
+ 1   0
+    / \
+   1   0
+  / \
+ 1   1
+Output = 5
