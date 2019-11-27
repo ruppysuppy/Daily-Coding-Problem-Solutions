@@ -1,0 +1,9 @@
+PROBLEM 10:
+
+Create a function which takes a function fn and an integer n as an arguement and executes fn after n milli-seconds
+
+
+EXAMPLE:
+
+input = print_hello, 1000
+output = "Hello" [After 1 second]
