@@ -5,6 +5,7 @@ The area of a circle is defined as πr^2. Estimate π to 3 decimal places using 
 Hint: The basic equation of a circle is x2 + y2 = r2.
 '''
 
+# Library import (generate random numbers in [0, 1))
 from random import random
 
 # Helper function to generate a random coordinate in the square bounded by x=-1, x=1 and y=-1, y=1
