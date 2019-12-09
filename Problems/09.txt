@@ -1,4 +1,4 @@
-Problem:
+Problem 9:
 
 Given a list of integers, write a function that returns the largest sum of non-adjacent numbers. Numbers can be 0 or negative.
 Follow-up: Can you do this in O(N) time and constant space?
