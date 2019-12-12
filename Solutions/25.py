@@ -13,27 +13,52 @@ Output = True
 
 # FUNCTION TO PERFORM THE OPERATION
 def regex(expression, string):
-    # Getting the length of the string and the expression
-    len_str = len(string)
+    # Reversing the string (Not Mandatory, did it for ease of use - it could also be traversed from the end)
+    string = string[::-1]
+    expression = expression[::-1]
+    # Getting the length of the expression
     len_ex = len(expression)
+    # Position tracker for the string
+    pos = 0
+    # Flag to check the "*" charcter
+    flag = False
 
-    # Creating the Matrix for Dynamic Programming
-    DP = [[False]*(len_ex+1) for i in range(len_str+1)]
+    # If index error occours, then its not possible to match the expression to the string
+    try:
+        # Looping over the expression
+        for i in range(len_ex):
+            # If no "*" has been encountered
+            if (not flag):
+                # if the expression and the string have the same characters at the position under consideration, the value of pos is incremented
+                if (expression[i] == string[pos]):
+                    pos += 1
+                # if the expression has a ".", pos is incremented
+                elif (expression[i] == '.'):
+                    pos += 1
+                # if the expression has a "*", flag is set to True
+                elif (expression[i] == '*'):
+                    flag = True
+                # if mismatch occours, False is returned
+                else:
+                    return False
 
-    # Setting the Base Case (expression="", string="")
-    DP[0][0] = True
+            # If "*" was encountered in previous iteration
+            else:
+                # Checking for the occouramce of the charcter before "*" (it occours after the "*" as the expression is now reversed)
+                temp = expression[i]
 
-    # Looping over the matrix
-    for i in range(len_str+1):
-        for j in range(1,len_ex+1):
-            # if a '*' is under consideration, the truth value is given by the following expression
-            if (expression[j-1] == '*'):
-                DP[i][j] = (DP[i][j-2]) or (i > 0 and j > 1 and (expression[j-2] == '.' or string[i-1] == expression[j-2]) and DP[i-1][j])
-            # else if i > 0 (i == 0 => string = "") or the following conditions are met, the truth value is same as the left up diagonal value (DP[i-1][j-1])
-            elif ((i > 0) and (expression[j-1] == '.' or expression[j-1] == string[i-1])):
-                DP[i][j] = DP[i-1][j-1]
+                # Incrementing pos till a different character is encountered
+                while (string[pos] == temp):
+                    pos += 1
+                
+                # Resetting flag to ensure the control doesn't enter this segment again till another "*" is encounterd
+                flag = False
     
-    return DP[len_str][len_ex]
+    # Returning False incase of IndexError
+    except IndexError:
+        return False
+
+    return True
 
 # DRIVER CODE
 print(regex("r.y", "ray"))
