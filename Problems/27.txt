@@ -1,0 +1,12 @@
+PROBLEM 27:
+
+Given a string of round, curly, and square open and closing brackets, return whether the brackets are balanced (well-formed).
+
+
+EXAMPLE:
+
+Input = "([])"
+Output = True
+
+Input = "([)]" or "((()"
+Output = False
