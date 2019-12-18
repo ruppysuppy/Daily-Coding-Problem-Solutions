@@ -5,7 +5,7 @@ Suppose it will rain and all spots between two walls get filled up.
 Compute how many units of water remain trapped on the map in O(N) time and O(1) space.
 
 
-EXAPLE:
+EXAMPLE:
 
 Input = [2, 1, 2]
 Output = 1
