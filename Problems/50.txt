@@ -1,0 +1,15 @@
+PROBLEM 50:
+
+Suppose an arithmetic expression is given as a binary tree. Each leaf is an integer and each internal node is one of '+', '−', '∗', or '/'
+Given the root to such a tree, write a function to evaluate it.
+
+
+EXAMPLE:
+
+Input =
+    *
+   / \
+  +    +
+ / \  / \
+3  2  4  5
+Output = 45 [(3 + 2) * (4 + 5)]
