@@ -1,0 +1,5 @@
+PROBLEM 56:
+
+You are given an undirected graph represented as an adjacency matrix and an integer k. 
+Write a function to determine whether each vertex in the graph can be colored such that no two adjacent vertices share the same color.
+You can use at most k colors.
