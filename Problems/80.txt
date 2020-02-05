@@ -1,0 +1,13 @@
+PROBLEM 80:
+
+Given the root of a binary tree, return a deepest node.
+
+
+EXAMPLE:
+
+Input =     a
+           / \
+          b   c
+         /
+        d
+Output = d
