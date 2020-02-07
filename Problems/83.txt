@@ -1,0 +1,19 @@
+PROBLEM 83:
+
+Invert a binary tree.
+
+
+EXAMPLE:
+
+Input:
+    a
+   / \
+  b   c
+ / \  /
+d   e f
+Output:
+  a
+ / \
+ c  b
+ \  / \
+  f e  d
