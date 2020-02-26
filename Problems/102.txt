@@ -1,0 +1,9 @@
+PROBLEM:
+
+Given a list of integers and a number K, return which contiguous elements of the list sum to K.
+
+
+EXAMPLE:
+
+Input = [1, 2, 3, 4, 5], 9
+Output = [2, 3, 4]
