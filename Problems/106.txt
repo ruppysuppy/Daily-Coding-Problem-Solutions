@@ -1,0 +1,13 @@
+PROBLEM 106:
+
+You are given an integer list where each number represents the number of hops you can make.
+Determine whether you can reach to the last index starting at index 0.
+
+
+EXAMPLE:
+
+Input = [2, 0, 1, 0]
+Output = true 
+
+Input = [1, 1, 0, 1]
+Output = false
