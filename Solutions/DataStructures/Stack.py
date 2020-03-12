@@ -1,6 +1,10 @@
 class Stack():
     '''
     Stack Class for the implementation of a stack
+
+    Functions:
+    push: pushes an object to the top of the stack
+    pop: pops the object at the top of the stack (raises erorr if the stack is empty)
     '''
 
     # Initialize function (Automatically called upon creating an object instance)
@@ -35,7 +39,7 @@ class Stack():
     def pop(self):
         # Pops the value at the stack rear (returns None if empty)
         if (self.head == -1):
-            return None
+            raise Exception("Stack Underflow. Cannot pop from an empty stack")
 
         elif (self.rear == 0):
             self.head = -1
