@@ -1,0 +1,9 @@
+PROBLEM 121:
+
+Given a string which we can delete at most k, return whether you can make a palindrome.
+
+
+EXAMPLE:
+
+Input = 'waterrfetawx', 2
+Output = True ('f' and 'x  can be deleted to yield 'waterretaw')
