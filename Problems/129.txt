@@ -1,0 +1,9 @@
+PROBLEM 129:
+
+Given a real number n, find the square root of n. 
+
+
+EXAMPLE:
+
+Input = 9
+Output = 3
