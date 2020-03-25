@@ -1,0 +1,11 @@
+PROBLEM 130:
+
+You are given an array of numbers representing the stock prices of a company in chronological order and an integer k. 
+Return the maximum profit you can make from k buys and sells. 
+You must buy the stock before you can sell it, and you must sell the stock before you can buy it again.
+
+
+EXAMPLE:
+
+Input = [5, 2, 4, 0, 1], 2
+Output = 3
