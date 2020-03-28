@@ -1,0 +1,15 @@
+PROBLEM 133:
+
+Given a node in a binary search tree, return the next bigger element, also known as the inorder successor. 
+You can assume each node has a parent pointer.
+
+
+EXAMPLE:
+
+Input = 22, 
+   10
+  /  \
+ 5    30
+     /  \
+   22    35
+Output = 30
