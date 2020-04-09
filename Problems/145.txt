@@ -1,0 +1,9 @@
+PROBLEM 145:
+
+Given the head of a singly linked list, swap every two nodes and return its head.
+
+
+EXAMPLE:
+
+Input = 1 -> 2 -> 3 -> 4
+Output = 2 -> 1 -> 4 -> 3
