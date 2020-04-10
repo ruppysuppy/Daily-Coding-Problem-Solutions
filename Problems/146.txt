@@ -1,0 +1,22 @@
+Problem 146:
+
+Given a binary tree where all nodes are either 0 or 1, prune the tree so that subtrees containing all 0s are removed.
+
+
+EXAMPLE:
+
+Input =
+   0
+  / \
+ 1   0
+    / \
+   1   0
+  / \
+ 0   0
+Output =
+   0
+  / \
+ 1   0
+    /
+   1
+(We do not remove the tree at the root or its left child because it still has a 1 as a descendant.)
