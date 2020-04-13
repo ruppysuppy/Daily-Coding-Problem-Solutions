@@ -1,0 +1,10 @@
+PROBLEM 149:
+
+Given a list of numbers L, implement a method sum(i, j) which returns the sum from the sublist L[i:j] (including i, excluding j).
+You can assume that you can do some pre-processing. sum() should be optimized over the pre-processing step.
+
+
+EXAMPLE:
+
+Input = [1, 2, 3, 4, 5], 1, 3 
+Output = 5 (sum([2, 3]))
