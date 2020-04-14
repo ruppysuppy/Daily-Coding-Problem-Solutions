@@ -1,0 +1,9 @@
+PROBELEM 150:
+
+Given a list of points, a central point, and an integer k, find the nearest k points from the central point.
+
+
+EXAMPLE:
+
+Input = [(0, 0), (5, 4), (3, 1)], (1, 2), 2, 
+Output = [(0, 0), (3, 1)]
