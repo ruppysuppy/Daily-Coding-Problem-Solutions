@@ -1,0 +1,10 @@
+PROBLEM 155:
+
+Given a list of elements, find the majority element, which appears more than half the times (> floor(len(lst) / 2.0)).
+You can assume that such an element exists.
+
+
+EXAMPLE:
+
+Input = [1, 2, 1, 1, 3, 4, 0]
+Output = 1
