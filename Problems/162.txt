@@ -1,0 +1,9 @@
+PROBLEM 162:
+
+Given a list of words, return the shortest unique prefix of each word. 
+
+
+EXAMPLE:
+
+Input = ["dog", "cat", "apple", "apricot", "fish"]
+Output = ["d", "c", "app", "apr", "f"]
