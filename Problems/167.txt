@@ -1,0 +1,9 @@
+PROBLEM 167:
+
+Given a list of words, find all pairs of unique indices such that the concatenation of the two words is a palindrome.
+
+
+EXAMPLE:
+
+Input = ["code", "edoc", "da", "d"]
+Output = [(0, 1), (1, 0), (2, 3)]
