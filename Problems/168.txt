@@ -1,0 +1,15 @@
+PROBLEM 168:
+
+Given an N by N matrix, rotate it by 90 degrees clockwise.
+Follow-up: What if you couldn't use any extra space?
+
+
+EXAMPLE:
+
+Input = [[1, 2, 3],
+         [4, 5, 6],
+         [7, 8, 9]]
+
+Output = [[7, 4, 1],
+          [8, 5, 2],
+          [9, 6, 3]]
