@@ -1,0 +1,23 @@
+PROBLEM 173:
+
+Write a function to flatten a nested dictionary. Namespace the keys with a period.
+
+
+EXAMPLE:
+
+Input =
+{
+    "key": 3,
+    "foo": {
+        "a": 5,
+        "bar": {
+            "baz": 8
+        }
+    }
+}
+Output =
+{
+    "key": 3,
+    "foo.a": 5,
+    "foo.bar.baz": 8
+}
