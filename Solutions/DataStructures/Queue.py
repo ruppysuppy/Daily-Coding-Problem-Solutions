@@ -17,6 +17,10 @@ class Queue(super):
     def __str__(self):
         return str(self.queue)
     
+    # Length function (Automatically called upon calling len())
+    def __len__(self):
+        return self.elements
+    
     def enqueue(self, val):
         # function to add an object to the end of the queue
         self.elements += 1
@@ -36,7 +40,3 @@ class Queue(super):
             return True
         else:
             return False
-    
-    # Polymorphic function to return the length of the object
-    def __len__(self):
-        return self.elements

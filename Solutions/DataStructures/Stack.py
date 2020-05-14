@@ -25,6 +25,10 @@ class Stack():
         
         return f"Stack: {temp}\nHead: {self.head}\t\tRear = {self.rear}"
     
+    # Length function (Automatically called upon calling len())
+    def __len__(self):
+        return len(self.stack)
+    
     def push(self, val):
         # Pushes a new value to the stack rear
         if (self.head == -1):
