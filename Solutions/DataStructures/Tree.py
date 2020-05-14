@@ -93,9 +93,16 @@ class Binary_Search_Tree(Binary_Tree):
     # Initialize function (uses the Binart_Tree init)
     def __init__(self, val=None):
         Binary_Tree.__init__(self, val)
+        self.nodes = 0
+    
+    # Length function (Automatically called upon calling len())
+    def __len__(self):
+        return self.nodes
     
     # Function to add Nodes using the insert helper
     def add(self, val):
+        self.nodes += 1
+        
         if (self.root == None):
             self.root = Node(val)
         else:
