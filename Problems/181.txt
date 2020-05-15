@@ -1,0 +1,12 @@
+PROBLEM 181:
+
+Given a string, split it into as few strings as possible such that each string is a palindrome.
+
+
+EXAMPLE:
+
+Input = "racecarannakayak"
+Output = ["racecar", "anna", "kayak"]
+
+Input = "abc"
+Output = ["a", "b", "c"]
