@@ -1,0 +1,9 @@
+PROBLEM 184:
+
+Given n numbers, find the greatest common denominator between them.
+
+
+EXAMPLE:
+
+Input = [42, 56, 14]
+Output = 14
