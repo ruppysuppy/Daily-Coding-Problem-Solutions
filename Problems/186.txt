@@ -1,0 +1,10 @@
+PROBLEM 186:
+
+You are given an array of positive integers. 
+Divide the array into two subsets such that the difference between the sum of the subsets is as small as possible.
+
+
+EXAMPLE:
+
+Input = [5, 10, 15, 20, 25]
+Output = {10, 25}, {5, 15, 20} (which has a difference of 5, which is the smallest possible difference)
