@@ -1,0 +1,9 @@
+PROBLEM 189:
+
+Given an array of elements, return the length of the longest subarray where all its elements are distinct.
+
+
+EXAMPLE:
+
+Input = [5, 1, 3, 5, 2, 3, 4, 1]
+Output = 5 (as the longest subarray of distinct elements is [5, 2, 3, 4, 1])
