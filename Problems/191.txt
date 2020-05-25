@@ -1,0 +1,11 @@
+PROBLEM 191:
+
+Given a collection of intervals, find the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping.
+Intervals can "touch", such as [0, 1] and [1, 2], but they won't be considered overlapping.
+The intervals are not necessarily sorted in any order.
+
+
+EXAMPLE:
+
+Input = (7, 9), (2, 4), (5, 8)
+Output = 1 (as the last interval can be removed and the first two won't overlap)
