@@ -1,0 +1,15 @@
+PROBLEM 202:
+
+Write a program that checks whether an integer is a palindrome. Do not convert the integer into a string.
+
+
+EXAMPLE:
+
+Input = 121
+Output = True
+
+Input = 888
+Output = True
+
+Input = 678
+Output = False
