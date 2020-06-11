@@ -1,0 +1,10 @@
+PROBLEM 208:
+
+Given a linked list of numbers and a pivot k, partition the linked list so that all nodes less than k come before nodes greater than or equal to k.
+
+
+EXAMPLE:
+
+Linked List = 5 -> 1 -> 8 -> 0 -> 3
+k = 3
+Output = 1 -> 0 -> 5 -> 8 -> 3
