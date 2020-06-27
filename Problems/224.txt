@@ -1,0 +1,10 @@
+PROBLEM 224:
+
+Given a sorted array, find the smallest positive integer that is not the sum of a subset of the array.
+Do this in O(N) time.
+
+
+EXAMPLE:
+
+Input = [1, 2, 3, 10]
+Output = 7
