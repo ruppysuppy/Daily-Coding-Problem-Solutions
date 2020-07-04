@@ -1,0 +1,13 @@
+PROBLEM 231:
+
+Given a string with repeated characters, rearrange the string so that no two adjacent characters are the same. 
+If this is not possible, return None.
+
+
+EXAMPLE:
+
+Input = "aaabbc"
+Output = "ababac"
+
+Input = "aaab"
+Output = None
