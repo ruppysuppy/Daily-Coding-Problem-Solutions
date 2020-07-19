@@ -1,0 +1,10 @@
+PROBLEM 246:
+
+Given a list of words, determine whether the words can be chained to form a circle.
+A word X can be placed in front of another word Y in a circle if the last character of X is same as the first character of Y.
+
+
+EXAMPLE:
+
+Input = ['chair', 'height', 'racket', 'touch', 'tunic']
+Output = chair -> racket -> touch -> height -> tunic -> chair
