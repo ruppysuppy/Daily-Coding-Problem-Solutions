@@ -1,0 +1,18 @@
+PROBLEM 256:
+
+Recall that a full binary tree is one in which each node is either a leaf node, or has two children. Given a binary tree, convert it to a full one by removing nodes with only one child.
+For example, given the following tree:
+
+         a
+      /     \
+    b         c
+  /            \
+d                 e
+  \             /   \
+    f          g     h
+You should convert it to:
+     a
+  /     \
+f         e
+        /   \
+       g     h
