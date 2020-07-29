@@ -9,7 +9,7 @@ class Node():
         self.next = None
     
     # String function (Automatically called upon converting to string, generally used when printing)
-    def __str__(self):
+    def __repr__(self):
         if (self.next):
             return (f"{str(self.val)} => {str(self.next)}")
         else:
@@ -29,18 +29,16 @@ class Linked_list():
         self.rear = None
         self.length = 0
     
-    # String function (Automatically called upon converting to string, generally used when printing)
-    def __str__(self):
+    # Representation function
+    def __repr__(self):
         return str(self.head)
     
     def add(self, val=0):
         # Adds a new node with the provided value and adds it to the end of the list (at the rear)
         self.length += 1
-
-        if (self.head == None):
+        if self.head == None:
             self.head = Node(val)
             self.rear = self.head
-        
         else:
             self.rear.next = Node(val)
             self.rear = self.rear.next
@@ -48,3 +46,17 @@ class Linked_list():
     # Polymorphic function to return the length of the object
     def __len__(self):
         return self.length
+
+    # iteration initialization
+    def __iter__(self):
+        self.curr = self.head
+        return self
+
+    # next function to iterate through the linked list iterator
+    def __next__(self):
+        if self.curr:
+            value = self.curr.val
+            self.curr = self.curr.next
+            return value
+        else:
+            raise StopIteration
