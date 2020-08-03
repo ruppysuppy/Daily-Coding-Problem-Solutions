@@ -1,109 +1,114 @@
-class Node():
+class Node:
     '''
     Node Class for the nodes of a Binary Tree
 
     Functions:
-    to_str: __str__ helper function
-    height_helper: helper function to calculate the height of a Binary Tree
-    insert_helper: helper function to add node in a Binary Search Tree
+    insert_helper: Helper function to add node in a Binary Search Tree
+    height_helper: Helper function to calculate the height of a Binary Tree
+    num_nodes: Helper function to calculate the number of Nodes in a Binary Tree
+    to_str: Helper function for __repr__
     '''
 
-    # Initialize function (Automatically called upon creating an object instance)
-    def __init__(self, val, left=None, right=None):
+    def __init__(self, val: int, left: int = None, right: int = None) -> None:
         self.val = val
         self.left = left
         self.right = right
-    
-    # String function (Automatically called upon converting to string, generally used when printing)
-    def __str__(self):
+
+    def __repr__(self) -> str:
         return self.to_str()
-    
-    def to_str(self):
-        # Returns all the childen in case 1 of them is not None, else returns only the value
-        if (self.right == None and self.left == None):
-            return f"('{self.val}')"
-        elif (self.left != None and self.right == None):
-            return f"({self.left.to_str()}, '{self.val}', NULL)"
-        elif (self.left == None and self.right != None):
-            return f"(NULL, '{self.val}', {self.right.to_str()})"
-        elif (self.left != None and self.right != None):
-            return f"({self.left.to_str()}, '{self.val}', {self.right.to_str()})"
-    
-    def height_helper(self):
-        # Recusive function to find the height of a tree (using max(left_height, right_height))
-        if (self.left == None):
-            left_height = 0
-        else:
+
+    def height_helper(self) -> int:
+        # Helper function to calculate the height of a Binary Tree
+        # Uses: height = max(left_height, right_height)
+        left_height, right_height = 0, 0
+        if self.left is not None:
             left_height = self.left.height_helper()
-        
-        if (self.right == None):
-            right_height = 0
-        else:
+        if self.right is not None:
             right_height = self.right.height_helper()
-        
-        return (max(left_height, right_height) + 1)
-    
-    def insert_helper(self, val):
-        # Insertion helper to insert using the BST property
-        if (self.val > val):
-            if (self.left == None):
+        return max(left_height, right_height) + 1
+
+    def insert_helper(self, val: int) -> None:
+        # Helper function to add node in a Binary Search Tree
+        # Uses: BST property
+        # NOTE: Duplicate nodes are not added
+        if self.val > val:
+            if self.left is None:
                 self.left = Node(val)
             else:
                 self.left.insert_helper(val)
-
-        elif (self.val < val):
-            if (self.right == None):
+        elif self.val < val:
+            if self.right is None:
                 self.right = Node(val)
             else:
                 self.right.insert_helper(val)
 
-class Binary_Tree():
+    def num_nodes(self) -> int:
+        # Helper function to calculate the number of Nodes in a Binary Tree
+        left, right = 0, 0
+        if self.left:
+            left = self.left.num_nodes()
+        if self.right:
+            right = self.right.num_nodes()
+        return left + right + 1
+
+    def to_str(self) -> str:
+        # Helper function for __repr__
+        # Returns all the childen in case 1 of them is not None, else returns only the
+        # value
+        if self.right is None and self.left is None:
+            return f"('{self.val}')"
+        elif self.left is not None and self.right is None:
+            return f"({self.left.to_str()}, '{self.val}', null)"
+        elif self.left is None and self.right is not None:
+            return f"(null, '{self.val}', {self.right.to_str()})"
+        elif self.left is not None and self.right is not None:
+            return f"({self.left.to_str()}, '{self.val}', {self.right.to_str()})"
+
+
+class BinaryTree:
     '''
     Binary Tree Class
 
     Functions:
-    find_height: function to calculate the height of a Binary Tree (uses height_helper in the Node Class)
+    find_height: Calculate the height of a Binary Tree (uses height_helper in the Node
+                 Class)
 
-    NOTE: This class does not have the add node function and nodes have to be added manually
+    NOTE: This class does not have the add node function and nodes have to be added
+          manually
     '''
 
-    # Initialize function (Automatically called upon creating an object instance)
-    def __init__(self, val=None):
-        if (val != None):
-            self.root = Node(val)
-        else:
-            self.root = None
-    
-    # String function (Automatically called upon converting to string, generally used when printing)
-    def __str__(self):
+    def __init__(self) -> None:
+        self.root = None
+
+    def __len__(self) -> int:
+        if self.root:
+            return self.root.num_nodes()
+        return 0        
+
+    def __repr__(self) -> str:
         return str(self.root)
-    
-    # Function to return the height of the tree using the height helper
-    def find_height(self):
-        return self.root.height_helper()
 
-class Binary_Search_Tree(Binary_Tree):
+    def find_height(self):
+        # Calculate the height of a Binary Tree
+        if self.root:
+            return self.root.height_helper()
+        return 0
+
+
+class BinarySearchTree(BinaryTree):
     '''
-    Binary Tree Class (INHERITS FROM THE Binary_Tree CLASS)
+    Binary Tree Class (INHERITS FROM THE BinaryTree CLASS)
 
     Functions:
-    add: function to add nodes to a Binary Search Tree (uses insert_helper in the Node Class)
+    add: Add nodes to a Binary Search Tree (uses insert_helper in the Node Class)
     '''
 
-    # Initialize function (uses the Binart_Tree init)
-    def __init__(self, val=None):
-        Binary_Tree.__init__(self, val)
-        self.nodes = 0
-    
-    # Length function (Automatically called upon calling len())
-    def __len__(self):
-        return self.nodes
-    
-    # Function to add Nodes using the insert helper
+    def __init__(self) -> None:
+        BinaryTree.__init__(self)
+
     def add(self, val):
-        self.nodes += 1
-        
-        if (self.root == None):
+        # Add nodes to a Binary Search Tree
+        if self.root is None:
             self.root = Node(val)
         else:
             self.root.insert_helper(val)
