@@ -1,55 +1,46 @@
-class Stack():
+class Stack:
     '''
     Stack Class for the implementation of a stack
 
     Functions:
-    push: pushes an object to the top of the stack
-    pop: pops the object at the top of the stack (raises erorr if the stack is empty)
+    isEmpty: Check if the stack is empty
+    pop: Pop the object at the top of the stack
+         Raises erorr if the stack is empty
+    push: Push an object to the top of the stack
     '''
 
-    # Initialize function (Automatically called upon creating an object instance)
-    def __init__(self):
+    def __init__(self) -> None:
         self.stack = []
-        self.head = -1
         self.rear = -1
-    
-    # String function (Automatically called upon converting to string, generally used when printing)
-    def __str__(self):
-        temp = ""
+        self.top = -1
 
-        for i in self.stack:
-            temp += f"{i} "
-        
-        if (temp == ""):
-            temp = "*EMPTY*"
-        
-        return f"Stack: {temp}\nHead: {self.head}\t\tRear = {self.rear}"
-    
-    # Length function (Automatically called upon calling len())
-    def __len__(self):
+    def __repr__(self) -> str:
+        return str(self.stack)
+
+    def __len__(self) -> int:
         return len(self.stack)
-    
-    def push(self, val):
-        # Pushes a new value to the stack rear
-        if (self.head == -1):
-            self.stack.append(val)
-            self.head = 0
-            self.rear = 0
-        
-        else:
-            self.stack.append(val)
-            self.rear += 1
-    
-    def pop(self):
-        # Pops the value at the stack rear (returns None if empty)
-        if (self.head == -1):
-            raise Exception("Stack Underflow. Cannot pop from an empty stack")
 
-        elif (self.rear == 0):
-            self.head = -1
+    def pop(self) -> int :
+        # Pop the value at the stack top
+        if self.rear == -1:
+            raise Exception("Stack Underflow. Cannot pop from an empty stack")
+        elif self.top == 0:
             self.rear = -1
-        
+            self.top = -1
         else:
-            self.rear -= 1   
-        
+            self.top -= 1   
         return self.stack.pop()
+
+    def push(self, val: int) -> None:
+        # Push a new value to the stack top
+        if self.rear == -1:
+            self.stack.append(val)
+            self.rear = 0
+            self.top = 0
+        else:
+            self.stack.append(val)
+            self.top += 1
+
+    def isEmpty(self) -> bool:
+        # Check if the stack is empty
+        return bool(self.stack)

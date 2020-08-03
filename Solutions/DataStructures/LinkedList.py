@@ -1,21 +1,22 @@
-class Node():
+from typing import Iterable
+
+
+class Node:
     '''
     Node Class for the nodes of a Linked List
     '''
 
-    # Initialize function (Automatically called upon creating an object instance)
-    def __init__(self, val=None):
+    def __init__(self, val: int = None) -> None:
         self.val = val
         self.next = None
-    
-    # String function (Automatically called upon converting to string, generally used when printing)
-    def __repr__(self):
-        if (self.next):
-            return (f"{str(self.val)} => {str(self.next)}")
-        else:
-            return str(self.val)
 
-class Linked_list():
+    def __repr__(self) -> str:
+        if self.next:
+            return (f"{str(self.val)} => {str(self.next)}")
+        return str(self.val)
+
+
+class LinkedList:
     '''
     Linked List Class
 
@@ -23,37 +24,34 @@ class Linked_list():
     add: function to add a node at the end of the linked list
     '''
 
-    # Initialize function (Automatically called upon creating an object instance)
-    def __init__(self):
+    def __init__(self) -> None:
         self.head = None
         self.rear = None
         self.length = 0
-    
-    # Representation function
-    def __repr__(self):
+
+    def __repr__(self) -> str:
         return str(self.head)
-    
-    def add(self, val=0):
-        # Adds a new node with the provided value and adds it to the end of the list (at the rear)
+
+    def add(self, val: int = 0):
+        # Add a new node with the provided value and adds it at the rear of the list
         self.length += 1
-        if self.head == None:
+        if self.head is None:
             self.head = Node(val)
             self.rear = self.head
         else:
             self.rear.next = Node(val)
             self.rear = self.rear.next
-    
-    # Polymorphic function to return the length of the object
-    def __len__(self):
+
+    def __len__(self) -> int:
         return self.length
 
     # iteration initialization
-    def __iter__(self):
+    def __iter__(self) -> Iterable:
         self.curr = self.head
         return self
 
     # next function to iterate through the linked list iterator
-    def __next__(self):
+    def __next__(self) -> int:
         if self.curr:
             value = self.curr.val
             self.curr = self.curr.next
