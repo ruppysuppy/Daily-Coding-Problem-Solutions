@@ -1,3 +1,3 @@
 PROBLEM 3:
 
-Write a program to serialize a tree into a string and deserialize a string into a tree.
+Given the root to a binary tree, implement serialize(root), which serializes the tree into a string, and deserialize(s), which deserializes the string back into the tree.
