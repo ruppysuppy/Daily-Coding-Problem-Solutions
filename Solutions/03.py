@@ -4,14 +4,15 @@ Problem:
 Write a program to serialize a tree into a string and deserialize a string into a tree.
 '''
 
-# Local Import from the datastructure module
+from typing import List
 
+# Local Import from the datastructure module
 from DataStructures.Tree import Node, BinaryTree
 
 
 # Helper function to serialize the tree (uses prefix traversal)
 # data is padded with single quotes (') and comma (,) is used as a delimiter
-def serialize_helper(self):
+def serialize_helper(self) -> str:
     if self.right is None and self.left is None:
         return f"'{self.val}','None','None'"
     elif self.left is not None and self.right is None:
@@ -27,7 +28,7 @@ def serialize_helper(self):
 
 
 # Function to serialize the tree
-def serialize(self):
+def serialize(self) -> str:
     return self.root.serialize_helper()
 
 
@@ -37,7 +38,7 @@ setattr(BinaryTree, 'serialize', serialize)
 
 
 # Function to deserialize the string
-def deserialize_helper(node, data):
+def deserialize_helper(node: Node, data: List[str]) -> Node:
     # data is a queue containing the data as a prefix notation can be easily decoded
     # using a queue
     left = data.pop(0).strip("'")
@@ -56,7 +57,7 @@ def deserialize_helper(node, data):
 
 
 # Function to deserialize a string into a binary tree
-def deserialize(string):
+def deserialize(string: str) -> BinaryTree:
     # the string is considered to have the same format as the binary tree serialization
     # eg: data is padded with single quotes (') and comma (,) is used as a delimiter
     data = string.split(',')
@@ -87,7 +88,7 @@ SERIALIZE: (n = Number of Nodes)
 TIME COMPLEXITY: O(n) 
 SPACE COMPLEXITY: O(n)
 
-DESERIALIZE: (n = Number of Characters in the string)
+DESERIALIZE: (n = Number of Characters in the String)
 TIME COMPLEXITY: O(n) 
 SPACE COMPLEXITY: O(n)
 '''
