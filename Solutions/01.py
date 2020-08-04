@@ -20,10 +20,10 @@ def check_target_sum(arr: List[int], target: int) -> bool:
     return False
 
 
-# DRIVER CODE
-print(check_target_sum([], 17))
-print(check_target_sum([10, 15, 3, 7], 17))
-print(check_target_sum([10, 15, 3, 4], 17))
+if __name__ == "__main__":
+    print(check_target_sum([], 17))
+    print(check_target_sum([10, 15, 3, 7], 17))
+    print(check_target_sum([10, 15, 3, 4], 17))
 
 
 '''

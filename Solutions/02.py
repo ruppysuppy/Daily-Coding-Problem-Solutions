@@ -31,9 +31,9 @@ def product_of_arr_except_ith_elem(arr: List[int]) -> int:
     return result
 
 
-# DRIVER CODE
-print(product_of_arr_except_ith_elem([1, 2, 3, 4, 5]))
-print(product_of_arr_except_ith_elem([3, 2, 1]))
+if __name__ == "__main__":
+    print(product_of_arr_except_ith_elem([1, 2, 3, 4, 5]))
+    print(product_of_arr_except_ith_elem([3, 2, 1]))
 
 
 '''
