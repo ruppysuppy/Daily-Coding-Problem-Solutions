@@ -1,75 +1,42 @@
 '''
 Problem:
 
-Given n integers, find the product of the numbers except the number at i'th position.
-Eg: [1, 2, 3, 4] => [24, 12, 8, 6]
-Explaination: At pos 0, result = 2x3x4; at pos 1 result = 1x3x4; at pos 2 result = 1x2x4; at pos 3 result = 1x2x3 [USING 0 BASED INDEX]
+Given an array of integers, return a new array such that each element at index i of the
+new array is the product of all the numbers in the original array except the one at i.
+
+For example, if our input was [1, 2, 3, 4, 5], the expected output would be
+[120, 60, 40, 30, 24]. If our input was [3, 2, 1], the expected output would be
+[2, 3, 6].
+
+Follow-up: what if you can't use division?
 '''
 
-# FUNCTION TO PERFORM THE OPERATION
-def prod(Arr, length):
-    prod_target = 1 # Variable storing the product of all the elements
-    prod_Arr = [0] * length # New List to store the results
 
-    # Calculating the product of all elements
-    for i in Arr:
-        prod_target = prod_target * i
-    
-    # Calculating the result at pos i (product of all elements / element at pos i)
+def product_of_arr_except_ith_elem(arr):
+    # multiplying all the elements on the left of the ith element in the 1st pass
+    # and all the elements on the right of the ith element in the 2nd pass
+    length = len(arr)
+    result = [1 for _ in range(length)]
+
+    prod = 1
     for i in range(length):
-        prod_Arr[i] = prod_target // Arr[i]
-    
-    return prod_Arr
+        result[i] *= prod
+        prod *= arr[i]
+    prod = 1
+    for i in range(length - 1, -1, -1):
+        result[i] *= prod
+        prod *= arr[i]
+    return result
 
-# FUNCTION TO PERFORM THE OPERATION (WITHOUT DIVISION)
-def prod_no_div(Arr, length):
-    output = [None] * length # Create an empty output list
-    product = 1 # Set initial product run forward
-    
-    # Calculating the cumulative product (before the i'th element)
-    for i in range(length):
-        output[i] = product
-        product = product * Arr[i]
-
-    product = 1
-    
-    # Calculating the cumulative product (after the i'th element)
-    for i in range(length-1, -1, -1):
-        output[i] *= product
-        product *= Arr[i]
-        
-    return output 
 
 # DRIVER CODE
-Arr = [int(i) for i in input("Enter the array elements separated by a space: ").split()]
-length = len(Arr)
+print(product_of_arr_except_ith_elem([1, 2, 3, 4, 5]))
+print(product_of_arr_except_ith_elem([3, 2, 1]))
 
-ans1 = prod(Arr, length)
-ans2 = prod_no_div(Arr, length)
-
-print(("The resultant elements are (Using Division): " + "{} " * length).format(*ans1))
-print(("The resultant elements are (Without Division): " + "{} " * length).format(*ans2))
 
 '''
 SPECS:
 
 TIME COMPLEXITY: O(n)
-SPACE COMPLEXITY: O(n) in this solution, if overwriting the original array is allowed, it becomes O(1)
-
-NOTE:
-If division is not allowed, it becomes a bit complex and using O(n) Space becomes mandatory
-
-OR
-
-You could make your own simple division function using the code below :)
-
-# WORKS ONLY FOR PERFECTLY DIVISIBLE NUMBERS
-def div(num, divisor):
-    quotient = 0
-
-    while (num > 0):
-        num -= divisor
-        quotient += 1
-    
-    return quotient
+SPACE COMPLEXITY: O(n)
 '''
