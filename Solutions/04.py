@@ -33,11 +33,11 @@ def first_missing_positive_integer(arr: List[int]) -> int:
     return length + 1
 
 
-# DRIVER CODE
-print(first_missing_positive_integer([3, 4, 2, 1]))
-print(first_missing_positive_integer([3, 4, -1, 1]))
-print(first_missing_positive_integer([1, 2, 5]))
-print(first_missing_positive_integer([-1, -2]))
+if __name__ == "__main__":
+    print(first_missing_positive_integer([3, 4, 2, 1]))
+    print(first_missing_positive_integer([3, 4, -1, 1]))
+    print(first_missing_positive_integer([1, 2, 5]))
+    print(first_missing_positive_integer([-1, -2]))
 
 
 '''

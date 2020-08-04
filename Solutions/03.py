@@ -67,18 +67,20 @@ def deserialize(string: str) -> BinaryTree:
     return tree
 
 
-# DRIVER CODE
-tree = BinaryTree()
-tree.root = Node("root")
-tree.root.left = Node("left")
-tree.root.right = Node("right")
-tree.root.left.left = Node("left.left")
+if __name__ == "__main__":
+    tree = BinaryTree()
+    tree.root = Node("root")
+    tree.root.left = Node("left")
+    tree.root.right = Node("right")
+    tree.root.left.left = Node("left.left")
 
-print(tree.serialize())
+    print(tree.serialize())
 
-generated_tree = deserialize("'root','left','left.left','None','None','None','right','None','None'")
+    generated_tree = deserialize(
+        "'root','left','left.left','None','None','None','right','None','None'"
+        )
 
-print(generated_tree.serialize())
+    print(generated_tree.serialize())
 
 
 '''
