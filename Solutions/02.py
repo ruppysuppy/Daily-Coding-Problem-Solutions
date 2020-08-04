@@ -11,8 +11,10 @@ For example, if our input was [1, 2, 3, 4, 5], the expected output would be
 Follow-up: what if you can't use division?
 '''
 
+from typing import List
 
-def product_of_arr_except_ith_elem(arr):
+
+def product_of_arr_except_ith_elem(arr: List[int]) -> int:
     # multiplying all the elements on the left of the ith element in the 1st pass
     # and all the elements on the right of the ith element in the 2nd pass
     length = len(arr)

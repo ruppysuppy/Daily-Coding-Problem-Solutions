@@ -7,8 +7,10 @@ Given a list of numbers, return whether any two sums to k. For example, given
 Bonus: Can you do this in one pass?
 '''
 
+from typing import List
 
-def check_target_sum(arr, target):
+
+def check_target_sum(arr: List[int], target: int) -> bool:
     # using hash list to store the previously seen values to get access to them in O(1)
     previous = set()
     for elem in arr:
