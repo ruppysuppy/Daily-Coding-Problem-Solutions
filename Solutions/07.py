@@ -22,8 +22,8 @@ def count_decoding(digits: str) -> int:
         # if the last digit is not 0, then last digit must add to the number of words
         if digits[i - 1] > '0':
             count[i] = count[i - 1]
-        # if second last digit is smaller than 2 and last digit is smaller than 7, then
-        # last two digits form a valid character 
+        # if the number formed by the last 2 digits is less than 26, its a valid
+        # character
         if digits[i - 2] == '1' or (digits[i - 2] == '2' and digits[i - 1] < '7'): 
             count[i] += count[i - 2]
     return count[len_digits]
@@ -35,3 +35,11 @@ print(count_decoding('11'))
 print(count_decoding('111'))
 print(count_decoding('1311'))
 print(count_decoding('1111'))
+
+
+'''
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(n)
+'''
