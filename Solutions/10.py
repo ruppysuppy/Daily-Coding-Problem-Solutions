@@ -1,31 +1,29 @@
 '''
 Problem:
 
-Create a function which takes a function fn and an integer n as an arguement and executes fn after n milli-seconds
+Implement a job scheduler which takes in a function f and an integer n, and calls f
+after n milliseconds.
 '''
 
-# Library import for sleep function
-
 from time import sleep
+from typing import Callable
 
-# Print Hello Function
-def print_hello():
+
+def get_seconds_from_milliseconds(time_mil: int) -> float:
+    return time_mil / 1000
+
+
+def job_scheduler(function: Callable, delay: int) -> None:
+    sleep(get_seconds_from_milliseconds(delay))
+    function()
+
+
+# function to test the job scheduler
+def print_hello() -> None:
     print("Hello!")
 
-# Function to convert milli-second to second
-def converter(time_mil):
-    time_sec = time_mil / 1000
-    return time_sec
-
-# FUNCTION TO PERFORM THE OPERATION
-def func(fn=print_hello, n=1000):
-    # Delaying by the necessary time
-    sleep(converter(n))
-
-    # Executing the function passed as arguement
-    fn()
 
 # DRIVER CODE
-func(print_hello, 1)
-func(print_hello, 500)
-func(print_hello, 1000)
+job_scheduler(print_hello, 1)
+job_scheduler(print_hello, 500)
+job_scheduler(print_hello, 1000)

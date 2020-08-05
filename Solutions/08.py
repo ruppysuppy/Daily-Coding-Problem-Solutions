@@ -78,3 +78,11 @@ tree.root.right.left.right = Node(1)
 print(tree)
 
 print(num_universal(tree))
+
+
+'''
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(n) [call stack included]
+'''
