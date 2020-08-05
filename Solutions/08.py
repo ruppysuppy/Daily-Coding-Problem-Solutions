@@ -1,12 +1,13 @@
 '''
 Problem:
 
-Given a Binary tree, find the number of universal sub-trees.
-An universal sub-tree is a sub tree, where the value of all the nodes is same.
+A unival tree (which stands for "universal value") is a tree where all nodes under it
+have the same value.
 
-Example:
+Given the root to a binary tree, count the number of unival subtrees.
 
-Input =
+For example, the following tree has 5 unival subtrees:
+
    0
   / \
  1   0
@@ -14,64 +15,63 @@ Input =
    1   0
   / \
  1   1
-Output = 5
 '''
 
+from typing import Tuple
+
 # Local Import from the datastructure module
+from DataStructures.Tree import Node, BinaryTree
 
-from DataStructures.Tree import Node, Binary_Tree
 
-# FUNCTION TO PERFORM THE OPERATION
-def num_universal_helper(node, val, acc=0):
-    # If the node is at the leaf 1 is added to the result (accumulator) and the value matches the parent's value, True is returned
-    if (node.left == None and node.right == None):
-        if (node.val == val):
+def num_universal_helper(node: Node, val: int, acc: int = 0) -> Tuple[int, bool]:
+    # base case for recursion [leaf node]
+    if node.left is None and node.right is None:
+        if node.val == val:
             return (acc + 1), True
-        else:
-            return (acc + 1), False
-    
-    # If the value matches the parent's value, its children are also checked
-    elif (node.val == val):
-        if (node.left):
+        return (acc + 1), False
+    # if the value matches the parent's value, its children are also checked
+    elif node.val == val:
+        if node.left:
             acc, res1 = num_universal_helper(node.left, val, acc)
         else:
             res1 = True
-
-        if (node.right):
+        if node.right:
             acc, res2 = num_universal_helper(node.right, val, acc)
         else:
             res2 = True
-        
-        if (res1 and res2):
+        if res1 and res2:
             acc += 1
-    
-    # If the value doesn't match the parent's value, its children are also checked with the new value (value of the present node)
+    # If the value doesn't match the parent's value, its children are checked with the
+    # new value (value of the current node)
     else:
-        if (node.left):
+        if node.left:
             acc, res1 = num_universal_helper(node.left, node.val, acc)
         else:
             res1 = True
-            
-        if (node.right):
+        if node.right:
             acc, res2 = num_universal_helper(node.right, node.val, acc)
         else:
             res2 = True
-        
-        if (res1 and res2):
+        if res1 and res2:
             acc += 1
-    
     return acc, (node.val == val)
 
-# FUNCTION TO SIMPLIFY FUNCTION CALL OF NUM UNIVERSAL HELPER
-def num_universal(tree):
-    return num_universal_helper(tree.root, tree.root.val)[0]
+
+def num_universal(tree: BinaryTree) -> int:
+    result, _ = num_universal_helper(tree.root, tree.root.val)
+    return result
+
 
 # DRIVER CODE
-tree = Binary_Tree(0)
+tree = BinaryTree()
+
+tree.root = Node(0)
 tree.root.left = Node(1)
 tree.root.right = Node(0)
-tree.root.right.right = Node(0)
+
 tree.root.right.left = Node(1)
+tree.root.right.right = Node(0)
+
 tree.root.right.left.left = Node(1)
 tree.root.right.left.right = Node(1)
 

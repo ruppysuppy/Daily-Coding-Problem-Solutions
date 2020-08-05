@@ -1,33 +1,37 @@
 '''
 Problem:
 
-1 to 26 represent a to z, find the number of ways a series of numbers can be decoded (eg: 111 returns 3)
+Given the mapping a = 1, b = 2, ... z = 26, and an encoded message, count the number of
+ways it can be decoded.
+
+For example, the message '111' would give 3, since it could be decoded as 'aaa', 'ka',
+and 'ak'.
+
+You can assume that the messages are decodable. For example, '001' is not allowed.
 '''
 
-# FUNCTION TO PERFORM THE OPERATION
-def tree_trav(string, length, acc=1):
+def count_decoding(digits: str) -> int:
+    len_digits = len(digits)
+    # dynamic Programming table
+    count = [0] * (len_digits + 1)
+    count[0] = 1
+    count[1] = 1
 
-    # Main loop to iterate over the string
-    for i in range(length-1):
-        # If the combination of 2 charaters is a valid encoding, but the 2nd character alone isn't (0)
-        if ((string[i] + string[i+1]) in Set and (string[i+1] not in Set)):
-            continue
+    for i in range(2, len_digits + 1):
+        count[i] = 0
+        # if the last digit is not 0, then last digit must add to the number of words
+        if digits[i - 1] > '0':
+            count[i] = count[i - 1]
+        # if second last digit is smaller than 2 and last digit is smaller than 7, then
+        # last two digits form a valid character 
+        if digits[i - 2] == '1' or (digits[i - 2] == '2' and digits[i - 1] < '7'): 
+            count[i] += count[i - 2]
+    return count[len_digits]
 
-        # If the combination of 2 charaters is a valid encoding:
-        # Adding 1 to the accumulator as the number can be decoded in 1 more way and recursively calling the function on the rest of the string
-        elif ((string[i] + string[i+1]) in Set):
-            temp = string[i+2:]
-            acc = tree_trav(temp, len(temp), acc+1)
-    
-    return acc
-
-# Creating the set of accepted values
-Set = set()
-
-for i in range(1, 27):
-    Set.add(str(i))
 
 # DRIVER CODE
-inp = input("Enter the sequence: ")
-
-print("Total number of subcombinations: {}".format(tree_trav(inp, len(inp))))
+print(count_decoding('81'))
+print(count_decoding('11'))
+print(count_decoding('111'))
+print(count_decoding('1311'))
+print(count_decoding('1111'))
