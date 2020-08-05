@@ -60,7 +60,9 @@ class XORLinkedList:
             if next_node_index == -1:
                 # the end is reached
                 break
-            previous_node_index, current_node_index = current_node_index, next_node_index
+            previous_node_index, current_node_index = (
+                    current_node_index, next_node_index
+                                                      )
             current_node = self.memory[next_node_index]
         # allocation
         new_node_index = len(self.memory)
@@ -70,7 +72,9 @@ class XORLinkedList:
     def get(self, index: int) -> int:
         current_index, previous_index, current_node = self.head()
         for _ in range(index + 1):
-            previous_index, current_index = current_index, current_node.next_node(previous_index)
+            previous_index, current_index = (
+                    current_index, current_node.next_node(previous_index)
+                                            )
             current_node = self.memory[current_index]
         return current_node.val
 
