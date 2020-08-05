@@ -6,7 +6,7 @@ Write a program to serialize a tree into a string and deserialize a string into 
 
 from typing import List
 
-# Local Import from the datastructure module
+# Local Import from the DataStructure module
 from DataStructures.Tree import Node, BinaryTree
 
 

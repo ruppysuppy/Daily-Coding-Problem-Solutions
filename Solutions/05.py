@@ -12,21 +12,25 @@ def cons(a, b):
     return pair
 '''
 
-# Predefined
+from typing import Callable
+
+
+# Given this implementation of cons:
 def cons(a, b):
     def pair(f):
         return f(a, b)
     return pair
 
-# Implementation of the function 'car'
-def car(f):
+
+def car(f: Callable) -> int:
     z = lambda x, y: x
     return f(z)
 
-# Implementation of the function 'cdr'
-def cdr(f):
+
+def cdr(f: Callable) -> int:
     z = lambda x, y: y
     return f(z)
+
 
 # DRIVER CODE
 temp = cons(1, 3)
