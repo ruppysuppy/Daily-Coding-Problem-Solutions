@@ -14,6 +14,7 @@ def count_decoding(digits: str) -> int:
     len_digits = len(digits)
     # dynamic Programming table
     count = [0] * (len_digits + 1)
+    # base cases
     count[0] = 1
     count[1] = 1
 
