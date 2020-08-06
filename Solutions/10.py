@@ -23,7 +23,7 @@ def print_hello() -> None:
     print("Hello!")
 
 
-# DRIVER CODE
-job_scheduler(print_hello, 1)
-job_scheduler(print_hello, 500)
-job_scheduler(print_hello, 1000)
+if __name__ == "__main__":
+    job_scheduler(print_hello, 1)
+    job_scheduler(print_hello, 500)
+    job_scheduler(print_hello, 1000)

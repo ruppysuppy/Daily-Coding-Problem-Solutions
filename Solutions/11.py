@@ -27,8 +27,8 @@ def get_suggestion(word_list: List[str], prefix: str) -> List[str]:
     return list(prefix_match)
 
 
-# DRIVER CODE
-print(get_suggestion(['deer', 'dog', 'deal'], 'de'))
+if __name__ == "__main__":
+    print(get_suggestion(['deer', 'dog', 'deal'], 'de'))
 
 
 '''

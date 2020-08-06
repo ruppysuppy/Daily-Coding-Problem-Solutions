@@ -22,11 +22,11 @@ def max_nonadjacent_sum(arr: List[int]) -> int:
     return max(including, excluding)
 
 
-# DRIVER CODE
-print(max_nonadjacent_sum([2, 4, 6, 8]))
-print(max_nonadjacent_sum([5, 1, 1, 5]))
-print(max_nonadjacent_sum([-5, 1, 1, -5]))
-print(max_nonadjacent_sum([5, 5, 10, 100, 10, 5]))
+if __name__ == "__main__":
+    print(max_nonadjacent_sum([2, 4, 6, 8]))
+    print(max_nonadjacent_sum([5, 1, 1, 5]))
+    print(max_nonadjacent_sum([-5, 1, 1, -5]))
+    print(max_nonadjacent_sum([5, 5, 10, 100, 10, 5]))
 
 
 '''

@@ -79,15 +79,15 @@ class XORLinkedList:
         return current_node.val
 
 
-# DRIVER CODE
-xor_linked_list = XORLinkedList()
+if __name__ == "__main__":
+    xor_linked_list = XORLinkedList()
 
-xor_linked_list.add(1)
-xor_linked_list.add(2)
-xor_linked_list.add(3)
-xor_linked_list.add(4)
+    xor_linked_list.add(1)
+    xor_linked_list.add(2)
+    xor_linked_list.add(3)
+    xor_linked_list.add(4)
 
-print(xor_linked_list.get(0))
-print(xor_linked_list.get(1))
-print(xor_linked_list.get(2))
-print(xor_linked_list.get(3))
+    print(xor_linked_list.get(0))
+    print(xor_linked_list.get(1))
+    print(xor_linked_list.get(2))
+    print(xor_linked_list.get(3))

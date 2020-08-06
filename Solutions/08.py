@@ -62,22 +62,22 @@ def num_universal(tree: BinaryTree) -> int:
     return result
 
 
-# DRIVER CODE
-tree = BinaryTree()
+if __name__ == "__main__":
+    tree = BinaryTree()
 
-tree.root = Node(0)
-tree.root.left = Node(1)
-tree.root.right = Node(0)
+    tree.root = Node(0)
+    tree.root.left = Node(1)
+    tree.root.right = Node(0)
 
-tree.root.right.left = Node(1)
-tree.root.right.right = Node(0)
+    tree.root.right.left = Node(1)
+    tree.root.right.right = Node(0)
 
-tree.root.right.left.left = Node(1)
-tree.root.right.left.right = Node(1)
+    tree.root.right.left.left = Node(1)
+    tree.root.right.left.right = Node(1)
 
-print(tree)
+    print(tree)
 
-print(num_universal(tree))
+    print(num_universal(tree))
 
 
 '''
