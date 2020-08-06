@@ -36,14 +36,14 @@ def count_ways(steps: int, permissable_steps: List[int] = [1, 2]) -> int:
     return num_ways[steps]
 
 
-# DRIVER CODE
-print(count_ways(4))
-print(count_ways(1, [1, 3, 5]))
-print(count_ways(2, [1, 3, 5]))
-print(count_ways(3, [1, 3, 5]))
-print(count_ways(4, [1, 3, 5]))
-print(count_ways(5, [1, 3, 5]))
-print(count_ways(6, [1, 3, 5]))
+if __name__ == "__main__":
+    print(count_ways(4))
+    print(count_ways(1, [1, 3, 5]))
+    print(count_ways(2, [1, 3, 5]))
+    print(count_ways(3, [1, 3, 5]))
+    print(count_ways(4, [1, 3, 5]))
+    print(count_ways(5, [1, 3, 5]))
+    print(count_ways(6, [1, 3, 5]))
 
 
 '''

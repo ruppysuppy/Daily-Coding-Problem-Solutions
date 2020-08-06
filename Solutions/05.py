@@ -33,8 +33,8 @@ def cdr(f: Callable) -> int:
     return f(z)
 
 
-# DRIVER CODE
-pair = cons(1, 3)
+if __name__ == "__main__":
+    pair = cons(1, 3)
 
-print(car(pair))
-print(cdr(pair))
+    print(car(pair))
+    print(cdr(pair))

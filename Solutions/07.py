@@ -30,12 +30,12 @@ def count_decoding(digits: str) -> int:
     return count[len_digits]
 
 
-# DRIVER CODE
-print(count_decoding('81'))
-print(count_decoding('11'))
-print(count_decoding('111'))
-print(count_decoding('1311'))
-print(count_decoding('1111'))
+if __name__ == "__main__":
+    print(count_decoding('81'))
+    print(count_decoding('11'))
+    print(count_decoding('111'))
+    print(count_decoding('1311'))
+    print(count_decoding('1111'))
 
 
 '''
