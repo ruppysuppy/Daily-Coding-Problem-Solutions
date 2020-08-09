@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 We can determine how "out of order" an array A is by counting the number of inversions it has. 
@@ -10,7 +10,7 @@ You may assume each element in the array is distinct.
 Example:
 [2, 4, 1, 3, 5] => 3 <(2, 1), (4, 1), and (4, 3)>
 [5, 4, 3, 2, 1] => 10 <every distinct pair forms an inversion>
-'''
+"""
 
 # Helper's helper function (merge function to merge the segments broken up by the merge_sort function)
 def merge(a_with_inv, b_with_inv):
@@ -31,9 +31,9 @@ def merge(a_with_inv, b_with_inv):
     inversions = a_inv + b_inv
 
     # Creating the merged arr till the elements on left or the right arr run out
-    while (i < len(a) and j < len(b)):
+    while i < len(a) and j < len(b):
         # Adding the smaller element to the merged arr and incrementing the corresponding index (i or j)
-        if (a[i] < b[j]):
+        if a[i] < b[j]:
             merged.append(a[i])
             i += 1
         else:
@@ -43,14 +43,15 @@ def merge(a_with_inv, b_with_inv):
             j += 1
 
     # Adding the elements of the array where the elements haven't been processed yet
-    while (i < len(a)):
+    while i < len(a):
         merged.append(a[i])
         i += 1
-    while (j < len(b)):
+    while j < len(b):
         merged.append(b[j])
         j += 1
 
     return merged, inversions
+
 
 # Helper function (uses merge sort to calculate the number of inversions in O(nlog(n)))
 def merge_sort(arr):
@@ -58,7 +59,7 @@ def merge_sort(arr):
     length = len(arr)
 
     # if the array has 0 or 1 element, no inversion is possible
-    if (length in (0, 1)):
+    if length in (0, 1):
         return arr, 0
 
     # Getting the mid
@@ -68,11 +69,13 @@ def merge_sort(arr):
 
     return merged_array, inversions
 
+
 # FUNCTION TO PERFORM THE OPERATION
 def count_inversions(arr):
     # Calling merge_sort on the arr to get the sorted arr and inversions
     _sorted_arr, inversions = merge_sort(arr)
     return inversions
+
 
 # DRIVER CODE
 print(count_inversions([1, 2, 3, 4, 5]))

@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Determine whether a doubly linked list is a palindrome. What if it’s singly linked?
@@ -10,7 +10,7 @@ Output = true
 
 Input = 1 -> 4 
 Output = false
-'''
+"""
 
 # local import from the DataStructures module
 from DataStructures.LinkedList import Linked_list
@@ -18,13 +18,13 @@ from DataStructures.LinkedList import Linked_list
 # FUNCTION TO PERFORM THE OPERATION
 def palindrome(self):
     # if the linked list is empty, False is returned
-    if (self.head == None):
+    if self.head == None:
         return False
-    
+
     # if the list contains only 1 element, True is returned
-    elif (self.rear == self.head):
+    elif self.rear == self.head:
         return True
-    
+
     else:
         # pos1 stores the addresses for comparison from the beginning
         pos1 = self.head
@@ -34,7 +34,7 @@ def palindrome(self):
         # comparing all the values from the beginning to the end
         for i in range((self.length + 1) // 2):
             # if there's a mismatch, False is returned
-            if (pos1.val != pos2.val):
+            if pos1.val != pos2.val:
                 return False
 
             # updating the end pointer (pos2)   [operation done for Single Linked List, so its of O(n^2), for Double Linked List, it would be O(n)]
@@ -48,8 +48,9 @@ def palindrome(self):
 
         return True
 
+
 # adding the function to the Linked List class
-setattr(Linked_list, 'palindrome', palindrome)
+setattr(Linked_list, "palindrome", palindrome)
 
 # DRIVER CODE
 LL = Linked_list()

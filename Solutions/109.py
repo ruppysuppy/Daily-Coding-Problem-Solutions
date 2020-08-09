@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Given an unsigned 8-bit integer, swap its even and odd bits. 
@@ -12,7 +12,7 @@ Output = 01010101
 
 Input = 11100010 
 Output = 11010001
-'''
+"""
 
 # FUNCTION TO PERFORM THE OPERATION
 def swap_bits(num):
@@ -23,6 +23,7 @@ def swap_bits(num):
     filter_mask = 85
     # (using the mask to get the digits at odd position and left shifting) BITWISE-OR (using the mask to get the digits at even position and right shifting)
     return ((num & filter_mask) << 1) | ((num & (filter_mask << 1)) >> 1)
+
 
 # DRIVER CODE
 print("Swapped:", bin(swap_bits(0)))

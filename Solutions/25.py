@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Implement regular expression matching with the following special characters:
@@ -9,7 +9,7 @@ That is, implement a function that takes in a string and a valid regular express
 Example:
 Input = "ra.", "ray"
 Output = True
-'''
+"""
 
 # FUNCTION TO PERFORM THE OPERATION
 def regex(expression, string):
@@ -28,15 +28,15 @@ def regex(expression, string):
         # Looping over the expression
         for i in range(len_ex):
             # If no "*" has been encountered
-            if (not flag):
+            if not flag:
                 # if the expression and the string have the same characters at the position under consideration, the value of pos is incremented
-                if (expression[i] == string[pos]):
+                if expression[i] == string[pos]:
                     pos += 1
                 # if the expression has a ".", pos is incremented
-                elif (expression[i] == '.'):
+                elif expression[i] == ".":
                     pos += 1
                 # if the expression has a "*", flag is set to True
-                elif (expression[i] == '*'):
+                elif expression[i] == "*":
                     flag = True
                 # if mismatch occours, False is returned
                 else:
@@ -48,17 +48,18 @@ def regex(expression, string):
                 temp = expression[i]
 
                 # Incrementing pos till a different character is encountered
-                while (string[pos] == temp):
+                while string[pos] == temp:
                     pos += 1
-                
+
                 # Resetting flag to ensure the control doesn't enter this segment again till another "*" is encounterd
                 flag = False
-    
+
     # Returning False incase of IndexError
     except IndexError:
         return False
 
     return True
+
 
 # DRIVER CODE
 print(regex("r.y", "ray"))

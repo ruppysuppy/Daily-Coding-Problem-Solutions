@@ -1,5 +1,5 @@
 class Queue:
-    '''
+    """
     Queue Class for FIFO Structure
 
     Functions:
@@ -7,7 +7,7 @@ class Queue:
              Raises error if the queue is empty
     enqueue: Add an object to the end of the queue
     isEmpty: check if the queue is empty
-    '''
+    """
 
     def __init__(self) -> None:
         self.queue = []

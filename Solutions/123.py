@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Given a string, return whether it represents a number. 
@@ -15,7 +15,7 @@ And here are examples of non-numbers:
 * "x 1"
 * "a -2"
 * "-"
-'''
+"""
 
 # FUNCTION TO PERFORM THE OPERATION
 def check(string):
@@ -35,10 +35,10 @@ def check(string):
         # if the current character is not a number
         if not (i.isdigit()):
             # checking the number of the corresponding symbol, if the number of the same symbol is greater than 1, it is not valid [exceptions are there]
-            if (i == "-"):
-                if (num_neg >= 1):
+            if i == "-":
+                if num_neg >= 1:
                     # if the string contains an 'e' we can have 2 '-'s (for mantissa and exponent) [exception]
-                    if (num_neg == 1 and num_e == 1):
+                    if num_neg == 1 and num_e == 1:
                         num_neg += 1
                         continue
 
@@ -47,10 +47,10 @@ def check(string):
                 else:
                     num_neg += 1
 
-            elif (i == "."):
-                if (num_pt >= 1):
+            elif i == ".":
+                if num_pt >= 1:
                     # if the string contains an 'e' we can have 2 '.'s (for mantissa and exponent) [exception]
-                    if (num_pt == 1 and num_e == 1):
+                    if num_pt == 1 and num_e == 1:
                         num_pt += 1
                         continue
 
@@ -58,28 +58,29 @@ def check(string):
                     break
                 else:
                     num_pt += 1
-            
-            elif (i == "e"):
-                if (num_e >= 1):
+
+            elif i == "e":
+                if num_e >= 1:
                     isValid = False
                     break
                 else:
                     num_e += 1
-            
+
             # if the character is a space, its ignored
-            elif (i == " "):
+            elif i == " ":
                 pass
-            
+
             # any other character makes the string invalid
             else:
                 isValid = False
                 break
-        
+
         # if the current character is a number hasNum is set to True
         else:
             hasNum = True
-    
-    return (isValid and hasNum)
+
+    return isValid and hasNum
+
 
 # DRIVER CODE
 print(check("10"))

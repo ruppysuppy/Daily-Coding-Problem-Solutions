@@ -2,9 +2,9 @@ from typing import Iterable
 
 
 class Node:
-    '''
+    """
     Node Class for the nodes of a Linked List
-    '''
+    """
 
     def __init__(self, val: int = None) -> None:
         self.val = val
@@ -12,17 +12,17 @@ class Node:
 
     def __repr__(self) -> str:
         if self.next:
-            return (f"{str(self.val)} => {str(self.next)}")
+            return f"{str(self.val)} => {str(self.next)}"
         return str(self.val)
 
 
 class LinkedList:
-    '''
+    """
     Linked List Class
 
     Functions:
     add: function to add a node at the end of the linked list
-    '''
+    """
 
     def __init__(self) -> None:
         self.head = None

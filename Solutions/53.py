@@ -1,11 +1,11 @@
-'''
+"""
 Problem:
 
 Implement a queue using two stacks. 
 Recall that a queue is a FIFO (first-in, first-out) data structure with the following methods: 
 * enqueue: which inserts an element into the queue
 * dequeue: which removes it.
-'''
+"""
 
 # local import from the DataStructure module
 from DataStructures.Stack import Stack
@@ -22,21 +22,22 @@ class Stack_modified(Stack):
         temp = self.pop()
 
         # popping from the satck and pushing it to the other till the 1st stack is empty
-        while (temp != None):
+        while temp != None:
             other.push(temp)
             temp = self.pop()
 
+
 # queue class using 2 stacks
-class Queue():
+class Queue:
     # initalization with 2 stacks (stack1 is the main stack, stack2 is auxillary, its requried for dequeue operation)
     def __init__(self):
         self.stack1 = Stack_modified()
         self.stack2 = Stack_modified()
-    
+
     # enqueue adds the passed value to the end of stack1
     def enqueue(self, val):
         self.stack1.push(val)
-    
+
     # dequeue opearation
     def dequeue(self):
         # storing the inverted stack1 in stack2
@@ -48,10 +49,11 @@ class Queue():
 
         # returning the 1st inserted element
         return temp
-    
+
     # string function to display the stack
     def __str__(self):
-        return ("Queue in Stack form:\n" + self.stack1.__str__())
+        return "Queue in Stack form:\n" + self.stack1.__str__()
+
 
 # DRIVER CODE
 queue = Queue()

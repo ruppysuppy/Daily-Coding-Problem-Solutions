@@ -1,10 +1,11 @@
-'''
+"""
 Problem:
 
 You are given a list of N points (x1, y1), (x2, y2), ..., (xN, yN) representing a polygon. 
 You can assume these points are given in order; that is, you can construct the polygon by connecting point 1 to point 2, point 2 to point 3, and so on, finally looping around to connect point N to point 1.
 Determine if a new point p lies inside this polygon. (If p is on the boundary of the polygon, you should return False).
-'''
+"""
+
 
 def is_inside(points, p):
     # check if the points can form a closed structure
@@ -13,11 +14,11 @@ def is_inside(points, p):
 
     # Using the following concept:
     # if a stright line in drawn from the point p to its right (till infinity), the
-    # drawn line will intersect the lines connecting the points odd number of times 
-    # (if p is enclosed by the points) else the the number of intersections will be 
+    # drawn line will intersect the lines connecting the points odd number of times
+    # (if p is enclosed by the points) else the the number of intersections will be
     # even (implying its outside the figure created by the points)
 
-    # Details: 
+    # Details:
     # https://www.geeksforgeeks.org/how-to-check-if-a-given-point-lies-inside-a-polygon/
     x, y = p
     last = points[0]

@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Given an array of integers, find the first missing positive integer in linear time and
@@ -8,7 +8,7 @@ the array. The array can contain duplicates and negative numbers as well.
 For example, the input [3, 4, -1, 1] should give 2. The input [1, 2, 0] should give 3.
 
 You can modify the input array in-place.
-'''
+"""
 
 from typing import List
 
@@ -40,9 +40,9 @@ if __name__ == "__main__":
     print(first_missing_positive_integer([-1, -2]))
 
 
-'''
+"""
 SPECS:
 
 TIME COMPLEXITY: O(n)
 SPACE COMPLEXITY: O(1)
-'''
+"""

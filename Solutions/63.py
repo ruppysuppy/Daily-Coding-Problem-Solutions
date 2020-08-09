@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 You are given a 2D matrix of characters and a target word.
@@ -12,7 +12,7 @@ Mat =  [['F', 'A', 'C', 'I'],
         ['M', 'A', 'S', 'S']]
 'FOAM' => true (since it's the leftmost column)
 'MASS' => true (since it's the last row)
-'''
+"""
 
 # FUNCTION TO PERFORM THE OPERATION
 def word_occorance_check(mat, word):
@@ -22,27 +22,30 @@ def word_occorance_check(mat, word):
 
     # row check (searching for the word in every row)
     for i in range(n):
-        temp = ''.join(mat[i])
+        temp = "".join(mat[i])
 
-        if (word in temp):
+        if word in temp:
             return True
-    
+
     # column check (searching for the word in every column)
     for j in range(m):
-        temp = ''
+        temp = ""
         for i in range(n):
             temp += mat[i][j]
-        
-        if (word in temp):
+
+        if word in temp:
             return True
-    
+
     return False
 
+
 # DRIVER CODE
-mat = [['F', 'A', 'C', 'I'], 
-        ['O', 'B', 'Q', 'P'], 
-        ['A', 'N', 'O', 'B'], 
-        ['M', 'A', 'S', 'S']]
+mat = [
+    ["F", "A", "C", "I"],
+    ["O", "B", "Q", "P"],
+    ["A", "N", "O", "B"],
+    ["M", "A", "S", "S"],
+]
 
 print(word_occorance_check(mat, "FOAM"))
 print(word_occorance_check(mat, "MASS"))

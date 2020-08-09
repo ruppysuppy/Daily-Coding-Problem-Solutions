@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 One way to unlock an Android phone is through a pattern of swipes across a 1-9 keypad.
@@ -7,7 +7,7 @@ For a pattern to be valid, it must satisfy the following:
 * It must not connect two keys by jumping over a third key, unless that key has already been used.
 For example, 4 - 2 - 1 - 7 is a valid pattern, whereas 2 - 1 - 7 is not.
 Find the total number of valid unlock patterns of length N, where 1 <= N <= 9.
-'''
+"""
 
 from copy import deepcopy
 
@@ -26,22 +26,22 @@ class Dialpad:
         self.edges[7] = {2, 4, 5, 6, 8}
         self.edges[8] = {1, 4, 3, 5, 6, 7, 9}
         self.edges[9] = {2, 4, 5, 6, 8}
-    
+
     def update_connections(self, curr):
         # function to update the connections
-        if (2 == curr):
+        if 2 == curr:
             self.edges[1].add(3)
             self.edges[3].add(1)
-        elif (4 == curr):
+        elif 4 == curr:
             self.edges[1].add(7)
             self.edges[7].add(1)
-        elif (6 == curr):
+        elif 6 == curr:
             self.edges[9].add(3)
             self.edges[3].add(9)
-        elif (8 == curr):
+        elif 8 == curr:
             self.edges[7].add(9)
             self.edges[9].add(7)
-        elif (5 == curr):
+        elif 5 == curr:
             self.edges[1].add(9)
             self.edges[9].add(1)
             self.edges[7].add(3)

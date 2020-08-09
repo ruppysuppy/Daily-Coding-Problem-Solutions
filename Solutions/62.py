@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 There is an N by M matrix of zeroes. 
@@ -12,7 +12,7 @@ Example:
 * Down, then right)
 
 5, 5 => 70
-'''
+"""
 
 # FUNCTION TO PERFORM THE OPERATION
 def num_ways(n, m):
@@ -24,10 +24,11 @@ def num_ways(n, m):
     # the values are populated from top left to bottom right
     for i in range(1, n):
         for j in range(1, m):
-            mat[i][j] = mat[i-1][j] + mat[i][j-1]
-    
+            mat[i][j] = mat[i - 1][j] + mat[i][j - 1]
+
     # the final result is at the mat[n-1][m-1]
-    return mat[n-1][m-1]
+    return mat[n - 1][m - 1]
+
 
 # DRIVER CODE
 print(num_ways(2, 2))

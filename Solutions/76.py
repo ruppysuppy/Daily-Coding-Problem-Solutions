@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 You are given an N by M 2D matrix of lowercase letters. 
@@ -16,7 +16,7 @@ Output = 0 (there's only one row)
 
 Input = ['zyx', 'wvu', 'tsr']
 Output = 3 (since we would need to remove all the columns to order it)
-'''
+"""
 
 # FUNCTION TO PERFORM THE OPERATION
 def calc(mat):
@@ -30,13 +30,14 @@ def calc(mat):
     # looping over wach column
     for i in range(length):
         # checking if the columns are lexicographically arranged
-        for j in range(num_elements-1):
+        for j in range(num_elements - 1):
             # if the column is not lexicographical, count is incremented and control breaks out of the loop
-            if (mat[j][i] > mat[j+1][i]):
+            if mat[j][i] > mat[j + 1][i]:
                 count += 1
                 break
-    
+
     return count
+
 
 # DRIVER CODE
 inp1 = ["cba", "daf", "ghi"]

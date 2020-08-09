@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Given a linked list of numbers and a pivot k, partition the linked list so that all nodes less than k come before nodes greater than or equal to k.
@@ -8,7 +8,7 @@ Example:
 Linked List = 5 -> 1 -> 8 -> 0 -> 3
 k = 3
 Output = 1 -> 0 -> 5 -> 8 -> 3
-'''
+"""
 
 # local import from the Datastructre module
 from DataStructures.LinkedList import Node, Linked_list
@@ -21,14 +21,15 @@ def pivot(self, k):
 
     # using the 2 pointers to swap the values
     for _ in range(self.length):
-        if (ptr2.val < k):
+        if ptr2.val < k:
             ptr1.val, ptr2.val = ptr2.val, ptr1.val
             ptr1 = ptr1.next
         # iterating through the linked list
         ptr2 = ptr2.next
 
+
 # adding the pivot function to the Linked List class
-setattr(Linked_list, 'pivot', pivot)
+setattr(Linked_list, "pivot", pivot)
 
 # DRIVER CODE
 LL = Linked_list()

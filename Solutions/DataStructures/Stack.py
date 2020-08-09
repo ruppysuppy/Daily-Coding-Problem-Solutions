@@ -1,5 +1,5 @@
 class Stack:
-    '''
+    """
     Stack Class for the implementation of a stack
 
     Functions:
@@ -7,7 +7,7 @@ class Stack:
     pop: Pop the object at the top of the stack
          Raises erorr if the stack is empty
     push: Push an object to the top of the stack
-    '''
+    """
 
     def __init__(self) -> None:
         self.stack = []
@@ -20,7 +20,7 @@ class Stack:
     def __len__(self) -> int:
         return len(self.stack)
 
-    def pop(self) -> int :
+    def pop(self) -> int:
         # Pop the value at the stack top
         if self.rear == -1:
             raise Exception("Stack Underflow. Cannot pop from an empty stack")
@@ -28,7 +28,7 @@ class Stack:
             self.rear = -1
             self.top = -1
         else:
-            self.top -= 1   
+            self.top -= 1
         return self.stack.pop()
 
     def push(self, val: int) -> None:

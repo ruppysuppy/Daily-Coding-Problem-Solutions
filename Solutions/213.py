@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Given a string of digits, generate all possible valid IP address combinations.
@@ -9,7 +9,7 @@ Example:
 
 Input = "2542540123"
 Output = ['254.25.40.123', '254.254.0.123']
-'''
+"""
 
 # generating the set of acceptable numbers
 ACCEPTABLE_NUMBERS = set([str(i) for i in range(256)])
@@ -18,13 +18,13 @@ ACCEPTABLE_NUMBERS = set([str(i) for i in range(256)])
 def get_ip_combinations_helper(string, curr, accumulator):
     # if the end of the string is reached and a proper ip config is generated
     # the combination is added to the accumulator
-    if (not string and len(curr) == 4):
+    if not string and len(curr) == 4:
         accumulator.append(list(curr))
         return
     # if the combination is not correct, its not added to the accumulator
-    elif (len(curr) > 4):
+    elif len(curr) > 4:
         return
-    
+
     # declaring the current part
     curr_part = ""
 
@@ -36,12 +36,15 @@ def get_ip_combinations_helper(string, curr, accumulator):
         # getting the length of the current part
         length = len(curr_part)
         # if the length is more than acceptable, the function breaks out
-        if (length > 3):
+        if length > 3:
             return
-        
-        # if the current part is an acceptable number, get_ip_combinations_helper is called recursively 
-        if (curr_part in ACCEPTABLE_NUMBERS):
-            get_ip_combinations_helper(string[length:], list(curr) + [curr_part], accumulator)
+
+        # if the current part is an acceptable number, get_ip_combinations_helper is called recursively
+        if curr_part in ACCEPTABLE_NUMBERS:
+            get_ip_combinations_helper(
+                string[length:], list(curr) + [curr_part], accumulator
+            )
+
 
 # FUNCTION TO PERFORM THE OPERATION
 def get_ip_combinations(string):
@@ -51,6 +54,7 @@ def get_ip_combinations(string):
     get_ip_combinations_helper(string, [], accumulator)
     # returning the ip configurations in the proper format
     return [".".join(combination) for combination in accumulator]
+
 
 # DRIVER CODE
 print(get_ip_combinations("2542540123"))

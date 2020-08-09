@@ -1,8 +1,8 @@
-'''
+"""
 Problem:
 
 Given a binary tree, return the level of the tree with minimum sum.
-'''
+"""
 
 # local import from the DataStructures module
 from DataStructures.Queue import Queue
@@ -11,7 +11,7 @@ from DataStructures.Tree import Binary_Tree, Node
 # FUNCTION TO PERFROM THE OPERATION
 def get_min_sum(tree):
     # if the tree is empty, 0 is returned
-    if (not tree.root):
+    if not tree.root:
         return 0
 
     # creating a queue
@@ -25,37 +25,38 @@ def get_min_sum(tree):
     min_sum = 99999
     # temp_sum stores the sum of the current level
     temp_sum = 0
-    
+
     # processing all the nodes (till the queue is empty)
-    while (not queue_processing.isEmpty()):
+    while not queue_processing.isEmpty():
         # getting the current node
         node = queue_processing.dequeue()
 
         # if the node is not None
-        if (node):
+        if node:
             # the children of the node are added to the queue
-            if (node.left):
+            if node.left:
                 queue_processing.enqueue(node.left)
-            if (node.right):
+            if node.right:
                 queue_processing.enqueue(node.right)
-            
+
             # the node's value is added to temp_sum
             temp_sum += node.val
-        
+
         # if the node is None (end of a level)
         else:
             # if the level's sum is less than the min_sum, min_sum is updated
-            if (temp_sum < min_sum):
+            if temp_sum < min_sum:
                 min_sum = temp_sum
 
             # if the queue has any elements, another None is added to demarkate the end of the current level
             # length checking is necessary as if all the nodes are processed, it will keep adding Nones and the loop will go on infinitely
-            if (len(queue_processing) > 0):
+            if len(queue_processing) > 0:
                 queue_processing.enqueue(None)
                 temp_sum = 0
-    
+
     # min_sum is returned
     return min_sum
+
 
 # DRIVER CODE
 a = Node(100)

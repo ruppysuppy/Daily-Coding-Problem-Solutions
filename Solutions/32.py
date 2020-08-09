@@ -1,6 +1,6 @@
 # This program was not written by me, but this shows the implementation of Arbitrage well.
 
-'''
+"""
 Problem:
 
 Suppose you are given a table of currency exchange rates, represented as a 2D array. Determine whether there is a possible arbitrage.
@@ -11,7 +11,7 @@ Example:
 Input = [[1, 2], 
         [0.5, 1]]
 Output = False
-'''
+"""
 
 from math import log
 
@@ -23,7 +23,7 @@ def arbitrage(table):
     # get the right result
     source = 0
     n = len(transformed_graph)
-    min_dist = [float('inf')] * n
+    min_dist = [float("inf")] * n
 
     min_dist[source] = 0
 
@@ -42,8 +42,7 @@ def arbitrage(table):
 
     return False
 
+
 # DRIVER CODE
 print(arbitrage([[1, 2], [0.5, 1]]))
-print(arbitrage([[1, 3, 4],
-                [2, 1, 3], 
-                [5, 2, 1]]))
+print(arbitrage([[1, 3, 4], [2, 1, 3], [5, 2, 1]]))

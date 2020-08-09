@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Write a function that rotates a list by k elements. 
@@ -8,7 +8,7 @@ Example:
 
 Input = [1, 2, 3, 4, 5, 6]
 Output = [3, 4, 5, 6, 1, 2]
-'''
+"""
 
 # FUNCTION TO PERFORM THE OPERATION
 def rotate_list(List, k):
@@ -21,9 +21,10 @@ def rotate_list(List, k):
     for _ in range(k):
         temp = List.pop(0)
         List.append(temp)
-    
+
     # returning the list
     return List
+
 
 # DRIVER CODE
 print(rotate_list([1, 2, 3, 4, 5, 6], 0))

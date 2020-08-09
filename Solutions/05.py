@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 cons(a, b) constructs a pair, and car(pair) and cdr(pair) returns the first and last
@@ -11,7 +11,7 @@ def cons(a, b):
     def pair(f):
         return f(a, b)
     return pair
-'''
+"""
 
 from typing import Callable
 
@@ -20,6 +20,7 @@ from typing import Callable
 def cons(a, b):
     def pair(f):
         return f(a, b)
+
     return pair
 
 

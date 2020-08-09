@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 A unival tree (which stands for "universal value") is a tree where all nodes under it
@@ -15,7 +15,7 @@ For example, the following tree has 5 unival subtrees:
    1   0
   / \
  1   1
-'''
+"""
 
 from typing import Tuple
 
@@ -80,9 +80,9 @@ if __name__ == "__main__":
     print(num_universal(tree))
 
 
-'''
+"""
 SPECS:
 
 TIME COMPLEXITY: O(n)
 SPACE COMPLEXITY: O(n) [call stack included]
-'''
+"""

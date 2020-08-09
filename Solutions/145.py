@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Given the head of a singly linked list, swap every two nodes and return its head.
@@ -7,7 +7,7 @@ Example:
 
 Input = 1 -> 2 -> 3 -> 4
 Output = 2 -> 1 -> 4 -> 3
-'''
+"""
 
 # local import from the Datastructure module
 from DataStructures.LinkedList import Node, Linked_list
@@ -30,12 +30,13 @@ def swap_nodes(self):
 
         except:
             break
-    
+
     # returning the head
     return self.head
 
+
 # adding the swap_node function to Linked List
-setattr(Linked_list, 'swap_nodes', swap_nodes)
+setattr(Linked_list, "swap_nodes", swap_nodes)
 
 # DRIVER CODE
 LL = Linked_list()

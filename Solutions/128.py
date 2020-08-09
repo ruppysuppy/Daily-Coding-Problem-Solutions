@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 The Tower of Hanoi is a puzzle game with three rods and n disks, each a different size.
@@ -22,33 +22,36 @@ Output = Move 1 to 3
          Move 2 to 1
          Move 2 to 3
          Move 1 to 3
-'''
+"""
 
 # FUNCTION TO PERFORM THE OPERATION
 def towers_of_hanoi(n, start_rod=None, aux_rod=None, end_rod=None):
     # on the first call of the function, the rod names are initialized and a small intro printed
-    if (not start_rod):
+    if not start_rod:
         # initialized name for the rod, not using the convention mentioned in the question
-        start_rod = 'start_rod'
-        print(f"\nTower of Hanoi for {n} Disks ========================================")
-    if (not aux_rod):
+        start_rod = "start_rod"
+        print(
+            f"\nTower of Hanoi for {n} Disks ========================================"
+        )
+    if not aux_rod:
         # initialized name for the rod, not using the convention mentioned in the question
-        aux_rod = 'aux_rod'
-    if (not end_rod):
+        aux_rod = "aux_rod"
+    if not end_rod:
         # initialized name for the rod, not using the convention mentioned in the question
-        end_rod = 'end_rod'
+        end_rod = "end_rod"
 
     # if the number of disks left to move is 1, its just shifted [base case for recursion]
-    if (n == 1):
-        print(f'Move disk 1 from {start_rod} to {end_rod}')
+    if n == 1:
+        print(f"Move disk 1 from {start_rod} to {end_rod}")
         return
-    
+
     # moving the top disk of the start rod to the proper position in the auxilary rod using the end rod as buffer
-    towers_of_hanoi(n-1, start_rod, end_rod, aux_rod)
+    towers_of_hanoi(n - 1, start_rod, end_rod, aux_rod)
     # moving the top disk from the start rod to the end rod
-    print(f'Move disk {n} from {start_rod} to {end_rod}')
+    print(f"Move disk {n} from {start_rod} to {end_rod}")
     # moving the top disk of the auxilary rod to the proper position in the end rod using the start rod as buffer
-    towers_of_hanoi(n-1, aux_rod, start_rod, end_rod)
+    towers_of_hanoi(n - 1, aux_rod, start_rod, end_rod)
+
 
 # DRIVER CODE
 towers_of_hanoi(3)

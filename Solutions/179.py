@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Given the sequence of keys visited by a postorder traversal of a binary search tree, reconstruct the tree.
@@ -12,7 +12,7 @@ Output =
   3   7
  / \   \
 2   4   8
-'''
+"""
 
 # importing the required classes from the Datastructures module
 from DataStructures.Tree import Binary_Search_Tree, Node
@@ -23,19 +23,21 @@ def construct(tree, postorder):
     for val in postorder:
         tree.add(val)
 
+
 # FUNCTION TO PERFORM THE OPERATION
 def bst_from_postorder(postorder):
     # creating the bst
     tree = Binary_Search_Tree()
 
     # if there are elements in the postorder traversal
-    # the root is added and the construct function is called to create the rest of the tree 
+    # the root is added and the construct function is called to create the rest of the tree
     # (reversed postorder array is passed excluding the root element)
-    if (postorder):
+    if postorder:
         tree.add(postorder[-1])
         construct(tree, postorder[-2::-1])
 
     return tree
+
 
 # DRIVER CODE
 print(bst_from_postorder([2, 4, 3, 8, 7, 5]))

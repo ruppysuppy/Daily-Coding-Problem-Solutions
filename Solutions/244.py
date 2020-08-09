@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 The Sieve of Eratosthenes is an algorithm used to generate all prime numbers smaller than N.
@@ -8,7 +8,8 @@ Once we have done this for all primes less than N, the unmarked numbers that rem
 Implement this algorithm.
 
 Bonus: Create a generator that produces primes indefinitely (that is, without taking N as an input).
-'''
+"""
+
 
 def SoE(sieve=[]):
     # if an sieve is passed, its doubled in size to generate a larger sieve

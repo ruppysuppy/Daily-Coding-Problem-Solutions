@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 In academia, the h-index is a metric used to calculate the impact of a researcher's papers. 
@@ -12,7 +12,8 @@ Example:
 N = 5
 citations = [4, 3, 0, 1, 5]
 Output = 3 (since the researcher has 3 papers with at least 3 citations)
-'''
+"""
+
 
 def get_h_index(citations):
     citations.sort(reverse=True)

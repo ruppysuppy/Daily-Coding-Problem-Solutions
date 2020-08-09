@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 The horizontal distance of a binary tree node describes how far left or right the node will be when the tree is printed out.
@@ -19,7 +19,7 @@ If there are two nodes at the same depth and horizontal distance, either is acce
 Given the root to a binary tree, return its bottom view.
 
 For this tree, for example, the bottom view could be [0, 1, 3, 6, 8, 9].
-'''
+"""
 
 # importing from the local Datastructure module
 from DataStructures.Tree import Node, Binary_Tree
@@ -27,26 +27,27 @@ from DataStructures.Tree import Node, Binary_Tree
 # helper function to construct the bottom view
 def get_bottom_view_helper(node, depth, hd, accumulator):
     # checking and adding the depth and value of the node as per requirement
-    if (hd not in accumulator):
+    if hd not in accumulator:
         accumulator[hd] = (depth, node.val)
     else:
-        if (accumulator[hd][0] < depth):
+        if accumulator[hd][0] < depth:
             accumulator[hd] = (depth, node.val)
 
     # recursively calling the function for the children if they exist
-    if (node.left):
-        get_bottom_view_helper(node.left, depth+1, hd-1, accumulator)
-    if (node.right):
-        get_bottom_view_helper(node.right, depth+1, hd+1, accumulator)
-    
+    if node.left:
+        get_bottom_view_helper(node.left, depth + 1, hd - 1, accumulator)
+    if node.right:
+        get_bottom_view_helper(node.right, depth + 1, hd + 1, accumulator)
+
     # returning the accumulator
     return accumulator
+
 
 # FUNCTION TO PERFORM THE OPERATION
 def get_bottom_view(tree):
     # getting the depth and value of each node by horizontal distance
     data = get_bottom_view_helper(tree.root, 0, 0, {})
-    
+
     # creating a array for the data by the deepest nodes' horizontal distance
     res_arr = [(hd, data[hd][1]) for hd in data]
     # sorting the list by horizontal distance
@@ -54,6 +55,7 @@ def get_bottom_view(tree):
 
     # returning the bottom view (only the values)
     return [elem for _, elem in res_arr]
+
 
 # DRIVER CODE
 tree = Binary_Tree()

@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Implement an autocomplete system. That is, given a query string s and a set of all
@@ -9,7 +9,7 @@ For example, given the query string de and the set of strings [dog, deer, deal],
 
 Hint: Try preprocessing the dictionary into a more efficient data structure to speed up
 queries.
-'''
+"""
 
 from typing import List
 
@@ -18,7 +18,7 @@ from DataStructures.Trie import Trie
 
 
 def get_suggestion(word_list: List[str], prefix: str) -> List[str]:
-    # using tree data structure to get the suggestions (for deatils, check 
+    # using tree data structure to get the suggestions (for deatils, check
     # ./DataStructres/Trie)
     trie = Trie()
     trie.add_words(word_list)
@@ -28,13 +28,13 @@ def get_suggestion(word_list: List[str], prefix: str) -> List[str]:
 
 
 if __name__ == "__main__":
-    print(get_suggestion(['deer', 'dog', 'deal'], 'de'))
+    print(get_suggestion(["deer", "dog", "deal"], "de"))
 
 
-'''
+"""
 SPECS:
 
 TIME COMPLEXITY: O(n)
 SPACE COMPLEXITY: O(n)
 [n = total number of characters (all words)]
-'''
+"""

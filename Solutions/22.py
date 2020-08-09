@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Given a dictionary of words and a string made up of those words (no spaces), return the original sentence in a list. 
@@ -12,7 +12,7 @@ Output = ['the', 'quick', 'brown', 'fox']
 
 Input = ['bed', 'bath', 'bedbath', 'and', 'beyond'], "bedbathandbeyond"
 Output = ['bed', 'bath', 'and', 'beyond] OR ['bedbath', 'and', 'beyond']
-'''
+"""
 
 # FUNCTION TO PERFORM THE OPERATION
 def words(List, string):
@@ -32,17 +32,18 @@ def words(List, string):
         buffer += i
 
         # If the word in the buffer is in the set, it is added to the found list and buffer reset
-        if (buffer in Set):
+        if buffer in Set:
             found.append(buffer)
             buffer = ""
-    
+
     # If no word is found, None is returned
-    if (len(found) == 0):
+    if len(found) == 0:
         return None
 
     return found
 
+
 # DRIVER CODE
-print(words(['quick', 'brown', 'the', 'fox'], "thequickbrownfox"))
-print(words(['bed', 'bath', 'bedbath', 'and', 'beyond'], "bedbathandbeyond"))
-print(words(['quick', 'brown', 'the', 'fox'], "bedbathandbeyond"))
+print(words(["quick", "brown", "the", "fox"], "thequickbrownfox"))
+print(words(["bed", "bath", "bedbath", "and", "beyond"], "bedbathandbeyond"))
+print(words(["quick", "brown", "the", "fox"], "bedbathandbeyond"))

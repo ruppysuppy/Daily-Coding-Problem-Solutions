@@ -1,30 +1,30 @@
-'''
+"""
 Problem:
 
 Recall that the minimum spanning tree is the subset of edges of a tree that connect all its vertices with the smallest possible total edge weight. 
 Given an undirected graph with weighted edges, compute the maximum weight spanning tree.
-'''
+"""
 
 from DataStructures.Graph import Graph_Undirected_Weighted
 
 
 def get_max_span_helper(graph, start, remaining, score):
-    if (not remaining):
+    if not remaining:
         return score
 
     scores = []
-    
+
     for dest in graph.connections[start]:
-        if (dest in remaining):
+        if dest in remaining:
             rem_cp = set(remaining)
             rem_cp.remove(dest)
 
             new_score = get_max_span_helper(
                 graph, dest, rem_cp, score + graph.connections[start][dest]
             )
-            
+
             scores.append(new_score)
-            
+
     return max(scores)
 
 

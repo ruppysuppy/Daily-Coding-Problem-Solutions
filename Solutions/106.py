@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 You are given an integer list where each number represents the number of hops you can make.
@@ -11,7 +11,7 @@ Output = true
 
 Input = [1, 1, 0, 1]
 Output = false
-'''
+"""
 
 # FUNCTION TO PERFORM THE OPERATION
 def can_reach_end(arr):
@@ -19,20 +19,21 @@ def can_reach_end(arr):
     pos = 0
     # length stores the length of the list
     length = len(arr)
-    
+
     # looping till the pointer value is less than the length of the list
-    while (pos < length):
+    while pos < length:
         # if we reach the last position, True is returned
-        if (pos == length-1):
+        if pos == length - 1:
             return True
         # if the value in the list at the current position is 0, False is retuened (we cannot move any more)
-        elif (arr[pos] == 0):
+        elif arr[pos] == 0:
             return False
         # getting the next position
         pos += arr[pos]
-    
+
     # if we surpass the last index, False is returned
     return False
+
 
 # DRIVER CODE
 print(can_reach_end([2, 0, 1, 0]))

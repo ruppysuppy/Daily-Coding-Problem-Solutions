@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Write a function to flatten a nested dictionary. Namespace the keys with a period.
@@ -21,7 +21,7 @@ Output =
     "foo.a": 5,
     "foo.bar.baz": 8
 }
-'''
+"""
 
 # FUNCTION TO PERFORM THE OPERATION
 def flatten_dict(dictionary):
@@ -34,26 +34,19 @@ def flatten_dict(dictionary):
         temp = dictionary[key]
 
         # if the value is a dictionary
-        if (type(temp) == dict):
+        if type(temp) == dict:
             # its flattened recursively
             temp = flatten_dict(temp)
-        
+
             # the value in the dictionary is deleted
             del dictionary[key]
 
             # the flatted dictionary is added to the parent dictionary using the convention "<key>.<children_keys>"
             for j in temp:
                 dictionary[key + f".{j}"] = temp[j]
-    
+
     return dictionary
 
+
 # DRIVER CODE
-print(flatten_dict({
-    "key": 3,
-    "foo": {
-        "a": 5,
-        "bar": {
-            "baz": 8
-        }
-    }
-}))
+print(flatten_dict({"key": 3, "foo": {"a": 5, "bar": {"baz": 8}}}))

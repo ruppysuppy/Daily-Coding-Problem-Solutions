@@ -1,4 +1,4 @@
-'''
+"""
 Problem 74:
 
 Suppose you have a multiplication table that is N by N. 
@@ -16,7 +16,7 @@ Output = 4 (since the multiplication table looks like this:
 5	10	15	20	25	30
 6	12	18	24	30	36
 And there are 4 12's in the table)
-'''
+"""
 
 # FUNCTION TO PERFORM THE OPERATION
 def freq_calc(n, x):
@@ -24,19 +24,20 @@ def freq_calc(n, x):
     count = 0
 
     # looping from 1 to n
-    for i in range(1, n+1):
+    for i in range(1, n + 1):
         # looping from 1 to i
-        for j in range(1, i+1):
+        for j in range(1, i + 1):
             # if the product is eual to x, the value of count has to be increased
-            if (i * j == x):
+            if i * j == x:
                 # if the value of i and j are same (i * i = x, it will be considered once)
-                if (i == j):
+                if i == j:
                     count += 1
                 # if the value of i and j are different (i * j = x implies j * i = x, it will be considered twice)
                 else:
                     count += 2
-    
+
     return count
+
 
 # DRIVER CODE
 print(freq_calc(6, 12))

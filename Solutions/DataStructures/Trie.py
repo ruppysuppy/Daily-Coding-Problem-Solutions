@@ -2,9 +2,9 @@ from typing import List, Optional
 
 
 class TrieNode:
-    '''
+    """
     TrieNode Class for the nodes of a Pre-processing Trie
-    '''
+    """
 
     def __init__(self) -> None:
         self.children = {}
@@ -12,7 +12,7 @@ class TrieNode:
 
 
 class Trie:
-    '''
+    """
     Pre-processing Trie Class
 
     Functions:
@@ -20,11 +20,11 @@ class Trie:
     add_words: Add a list of strings to the Trie
     get_suggestions: Get all possible words from the given prefix
     _traverse: Helper function for get_suggestions (generates the words from prefix)
-    '''
+    """
 
     def __init__(self) -> None:
         self.root = TrieNode()
-    
+
     def add(self, word: str) -> None:
         # Add a string to the Trie
         pos = self.root

@@ -1,9 +1,9 @@
-'''
+"""
 Problem:
 
 A bridge in a connected (undirected) graph is an edge that, if removed, causes the
 graph to become disconnected. Find all the bridges in a graph.
-'''
+"""
 
 from sys import maxsize
 from typing import Dict, List, Optional, Tuple
@@ -12,17 +12,19 @@ from typing import Dict, List, Optional, Tuple
 from DataStructures.Graph import GraphUndirectedUnweighted
 
 
-def get_bridges_helper(self, 
-                       node: int,
-                       visited: set,
-                       parent: Dict[int, Optional[int]],
-                       low: Dict[int, int],
-                       disc: Dict[int, int],
-                       bridges: List[Tuple[int, int]]) -> None:
+def get_bridges_helper(
+    self,
+    node: int,
+    visited: set,
+    parent: Dict[int, Optional[int]],
+    low: Dict[int, int],
+    disc: Dict[int, int],
+    bridges: List[Tuple[int, int]],
+) -> None:
     # DFS based helper function to find all bridges
     visited.add(node)
-    disc[node] = self.time 
-    low[node] = self.time 
+    disc[node] = self.time
+    low[node] = self.time
     self.time += 1
     for neighbour in self.connections[node]:
         if neighbour not in visited:
@@ -40,7 +42,7 @@ def get_bridges_helper(self,
             low[node] = min(low[node], disc[neighbour])
 
 
-def get_bridges(self) -> List[Tuple[int, int]]: 
+def get_bridges(self) -> List[Tuple[int, int]]:
     # function to get all the bridges in a graph
     visited = set()
     disc = {node: maxsize for node in self.connections}
@@ -55,36 +57,36 @@ def get_bridges(self) -> List[Tuple[int, int]]:
 
 
 # adding the required methods and attributes to the graph class
-setattr(GraphUndirectedUnweighted, 'get_bridges_helper', get_bridges_helper)
-setattr(GraphUndirectedUnweighted, 'get_bridges', get_bridges)
-setattr(GraphUndirectedUnweighted, 'time', 0)
+setattr(GraphUndirectedUnweighted, "get_bridges_helper", get_bridges_helper)
+setattr(GraphUndirectedUnweighted, "get_bridges", get_bridges)
+setattr(GraphUndirectedUnweighted, "time", 0)
 
 
 if __name__ == "__main__":
     g1 = GraphUndirectedUnweighted()
-    g1.add_edge(1, 0) 
-    g1.add_edge(0, 2) 
-    g1.add_edge(2, 1) 
-    g1.add_edge(0, 3) 
+    g1.add_edge(1, 0)
+    g1.add_edge(0, 2)
+    g1.add_edge(2, 1)
+    g1.add_edge(0, 3)
     g1.add_edge(3, 4)
     print("Bridges in first graph:")
     print(*g1.get_bridges())
-    
-    g2 = GraphUndirectedUnweighted() 
-    g2.add_edge(0, 1) 
-    g2.add_edge(1, 2) 
-    g2.add_edge(2, 3) 
+
+    g2 = GraphUndirectedUnweighted()
+    g2.add_edge(0, 1)
+    g2.add_edge(1, 2)
+    g2.add_edge(2, 3)
     print("\nBridges in second graph:")
     print(*g2.get_bridges())
-    
-    g3 = GraphUndirectedUnweighted () 
-    g3.add_edge(0, 1) 
-    g3.add_edge(1, 2) 
-    g3.add_edge(2, 0) 
-    g3.add_edge(1, 3) 
-    g3.add_edge(1, 4) 
-    g3.add_edge(1, 6) 
-    g3.add_edge(3, 5) 
-    g3.add_edge(4, 5) 
+
+    g3 = GraphUndirectedUnweighted()
+    g3.add_edge(0, 1)
+    g3.add_edge(1, 2)
+    g3.add_edge(2, 0)
+    g3.add_edge(1, 3)
+    g3.add_edge(1, 4)
+    g3.add_edge(1, 6)
+    g3.add_edge(3, 5)
+    g3.add_edge(4, 5)
     print("\nBridges in third graph:")
     print(*g3.get_bridges())

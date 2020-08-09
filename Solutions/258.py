@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 In Ancient Greece, it was common to write text with the first line going left to right, the second line going right to left, and continuing to go back and forth. This style was called "boustrophedon".
@@ -14,7 +14,7 @@ For example, given the following tree:
 4   5     6   7
 
 You should return [1, 3, 2, 4, 5, 6, 7].
-'''
+"""
 
 from DataStructures.Tree import Node, Binary_Tree
 
@@ -46,8 +46,8 @@ def get_boustrophedon(self):
     return result
 
 
-setattr(Node, 'get_boustrophedon_helper', get_boustrophedon_helper)
-setattr(Binary_Tree, 'get_boustrophedon', get_boustrophedon)
+setattr(Node, "get_boustrophedon_helper", get_boustrophedon_helper)
+setattr(Binary_Tree, "get_boustrophedon", get_boustrophedon)
 
 
 # DRIVER CODE

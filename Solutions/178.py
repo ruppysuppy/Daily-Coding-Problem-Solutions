@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Alice wants to join her school's Probability Student Club. 
@@ -11,7 +11,7 @@ The second game: same, except that the stopping condition is a five followed by 
 
 Which of the two games should Alice elect to play? Does it even matter?
 Write a program to simulate the two games and calculate their expected value.
-'''
+"""
 
 # importing randint to simulate dice roll and sleep for displaying the simulation
 from random import randint
@@ -20,6 +20,7 @@ from time import sleep
 # function to simulate dice roll
 def dice_roll():
     return randint(1, 6)
+
 
 # FUNCTION TO PERFORM THE OPERATION
 def game(stopping_cond, display=False):
@@ -30,7 +31,7 @@ def game(stopping_cond, display=False):
     counter = 0
 
     # simulation the game
-    while (temp1 != stopping_cond[1] or temp2 != stopping_cond[0]):
+    while temp1 != stopping_cond[1] or temp2 != stopping_cond[0]:
         # rolling the dice and updating temp1 and temp2
         val = dice_roll()
         temp2 = temp1
@@ -38,18 +39,18 @@ def game(stopping_cond, display=False):
         counter += 1
 
         # displaying the simulation if the user whished to see it
-        if (display):
+        if display:
             sleep(0.1)
             print(f"On {counter}th throw, value: {val}")
 
-    
     # displaying the simulation if the user whished to see it
-    if (display):
+    if display:
         sleep(0.1)
         print(f"Total Value: {counter}\n")
 
     # returning the number of rolls
     return counter
+
 
 # DRIVER CODE
 

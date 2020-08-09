@@ -1,12 +1,12 @@
-'''
+"""
 Problem:
 
 Find the maximum of two numbers without using any if-else statements, branching, or direct comparisons.
-'''
+"""
 
 # max using bit-wise operations
 def get_max(num1, num2):
-    return num1 ^ ((num1 ^ num2) & -(num1 < num2))  
+    return num1 ^ ((num1 ^ num2) & -(num1 < num2))
 
 
 # DRIVER CODE

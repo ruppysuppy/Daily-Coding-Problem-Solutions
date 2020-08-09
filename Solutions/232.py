@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Implement a PrefixMapSum class with the following methods:
@@ -10,7 +10,7 @@ For example, you should be able to run the following code:
 >>> assert mapsum.sum("col") == 3
 >>> mapsum.insert("column", 2)
 >>> assert mapsum.sum("col") == 5
-'''
+"""
 
 from DataStructures.Trie import Trie
 
@@ -21,13 +21,15 @@ class PrefixMapSum:
         self.hash_map = {}
 
     def insert(self, key, value):
-        if key not in self.hash_map: self.trie.add(key)
+        if key not in self.hash_map:
+            self.trie.add(key)
         self.hash_map[key] = value
 
     def sum(self, prefix):
         words = self.trie.get_suggestions(prefix)
         result = 0
-        for word in words: result += self.hash_map[word]
+        for word in words:
+            result += self.hash_map[word]
         return result
 
 

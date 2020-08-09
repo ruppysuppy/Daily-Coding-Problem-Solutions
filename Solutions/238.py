@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Blackjack is a two player card game whose rules are as follows:
@@ -8,7 +8,7 @@ Blackjack is a two player card game whose rules are as follows:
 * Finally, the two compare totals, and the one with the greatest sum not exceeding 21 is the winner.
 For this problem, cards values are counted as follows: each card between 2 and 10 counts as their face value, face cards count as 10, and aces count as 1.
 Given perfect knowledge of the sequence of cards in the deck, implement a blackjack solver that maximizes the player's score (that is, wins minus losses).
-'''
+"""
 
 from random import randint
 
@@ -37,7 +37,7 @@ def get_best_score(sequence, player_score=0, dealer_score=0):
         get_best_score(sequence[1:], player_score, dealer_score + sequence[0]),
         (player_score, dealer_score),
         # the player's score has more weightage than the dealer's score
-        key=lambda x: 1.01 * x[0] + x[1]
+        key=lambda x: 1.01 * x[0] + x[1],
     )
 
 
