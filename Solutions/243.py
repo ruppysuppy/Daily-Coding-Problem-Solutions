@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Given an array of numbers N and an integer k, your task is to split N into k partitions such that the maximum sum of any partition is minimized. 
@@ -9,7 +9,7 @@ Example:
 N = [5, 1, 2, 7, 3, 4]
 k = 3
 Output = 8 (since the optimal partition is [5, 1, 2], [7], [3, 4])
-'''
+"""
 
 from sys import maxsize
 

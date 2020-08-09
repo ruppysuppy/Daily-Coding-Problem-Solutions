@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Suppose an arithmetic expression is given as a binary tree. Each leaf is an integer and each internal node is one of '+', '−', '∗', or '/'
@@ -11,7 +11,7 @@ Example:
  / \  / \
 3  2  4  5
 => 45 [(3 + 2) * (4 + 5)]
-'''
+"""
 
 # local imports
 from DataStructures.Tree import Binary_Tree, Node
@@ -19,16 +19,23 @@ from DataStructures.Tree import Binary_Tree, Node
 # functions for operations to be performed
 # addition
 def add(num1, num2):
-    return (num1 + num2)
+    return num1 + num2
+
+
 # subtraction
 def sub(num1, num2):
-    return (num1 - num2)
+    return num1 - num2
+
+
 # multiplication
 def mul(num1, num2):
-    return (num1 * num2)
+    return num1 * num2
+
+
 # division
 def div(num1, num2):
-    return (num1 / num2)
+    return num1 / num2
+
 
 # mapping the functions to the corresponding symbols
 OPERATIONS_DICT = {"+": add, "-": sub, "*": mul, "/": div}
@@ -38,35 +45,37 @@ class Node_modified(Node):
     # using default init
     def __init__(self, val, left=None, right=None):
         Node.__init__(self, val, left, right)
-    
+
     # transform helper function: transforms the symbols to the corresponding function from the mapping
     def transform(self):
         # if the symbol is in the map, the value of the node is overwritten with the function
-        if (self.val in OPERATIONS_DICT):
+        if self.val in OPERATIONS_DICT:
             self.val = OPERATIONS_DICT[self.val]
-        
+
             # recursive call on children (can only happen if its a valid operation)
             self.left.transform()
             self.right.transform()
-    
+
     # actual function to calculate the result from the expression tree
     def calculate(self):
         # if the current node holds a function, its applied on its children recursively
-        if (callable(self.val)):
+        if callable(self.val):
             return self.val(self.left.calculate(), self.right.calculate())
         # if the current node holds a value, its returned
         else:
             return self.val
 
+
 # FUNCTION TO PERFORM THE OPERATION
 def calc(root):
     # if the root node is present (!= None), its transformed and the expression is calculated
-    if (root):
+    if root:
         root.transform()
         return root.calculate()
     # if root doesn't exist, None is returned
     else:
         return None
+
 
 # DRIVER CODE
 tree = Binary_Tree()

@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 An XOR linked list is a more memory efficient doubly linked list. Instead of each node
@@ -9,10 +9,10 @@ adds the element to the end, and a get(index) which returns the node at index.
 If using a language that has no pointers (such as Python), you can assume you have
 access to get_pointer and dereference_pointer functions that converts between nodes
 and memory addresses.
-'''
+"""
 
 
-# Solution copied from: 
+# Solution copied from:
 # https://github.com/r1cc4rdo/daily_coding_problem/blob/master/problems/06
 
 
@@ -54,15 +54,16 @@ class XORLinkedList:
 
     def add(self, val: int) -> None:
         current_node_index, previous_node_index, current_node = self.head()
-        while True: 
+        while True:
             # walk down the list until the end is found
             next_node_index = current_node.next_node(previous_node_index)
             if next_node_index == -1:
                 # the end is reached
                 break
             previous_node_index, current_node_index = (
-                    current_node_index, next_node_index
-                                                      )
+                current_node_index,
+                next_node_index,
+            )
             current_node = self.memory[next_node_index]
         # allocation
         new_node_index = len(self.memory)
@@ -73,8 +74,9 @@ class XORLinkedList:
         current_index, previous_index, current_node = self.head()
         for _ in range(index + 1):
             previous_index, current_index = (
-                    current_index, current_node.next_node(previous_index)
-                                            )
+                current_index,
+                current_node.next_node(previous_index),
+            )
             current_node = self.memory[current_index]
         return current_node.val
 

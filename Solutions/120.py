@@ -1,9 +1,9 @@
-'''
+"""
 Problem:
 
 Implement the singleton pattern with a twist. First, instead of storing one instance, store two instances. 
 And in every even call of getInstance(), return the first instance and in every odd call of getInstance(), return the second instance.
-'''
+"""
 
 # class to handle the operations
 class Twisted_Singleton:
@@ -22,11 +22,11 @@ class Twisted_Singleton:
     @staticmethod
     def initialize():
         # only if the flag is set, will the data be initialized (used to ensure it cannot be reinitialized)
-        if (Twisted_Singleton.flag):
+        if Twisted_Singleton.flag:
             Twisted_Singleton.instances.append(Twisted_Singleton(1))
             Twisted_Singleton.instances.append(Twisted_Singleton(2))
             Twisted_Singleton.flag = False
-    
+
     # FUNCTION TO PERFORM THE OPERATION
     @staticmethod
     def getInstance():
@@ -34,10 +34,11 @@ class Twisted_Singleton:
         Twisted_Singleton.is_odd = not Twisted_Singleton.is_odd
 
         # returning the necessary data
-        if (Twisted_Singleton.is_odd):
+        if Twisted_Singleton.is_odd:
             return Twisted_Singleton.instances[0].instance_num
 
         return Twisted_Singleton.instances[1].instance_num
+
 
 # DRIVER CODE
 Twisted_Singleton.initialize()

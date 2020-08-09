@@ -1,5 +1,5 @@
 class Node:
-    '''
+    """
     Node Class for the nodes of a Binary Tree
 
     Functions:
@@ -7,7 +7,7 @@ class Node:
     height_helper: Helper function to calculate the height of a Binary Tree
     num_nodes: Helper function to calculate the number of Nodes in a Binary Tree
     to_str: Helper function for __repr__
-    '''
+    """
 
     def __init__(self, val: int, left: int = None, right: int = None) -> None:
         self.val = val
@@ -66,7 +66,7 @@ class Node:
 
 
 class BinaryTree:
-    '''
+    """
     Binary Tree Class
 
     Functions:
@@ -75,7 +75,7 @@ class BinaryTree:
 
     NOTE: This class does not have the add node function and nodes have to be added
           manually
-    '''
+    """
 
     def __init__(self) -> None:
         self.root = None
@@ -83,7 +83,7 @@ class BinaryTree:
     def __len__(self) -> int:
         if self.root:
             return self.root.num_nodes()
-        return 0        
+        return 0
 
     def __repr__(self) -> str:
         return str(self.root)
@@ -96,12 +96,12 @@ class BinaryTree:
 
 
 class BinarySearchTree(BinaryTree):
-    '''
+    """
     Binary Tree Class (INHERITS FROM THE BinaryTree CLASS)
 
     Functions:
     add: Add nodes to a Binary Search Tree (uses insert_helper in the Node Class)
-    '''
+    """
 
     def __init__(self) -> None:
         BinaryTree.__init__(self)

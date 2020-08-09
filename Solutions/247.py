@@ -1,9 +1,9 @@
-'''
+"""
 Problem:
 
 Given a binary tree, determine whether or not it is height-balanced.
 A height-balanced binary tree can be defined as one in which the heights of the two subtrees of any node never differ by more than one.
-'''
+"""
 
 from DataStructures.Tree import Node, Binary_Tree
 
@@ -31,8 +31,8 @@ def check_balance(self):
 
 
 # adding required methods to the classes
-setattr(Node, 'height_helper', height_helper)
-setattr(Binary_Tree, 'check_balance', check_balance)
+setattr(Node, "height_helper", height_helper)
+setattr(Binary_Tree, "check_balance", check_balance)
 
 
 # DRIVER CODE

@@ -1,9 +1,9 @@
-'''
+"""
 Problem:
 
 Given a function f, and N return a debounced f of N milliseconds.
 That is, as long as the debounced f continues to be invoked, f itself will not be called for N milliseconds.
-'''
+"""
 
 # import from the time module
 from time import sleep
@@ -24,17 +24,20 @@ def debounce(s):
 
             # calling the function
             return f(*args, **kwargs)
+
         # returning the wrapped function
         return wrapped
+
     # returning the decorate function
     return decorate
 
 
 # FUNCTION TO PERFORM THE OPERATION
-@debounce(3000)     # decorator function to implement debouncing
+@debounce(3000)  # decorator function to implement debouncing
 # ordinary addition function
 def add_nums(x, y):
     return x + y
+
 
 # DRIVER CODE
 print(add_nums(1, 1))

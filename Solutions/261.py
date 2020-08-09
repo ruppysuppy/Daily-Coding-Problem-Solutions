@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Huffman coding is a method of encoding characters based on their frequency. Each letter
@@ -21,7 +21,7 @@ With this encoding, cats would be represented as 0000110111.
 
 Given a dictionary of character frequencies, build a Huffman tree, and use it to
 determine a mapping between characters and their encoded binary strings.
-'''
+"""
 
 from typing import Dict
 
@@ -29,15 +29,15 @@ from typing import Dict
 from DataStructures.Tree import Node
 
 
-def huffman_code_tree(node: Node,
-                      left: bool = True,
-                      binString: str = '') -> Dict[str, str]:
+def huffman_code_tree(
+    node: Node, left: bool = True, binString: str = ""
+) -> Dict[str, str]:
     # function implementing huffman coding
     if type(node) is str:
         return {node: binString}
     d = dict()
-    d.update(huffman_code_tree(node.left, True, binString + '0'))
-    d.update(huffman_code_tree(node.right, False, binString + '1'))
+    d.update(huffman_code_tree(node.left, True, binString + "0"))
+    d.update(huffman_code_tree(node.right, False, binString + "1"))
     return d
 
 
@@ -56,4 +56,4 @@ def get_huffman_code(char_freq: Dict[str, int]) -> Dict[str, str]:
 
 
 if __name__ == "__main__":
-    print(get_huffman_code({'c': 1, 'a': 2, 't': 2, 's': 1}))
+    print(get_huffman_code({"c": 1, "a": 2, "t": 2, "s": 1}))

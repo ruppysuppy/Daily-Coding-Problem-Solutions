@@ -1,11 +1,11 @@
 class GraphUndirectedUnweighted:
-    '''
+    """
     Graph Undirected Unweighted Class
 
     Functions:
     add_node: function to add a node in the graph
     add_edge: function to add an edge between 2 nodes in the graph
-    '''
+    """
 
     def __init__(self) -> None:
         self.connections = {}
@@ -32,13 +32,13 @@ class GraphUndirectedUnweighted:
 
 
 class GraphDirectedUnweighted:
-    '''
+    """
     Graph Directed Unweighted Class
 
     Functions:
     add_node: function to add a node in the graph
     add_edge: function to add an edge between 2 nodes in the graph
-    '''
+    """
 
     def __init__(self) -> None:
         self.connections = {}
@@ -64,13 +64,13 @@ class GraphDirectedUnweighted:
 
 
 class GraphUndirectedWeighted:
-    '''
+    """
     Graph Undirected Weighted Class
 
     Functions:
     add_node: function to add a node in the graph
     add_edge: function to add an edge between 2 nodes in the graph
-    '''
+    """
 
     def __init__(self) -> None:
         self.connections = {}

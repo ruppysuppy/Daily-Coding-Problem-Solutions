@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Given a list of words, return the shortest unique prefix of each word. 
@@ -7,7 +7,7 @@ Example:
 
 Input = ["dog", "cat", "apple", "apricot", "fish"]
 Output = ["d", "c", "app", "apr", "f"]
-'''
+"""
 
 # helper function to get the unique prefix for the current word
 def get_unique(dictionary, string, string_list):
@@ -20,7 +20,7 @@ def get_unique(dictionary, string, string_list):
         prefix += char
 
         # if the prefix doesn't exist in the dictionary, its returned
-        if (prefix not in dictionary):
+        if prefix not in dictionary:
             return prefix
         else:
             # if the prefix exists, the prefix of the word which collided with the current prefix is updated
@@ -33,13 +33,14 @@ def get_unique(dictionary, string, string_list):
             del dictionary[prefix]
 
             try:
-                temp_pre = temp_str[:len(temp_pre)+1]
+                temp_pre = temp_str[: len(temp_pre) + 1]
             except:
                 return None
 
             dictionary[temp_pre] = temp_pos
-    
+
     return None
+
 
 # FUNCTION TO PERFORM THE OPERATION
 def unique_prefix(string_list):
@@ -52,14 +53,15 @@ def unique_prefix(string_list):
         prefix = get_unique(dictionary, string, string_list)
 
         # if unique prefix doesn't exist, ValueError is raised
-        if (not prefix):
+        if not prefix:
             raise ValueError("Unique Prefix Generation not possible")
 
         # the prefix is updated in the dictionary
         dictionary[prefix] = index
-    
+
     # returning the list of prefixes
     return list(dictionary.keys())
 
+
 # DRIVER CODE
-print(unique_prefix(['dog', 'cat', 'apple', 'apricot', 'fish']))
+print(unique_prefix(["dog", "cat", "apple", "apricot", "fish"]))

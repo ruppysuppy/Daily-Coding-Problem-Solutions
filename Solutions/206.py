@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 A permutation can be specified by an array P, where P[i] represents the location of the element at i in the permutation. 
@@ -10,7 +10,7 @@ Example:
 Array = ["a", "b", "c"] 
 Permutation = [2, 1, 0]
 Output = ["c", "b", "a"]
-'''
+"""
 
 # FUNCTION TO PERFORM THE OPERATION
 def permute(arr, p):
@@ -20,10 +20,11 @@ def permute(arr, p):
     # updating p to hold the result
     for i in range(length):
         p[i] = arr[p[i]]
-    
+
     # returning p
     return p
 
+
 # DRIVER CODE
 print(permute(["a", "b", "c"], [2, 1, 0]))
-print(permute(['a', 'b', 'c', 'd'], [2, 1, 0, 3]))
+print(permute(["a", "b", "c", "d"], [2, 1, 0, 3]))

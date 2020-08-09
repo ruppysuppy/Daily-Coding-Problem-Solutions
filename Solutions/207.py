@@ -1,9 +1,9 @@
-'''
+"""
 Problem:
 
 Given an undirected graph G, check whether it is bipartite. 
 Recall that a graph is bipartite if its vertices can be divided into two independent sets, U and V, such that no edge connects vertices of the same set.
-'''
+"""
 
 # local import from the Datastructure module
 from DataStructures.Graph import Graph_Undirected_Unweighted
@@ -15,15 +15,13 @@ def check_bipartite(self):
 
     # getting the nodes (sorted in reversed order)
     sorted_nodes = sorted(
-            self.connections.items(),
-            key=lambda x: len(x[1]), 
-            reverse=True
-            )
-    
+        self.connections.items(), key=lambda x: len(x[1]), reverse=True
+    )
+
     # iterating through the sorted nodes
     for node, _ in sorted_nodes:
         # if the node is in the 2nd set, we skip the loop
-        if (node in set_2):
+        if node in set_2:
             continue
 
         # else we add it to the 1st set
@@ -36,14 +34,15 @@ def check_bipartite(self):
     # checking if all the node in the 2nd set has their connections only in the 1st set
     for node in set_2:
         for other_node in self.connections[node]:
-            if (other_node in set_2):
+            if other_node in set_2:
                 return False
 
     # returning True if the graph is bi-partite
     return True
 
+
 # adding the function to the graph
-setattr(Graph_Undirected_Unweighted, 'check_bipartite', check_bipartite)
+setattr(Graph_Undirected_Unweighted, "check_bipartite", check_bipartite)
 
 # DRIVER CODE
 graph1 = Graph_Undirected_Unweighted()

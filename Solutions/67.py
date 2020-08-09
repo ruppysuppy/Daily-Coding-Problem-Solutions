@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Implement an LFU (Least Frequently Used) cache. 
@@ -10,10 +10,10 @@ If there is a tie, then the least recently used key should be removed.
 * get(key): gets the value at key. If no such key exists, return null.
 
 Each operation should run in O(1) time.
-'''
+"""
 
 # node class for the double linked list (in LFU Cache)
-class Node():
+class Node:
     # initalize method
     def __init__(self, key, val):
         self.key = key
@@ -21,13 +21,14 @@ class Node():
         self.freq = 1
         self.last = None
         self.next = None
-    
+
     # bollean method
     def __bool__(self):
         return bool(self.key)
 
+
 # LFU Cache
-class LFU_Cache():
+class LFU_Cache:
     # initalize method
     def __init__(self, size):
         self.head = Node(None, None)
@@ -37,7 +38,7 @@ class LFU_Cache():
         self.cache = {}
         self.size = size
         self.elements = 0
-    
+
     # helper method to add a node to the proper position in the cache linked list
     def add(self, node):
         # inserting the node at head.next
@@ -51,7 +52,7 @@ class LFU_Cache():
 
     # helper function to move the node to the proper position based on the frequency
     def move_to_pos(self, node):
-        while (node.next and node.next.freq <= node.freq):
+        while node.next and node.next.freq <= node.freq:
             node1 = node
             node2 = node.next
 
@@ -70,25 +71,25 @@ class LFU_Cache():
         node.next.last = node.last
         node.next = None
         node.last = None
-    
+
     # FUNCTION TO PERFORM THE OPERATION (get)
     def get(self, key):
         # if the key doesn't exist, None is returned
-        if (key not in self.cache):
+        if key not in self.cache:
             return None
-        
+
         # incrementing the freq of the accessed node
         node = self.cache[key]
         node.freq += 1
         # moving the node at the proper position based on the frequency of use
         self.move_to_pos(node)
-        
+
         return node.val
-    
+
     # FUNCTION TO PERFORM THE OPERATION (set)
     def set(self, key, val):
         # if the number of elements has reached the max size, the least used element is deleted
-        if (self.size == self.elements):
+        if self.size == self.elements:
             node = self.head.next
             self.remove(node)
             self.elements -= 1
@@ -99,6 +100,7 @@ class LFU_Cache():
         self.add(node)
         self.elements += 1
         self.cache[key] = node
+
 
 # DRIVER CODE
 cache = LFU_Cache(3)

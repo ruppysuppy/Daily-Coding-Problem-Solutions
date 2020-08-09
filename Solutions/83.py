@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Invert a binary tree.
@@ -17,7 +17,7 @@ Output:
  c  b
  \  / \
   f e  d
-'''
+"""
 
 # importing from the local datastructure module
 from DataStructures.Tree import Node, Binary_Tree
@@ -28,20 +28,22 @@ def invert_helper(self):
     self.right, self.left = self.left, self.right
 
     # if the right child exists, the function is recursively called on it (to interchange its children too)
-    if (self.right != None):
+    if self.right != None:
         self.right.invert_helper()
-    
+
     # if the left child exists, the function is recursively called on it (to interchange its children too)
-    if (self.left != None):
+    if self.left != None:
         self.left.invert_helper()
+
 
 # FUNCTION TO PERFORM THE OPERATION
 def invert(self):
     self.root.invert_helper()
 
+
 # adding the functions to the necessary class
-setattr(Node, 'invert_helper', invert_helper)
-setattr(Binary_Tree, 'invert', invert)
+setattr(Node, "invert_helper", invert_helper)
+setattr(Binary_Tree, "invert", invert)
 
 # DRIVER CODE
 tree = Binary_Tree("a")

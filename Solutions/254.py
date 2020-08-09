@@ -1,4 +1,4 @@
-'''
+"""
 Probelm:
 
 Recall that a full binary tree is one in which each node is either a leaf node, or has two children. Given a binary tree, convert it to a full one by removing nodes with only one child.
@@ -17,7 +17,7 @@ You should convert it to:
 f         e
         /   \
        g     h
-'''
+"""
 
 from DataStructures.Tree import Node, Binary_Tree
 
@@ -47,23 +47,23 @@ def create_full_bin_tree(self):
     self.root.create_full_bin_tree_helper()
 
 
-setattr(Node, 'create_full_bin_tree_helper', create_full_bin_tree_helper)
-setattr(Binary_Tree, 'create_full_bin_tree', create_full_bin_tree)
+setattr(Node, "create_full_bin_tree_helper", create_full_bin_tree_helper)
+setattr(Binary_Tree, "create_full_bin_tree", create_full_bin_tree)
 
 
 # DRIVER CODE
 tree = Binary_Tree()
 
-tree.root = Node('a')
-tree.root.left = Node('b')
-tree.root.right = Node('c')
+tree.root = Node("a")
+tree.root.left = Node("b")
+tree.root.right = Node("c")
 
-tree.root.left.left = Node('d')
-tree.root.left.left.right = Node('f')
+tree.root.left.left = Node("d")
+tree.root.left.left.right = Node("f")
 
-tree.root.right.right = Node('e')
-tree.root.right.right.left = Node('g')
-tree.root.right.right.right = Node('h')
+tree.root.right.right = Node("e")
+tree.root.right.right.left = Node("g")
+tree.root.right.right.right = Node("h")
 
 print(tree)
 

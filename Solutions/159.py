@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Given a string, return the first recurring character in it, or null if there is no recurring chracter.
@@ -10,7 +10,7 @@ Output = "b"
 
 Input = "abcdef"
 Output = null
-'''
+"""
 
 # FUNCTION TO PERFORM THE OPERATION
 def get_first_recurring(string):
@@ -20,14 +20,15 @@ def get_first_recurring(string):
     # iterating through the string
     for char in string:
         # if a previously seen character is encountered, its returned
-        if (char in seen):
+        if char in seen:
             return char
-        
+
         # the current character is added to the set
         seen.add(char)
 
     # if there is no recurring character, None is returned
     return None
+
 
 # DRIVER CODE
 print(get_first_recurring("acbbac"))

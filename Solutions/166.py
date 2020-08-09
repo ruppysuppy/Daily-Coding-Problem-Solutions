@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Implement a 2D iterator class. It will be initialized with an array of arrays, and should implement the following methods:
@@ -10,7 +10,7 @@ Example:
 
 Input = [[1, 2], [3], [], [4, 5, 6]]
 Output = 1, 2, 3, 4, 5, 6 (calling next() repeatedly should output this sequence)
-'''
+"""
 
 # iterator class
 class iterator:
@@ -30,12 +30,12 @@ class iterator:
     # string function to display the matrix
     def __str__(self):
         return str(self.mat)
-    
+
     # has next function implementation
     def has_next(self):
         # checking if the elements are left in the iterator
-        return (self.next_value != None)
-    
+        return self.next_value != None
+
     # next function implementation
     def next(self):
         # storing the next value for returning
@@ -46,9 +46,10 @@ class iterator:
             self.next_value = next(self.generator)
         except StopIteration:
             self.next_value = None
-        
+
         # returning the stored value
         return temp
+
 
 # DRIVER CODE
 iter_obj = iterator([[1, 2], [3], [], [4, 5, 6]])

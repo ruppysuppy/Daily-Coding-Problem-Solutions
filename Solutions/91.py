@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 What does the below code snippet print out? How can we fix the anonymous functions to behave as we'd expect?
@@ -9,7 +9,7 @@ for i in range(10):
 
 for f in functions:
     print(f())
-'''
+"""
 
 # The code is expected to print 9, 9, ..., 9 (10 times)
 # This is beacuse the value of i is set to 9 and is not changed during iteration
@@ -17,9 +17,9 @@ for f in functions:
 
 functions = []
 for i in range(10):
-    functions.append(lambda : i)
+    functions.append(lambda: i)
 
-i = 0           # MODIFICATION
+i = 0  # MODIFICATION
 for f in functions:
     print(f())
-    i += 1      # MODIFICATION
+    i += 1  # MODIFICATION

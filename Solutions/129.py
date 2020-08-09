@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Given a real number n, find the square root of n. 
@@ -7,14 +7,15 @@ Example:
 
 Input = 9
 Output = 3
-'''
+"""
 
 # global value for tolerence
 TOLERENCE = 10 ** (-6)
 
 # helper function to check whether 2 numbers are almost equal (within the tolerence limit)
 def almost_equal(num1, num2):
-    return (num1 + TOLERENCE > num2 and num1 - TOLERENCE < num2)
+    return num1 + TOLERENCE > num2 and num1 - TOLERENCE < num2
+
 
 # FUNCTION TO PERFORM THE OPERATION
 def get_sqrt(num):
@@ -31,17 +32,18 @@ def get_sqrt(num):
         # temp stores the square of mid
         temp = mid * mid
 
-        # if temp is equal to the passed number, mid is the square root 
+        # if temp is equal to the passed number, mid is the square root
         # its rounded to 6 decimal places and returned
-        if (almost_equal(temp, num)):
+        if almost_equal(temp, num):
             return round(mid, 6)
-        
+
         # depending upon the value of temp, the next search domain is restricted (check binary search for details)
-        elif (temp < num):
+        elif temp < num:
             low = mid + 1
-        
+
         else:
             high = mid - 1
+
 
 # DRIVER CODE
 print(get_sqrt(100))

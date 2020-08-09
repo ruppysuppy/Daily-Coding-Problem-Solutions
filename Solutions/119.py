@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Given a set of closed intervals, find the smallest set of numbers that covers all the intervals. 
@@ -8,7 +8,7 @@ Example:
 
 Input = [[0, 3], [2, 6], [3, 4], [6, 9]]
 Output = [3, 6]
-'''
+"""
 
 # FUNCTION TO PERFORM THE OPERATION
 def get_spanning_interval(intervals):
@@ -21,7 +21,7 @@ def get_spanning_interval(intervals):
 
     # getting the number of intervals included in the 1st interval
     for interval in intervals[1:]:
-        if (interval[0] < start and interval[1] < start):
+        if interval[0] < start and interval[1] < start:
             start = interval[1]
             pos += 1
         else:
@@ -29,11 +29,12 @@ def get_spanning_interval(intervals):
 
     # updating the value of end by iterating through the intervals and checking
     for interval in intervals[pos:]:
-        if (interval[0] > end):
+        if interval[0] > end:
             end = interval[0]
-    
+
     # returning a tuple of start and end
     return start, end
+
 
 # DRIVER CODE
 print(get_spanning_interval([[0, 3]]))
@@ -42,4 +43,4 @@ print(get_spanning_interval(([[0, 3], [2, 6], [3, 4]])))
 print(get_spanning_interval(([[0, 3], [2, 6], [3, 4], [6, 7]])))
 print(get_spanning_interval(([[0, 3], [2, 6], [3, 4], [6, 9]])))
 print(get_spanning_interval(([[0, 3], [2, 6], [3, 4], [6, 100]])))
-print(get_spanning_interval([[0,4], [1,2], [5,6]]))
+print(get_spanning_interval([[0, 4], [1, 2], [5, 6]]))

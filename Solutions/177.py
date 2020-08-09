@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Given a linked list and a positive integer k, rotate the list to the right by k places.
@@ -12,7 +12,7 @@ Output = 3 -> 5 -> 7 -> 7
 Linked list = 1 -> 2 -> 3 -> 4 -> 5
 k = 3
 Output = 3 -> 4 -> 5 -> 1 -> 2
-'''
+"""
 
 # importing the necessary classes
 from DataStructures.LinkedList import Linked_list, Node
@@ -30,8 +30,9 @@ def rot_right(self, k=0):
         self.rear.next = temp
         self.rear = self.rear.next
 
+
 # binding the function to the linked list class
-setattr(Linked_list, 'rot_right', rot_right)
+setattr(Linked_list, "rot_right", rot_right)
 
 # DRIVER CODE
 LL = Linked_list()

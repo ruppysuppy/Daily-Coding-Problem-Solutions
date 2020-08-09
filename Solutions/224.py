@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Given a sorted array, find the smallest positive integer that is not the sum of a subset of the array.
@@ -8,17 +8,17 @@ Example:
 
 Input = [1, 2, 3, 10]
 Output = 7
-'''
+"""
 
 
 def find_smallest_subset_sum_not_in_arr(arr):
     res = 1
 
     for elem in arr:
-        if (elem > res):
+        if elem > res:
             break
         res += elem
-    
+
     return res
 
 

@@ -1,9 +1,9 @@
-'''
+"""
 Problem:
 
 Given an array of a million integers between zero and a billion, out of order, how can you efficiently sort it?
 Assume that you cannot store an array of a billion elements in memory.
-'''
+"""
 
 from random import randint
 
@@ -33,7 +33,7 @@ def countingSort(arr, exp, n):
         arr[i] = output[i]
 
 
-# Method to do Radix Sort 
+# Method to do Radix Sort
 def radixSort(arr):
     length = len(arr)
     # find the number digits in the largest number (generalized for any array)

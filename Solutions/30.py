@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 You are given an array of non-negative integers that represents a two-dimensional elevation map where each element is unit-width wall and the integer is the height. 
@@ -9,15 +9,15 @@ Example:
 
 [2, 1, 2] => 1
 [3, 0, 1, 3, 0, 5] => 8
-'''
+"""
 
 # FUNCTION TO PERFORM THE OPERATION
 def water(arr):
     # Checking if there is enough walls to store water
     length = len(arr)
-    if (length < 3):
+    if length < 3:
         return 0
-    
+
     # Variable to store the total amount of accumulated water
     total_water = 0
 
@@ -48,6 +48,7 @@ def water(arr):
             right -= 1
 
     return total_water
+
 
 # DRIVER CODE
 print(water([2, 1, 2]))

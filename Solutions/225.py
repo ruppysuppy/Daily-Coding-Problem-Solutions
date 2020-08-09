@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 There are N prisoners standing in a circle, waiting to be executed. 
@@ -11,11 +11,11 @@ Example:
 N = 5
 k = 2
 Output = 3 (sequence will be [2, 4, 1, 5, 3])
-'''
+"""
 
 
 def find_last(n, k):
-    prisoners = [i for i in range(1, n+1)]
+    prisoners = [i for i in range(1, n + 1)]
     last_executed = None
     curr_pos = 0
 
@@ -23,8 +23,8 @@ def find_last(n, k):
         curr_pos = (curr_pos + k - 1) % len(prisoners)
         last_executed = prisoners[curr_pos]
 
-        prisoners = prisoners[:curr_pos] + prisoners[curr_pos+1:]
-    
+        prisoners = prisoners[:curr_pos] + prisoners[curr_pos + 1 :]
+
     return last_executed
 
 

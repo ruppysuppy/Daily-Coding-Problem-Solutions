@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 You are in an infinite 2D grid where you can move in any of the 8 directions:
@@ -18,7 +18,7 @@ Example:
 
 Input = [(0, 0), (1, 1), (1, 2)] 
 Output = 2 (It takes 1 step to move from (0, 0) to (1, 1). It takes one more step to move from (1, 1) to (1, 2))
-'''
+"""
 
 # FUNCTION TO PERFORM THE OPERATION
 def get_min_steps(sequence):
@@ -26,9 +26,9 @@ def get_min_steps(sequence):
     length = len(sequence)
 
     # returning 0 if there is 1 or no element
-    if (length in [0, 1]):
+    if length in [0, 1]:
         return 0
-    
+
     # getting the current position
     curr = sequence[0]
     # storing the total distance covered
@@ -42,12 +42,13 @@ def get_min_steps(sequence):
         y, x = next_pos
 
         # increasing dist by the maximum of the x and y distance between current and next position
-        dist += max((abs(y-i)), abs(x-j))
+        dist += max((abs(y - i)), abs(x - j))
 
         # updating current position to the next position
         curr = next_pos
-    
+
     return dist
+
 
 # DRIVER CODE
 print(get_min_steps([]))

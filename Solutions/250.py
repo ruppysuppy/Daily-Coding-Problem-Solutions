@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 A cryptarithmetic puzzle is a mathematical game where the digits of some numbers are
@@ -11,7 +11,8 @@ For example, a puzzle of the form:
 may have the solution:
 {'S': 9, 'E': 5, 'N': 6, 'D': 7, 'M': 1, 'O': 0, 'R': 8, 'Y': 2}
 Given a three-word puzzle like the one above, create an algorithm that finds a solution
-'''
+"""
+
 
 def get_num_from_string(char_map, string):
     # function to generate the value of a number from the charater map and string
@@ -55,7 +56,8 @@ def assign_letters(chars_left, nums_left, restrictions, char_map={}):
             chars_left - set([curr_char]),
             nums_left - set([num]),
             restrictions,
-            char_map_cp)
+            char_map_cp,
+        )
         char_maps.extend(child_char_maps)
     return char_maps
 

@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 What will this code print out?
@@ -18,9 +18,10 @@ for f in functions:
     f()
 
 How can we make it print out what we apparently want?
-'''
+"""
 
 # The code will print 3 thrice (in 3 lines) as i is passed by reference
+
 
 def make_functions():
     flist = []
@@ -30,6 +31,7 @@ def make_functions():
         # this program shows the minimum necessary changes required to print 1 to 3
         def print_i(i):
             print(i)
+
         flist.append((print_i, i))
 
     return flist

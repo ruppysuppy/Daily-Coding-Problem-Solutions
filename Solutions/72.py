@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 In a directed graph, each node is assigned an uppercase letter. 
@@ -22,8 +22,9 @@ Output = 3 <using the path of vertices [0, 2, 3, 4], (A, A, C, A)>
 
 Input = A, [(0, 0)]
 Output = None (since we have an infinite loop)
-'''
+"""
 # NOTE: I didn't write this code, but it solves the problem in an efficient way
+
 
 class GraphPath:
     def __init__(self, nodes=set(), letter_counts=dict()):
@@ -52,8 +53,7 @@ def get_max_value_string(graph_path, node, adjacency_map):
 
     paths = list()
     for child_node in adjacency_map[node]:
-        new_paths = get_max_value_string(
-            new_graph_path, child_node, adjacency_map)
+        new_paths = get_max_value_string(new_graph_path, child_node, adjacency_map)
         paths.extend(new_paths)
 
     return paths
@@ -89,6 +89,7 @@ def get_max_value_string_helper(graph_string, edge_list):
             max_value = max_path_value
 
     return max_value if max_value > 0 else None
+
 
 # DRIVER CODE
 print(get_max_value_string_helper("ABACA", [(0, 1), (0, 2), (2, 3), (3, 4)]))

@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Given a circular array, compute its maximum subarray sum in O(n) time.
@@ -10,7 +10,7 @@ Output = 15 (as we choose the numbers 3, 4, and 8 where the 8 is obtained from w
 
 Input = [-4, 5, 1, 0]
 Output = 6 (as we choose the numbers 5 and 1)
-'''
+"""
 
 # helper function (max of array using Kadane's algorithm)
 def kadane(arr):
@@ -27,8 +27,9 @@ def kadane(arr):
         curr_sum = max(curr_sum, 0)
         # updating max sum to hold the maximum
         max_sum = max(max_sum, curr_sum)
-    
+
     return max_sum
+
 
 # FUNCTION TO PERFORM THE OPERATION
 def max_circular_subarr(arr):
@@ -50,6 +51,7 @@ def max_circular_subarr(arr):
 
     # returning the maximum of wrapped sum and kadane's result
     return max(max_wrap, max_kadane)
+
 
 # DRIVER CODE
 print(max_circular_subarr([-4, 5, 1, 0]))

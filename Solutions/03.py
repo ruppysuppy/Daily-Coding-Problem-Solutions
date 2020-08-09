@@ -1,8 +1,8 @@
-'''
+"""
 Problem:
 
 Write a program to serialize a tree into a string and deserialize a string into a tree.
-'''
+"""
 
 from typing import List
 
@@ -21,10 +21,10 @@ def serialize_helper(self) -> str:
         return f"'{self.val}','None',{self.left.serialize_helper()}"
     elif self.left is not None and self.right is not None:
         return (
-            f"'{self.val}'," +
-            f"{self.left.serialize_helper()}," +
-            f"{self.right.serialize_helper()}"
-            )
+            f"'{self.val}',"
+            + f"{self.left.serialize_helper()},"
+            + f"{self.right.serialize_helper()}"
+        )
 
 
 # Function to serialize the tree
@@ -33,8 +33,8 @@ def serialize(self) -> str:
 
 
 # adding serialization fctions to node and tree
-setattr(Node, 'serialize_helper', serialize_helper)
-setattr(BinaryTree, 'serialize', serialize)
+setattr(Node, "serialize_helper", serialize_helper)
+setattr(BinaryTree, "serialize", serialize)
 
 
 # Function to deserialize the string
@@ -42,13 +42,13 @@ def deserialize_helper(node: Node, data: List[str]) -> Node:
     # data is a queue containing the data as a prefix notation can be easily decoded
     # using a queue
     left = data.pop(0).strip("'")
-    if left != 'None':
+    if left != "None":
         # if the left child exists, its added to the tree and deserialize_helper called
         node.left = Node(left)
         node.left = deserialize_helper(node.left, data)
 
     right = data.pop(0).strip("'")
-    if right != 'None':
+    if right != "None":
         # if the right child exists, its added to the tree and deserialize_helper
         # called
         node.right = Node(right)
@@ -60,7 +60,7 @@ def deserialize_helper(node: Node, data: List[str]) -> Node:
 def deserialize(string: str) -> BinaryTree:
     # the string is considered to have the same format as the binary tree serialization
     # eg: data is padded with single quotes (') and comma (,) is used as a delimiter
-    data = string.split(',')
+    data = string.split(",")
     tree = BinaryTree()
     tree.root = Node(data.pop(0).strip("'"))
     deserialize_helper(tree.root, data)
@@ -78,12 +78,12 @@ if __name__ == "__main__":
 
     generated_tree = deserialize(
         "'root','left','left.left','None','None','None','right','None','None'"
-        )
+    )
 
     print(generated_tree.serialize())
 
 
-'''
+"""
 SPECS:
 
 SERIALIZE: (n = Number of Nodes)
@@ -93,4 +93,4 @@ SPACE COMPLEXITY: O(n)
 DESERIALIZE: (n = Number of Characters in the String)
 TIME COMPLEXITY: O(n) 
 SPACE COMPLEXITY: O(n)
-'''
+"""

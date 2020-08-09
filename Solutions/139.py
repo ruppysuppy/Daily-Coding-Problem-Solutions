@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Given an iterator with methods next() and hasNext(), create a wrapper iterator, PeekableInterface, which also implements peek(). 
@@ -17,7 +17,7 @@ class PeekableInterface(object):
 
     def hasNext(self):
         pass
-'''
+"""
 
 # PeekableInterface
 class PeekableInterface(object):
@@ -38,7 +38,7 @@ class PeekableInterface(object):
 
     def next(self):
         # checking if the iterator has values
-        if (self.has_next):
+        if self.has_next:
             # storing the next value in a temporary variable
             temp = self.next_val
             try:
@@ -58,6 +58,7 @@ class PeekableInterface(object):
     def hasNext(self):
         # returning has_next
         return self.has_next
+
 
 # DRIVER CODE
 sample_list = [1, 2, 3, 4, 5]

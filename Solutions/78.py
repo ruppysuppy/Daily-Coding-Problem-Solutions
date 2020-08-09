@@ -1,8 +1,8 @@
-'''
+"""
 Problem:
 
 Given k sorted singly linked lists, write a function to merge all the lists into one sorted singly linked list.
-'''
+"""
 
 # importing LinkedList from the DataStructures
 from DataStructures.LinkedList import Linked_list
@@ -22,8 +22,8 @@ def merge_sorted_linked_list(list_of_LL, k):
         # looping over the position pointers
         for i in range(k):
             # if the pointer is not None and the value is less than the minimum, position & minimum is updated
-            if (pos[i] != None):
-                if (pos[i].val < minimum):
+            if pos[i] != None:
+                if pos[i].val < minimum:
                     minimum = pos[i].val
                     position = i
 
@@ -31,8 +31,9 @@ def merge_sorted_linked_list(list_of_LL, k):
         sorted_list.add(pos[position].val)
         # the position pointer is moved to the next value
         pos[position] = pos[position].next
-    
+
     return sorted_list
+
 
 # DRIVER CODE
 LL1 = Linked_list()
