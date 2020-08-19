@@ -7,7 +7,8 @@ possible to throw N dice with some number of faces each to get a specific total.
 For example, throw_dice(3, 6, 7) should equal 15.
 """
 
-def throw_dice(N, faces, total, accumulator=0):
+
+def throw_dice(N: int, faces: int, total: int, accumulator: int = 0) -> int:
     # base case for recursion
     if N == 0 and total == 0:
         return accumulator + 1
