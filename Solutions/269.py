@@ -16,8 +16,10 @@ For example, given the string .L.R....L, you should return LL.RRRLLL.
 Given the string ..R...L.L, you should return ..RR.LLLL.
 """
 
+from typing import List
 
-def get_config_helper(dominos, length):
+
+def get_config_helper(dominos: List[str], length: int) -> List[str]:
     # creating and updating the new copy of dominos
     has_been_updated = False
     updated_dominos = dominos.copy()
@@ -42,11 +44,10 @@ def get_config_helper(dominos, length):
     # recursively
     if has_been_updated:
         return get_config_helper(updated_dominos, length)
-    else:
-        return dominos
+    return dominos
 
 
-def get_config(initial_state):
+def get_config(initial_state: str) -> str:
     # breaking dominos into list as string is immutable
     dominoes = list(initial_state)
     return "".join(get_config_helper(dominoes, len(dominoes)))

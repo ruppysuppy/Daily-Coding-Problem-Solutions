@@ -6,7 +6,7 @@ than O(log N) time.
 """
 
 
-def is_power_of_4(num):
+def is_power_of_4(num: int) -> bool:
     # https://stackoverflow.com/a/19611541/8650340
     return ((num & -num) & 0x55555554) == num
 
