@@ -14,6 +14,11 @@ class Node:
         self.left = left
         self.right = right
 
+    def __eq__(self, other) -> bool:
+        if type(other) == Node and self.val == other.val:
+            return self.left == other.left and self.right == other.right
+        return False
+
     def __repr__(self) -> str:
         return self.to_str()
 
@@ -79,6 +84,11 @@ class BinaryTree:
 
     def __init__(self) -> None:
         self.root = None
+
+    def __eq__(self, other) -> bool:
+        if type(other) == BinaryTree:
+            return self.root == other.root
+        return False
 
     def __len__(self) -> int:
         if self.root:
