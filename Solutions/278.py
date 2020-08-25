@@ -92,3 +92,11 @@ if __name__ == "__main__":
     for tree in create_trees(3):
         print(tree)
     print()
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n ^ 2)
+SPACE COMPLEXITY: O(n ^ 2)
+"""
