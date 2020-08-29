@@ -1,43 +1,61 @@
 """
 Problem:
 
-Given an array of integers, determine whether it contains a Pythagorean triplet. Recall
-that a Pythogorean triplet (a, b, c) is defined by the equation a^2 + b^2 = c^2.
+A regular number in mathematics is defined as one which evenly divides some power of
+60. Equivalently, we can say that a regular number is one whose only prime divisors are
+2, 3, and 5.
+
+These numbers have had many applications, from helping ancient Babylonians keep time to
+tuning instruments according to the diatonic scale.
+
+Given an integer N, write a program that returns, in order, the first N regular
+numbers.
 """
 
-from math import sqrt
-from typing import List, Optional, Tuple
+from typing import List, Set
 
 
-def get_pythogorean_triplet(
-    arr: List[int],
-) -> Tuple[Optional[int], Optional[int], Optional[int]]:
-    length = len(arr)
-    if length < 3:
-        return False
-    # generating the set of squared values for O(1) access
-    squared_arr = [elem * elem for elem in arr]
-    value_set = set(squared_arr)
-    # checking for Pythagorian triplet
-    for i in range(length - 1):
-        for j in range(i + 1, length):
-            if squared_arr[i] + squared_arr[j] in value_set:
-                return (
-                    int(sqrt(squared_arr[i])),
-                    int(sqrt(squared_arr[j])),
-                    int(sqrt(squared_arr[i] + squared_arr[j])),
-                )
-    return None, None, None
+def get_prime_factors(num: int) -> Set[int]:
+    # function to generate the prime factors of the input number
+    factors = set()
+    curr = 2
+    while num > 1:
+        while num > 1 and num % curr == 0:
+            num = num // curr
+            factors.add(curr)
+        curr += 1
+    return factors
+
+
+def get_regular_numbers(N: int) -> List[int]:
+    # using Sieve of Eratosthenes Method to optimally find the required numbers
+    total_range = 2 * N
+    SoE = [False for _ in range(total_range)]
+    result = []
+    count = 0
+    factors = set([2, 3, 5])
+    # finding the required numbers
+    for factor in factors:
+        for i in range(factor, total_range, factor):
+            if not SoE[i] and not (get_prime_factors(i) - factors):
+                SoE[i] = True
+    # generating results
+    for index, value in enumerate(SoE):
+        if value:
+            result.append(index)
+            count += 1
+            if count == N:
+                break
+    return result
 
 
 if __name__ == "__main__":
-    print(get_pythogorean_triplet([3, 4, 5, 6, 7]))
-    print(get_pythogorean_triplet([3, 5, 6, 7]))
+    print(get_regular_numbers(10))
 
 
 """
 SPECS:
 
-TIME COMPLEXITY: O(n ^ 2)
+TIME COMPLEXITY: O(n log(n))
 SPACE COMPLEXITY: O(n)
 """
