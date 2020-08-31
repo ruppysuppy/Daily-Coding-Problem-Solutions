@@ -1,9 +1,10 @@
 class Stack:
     """
-    Stack Class for the implementation of a stack
+    Stack Class for LIFO Structure
 
     Functions:
-    isEmpty: Check if the stack is empty
+    is_empty: Check if the stack is empty
+    peek: Get the value at the stack top without removing it
     pop: Pop the object at the top of the stack
          Raises erorr if the stack is empty
     push: Push an object to the top of the stack
@@ -19,6 +20,12 @@ class Stack:
 
     def __len__(self) -> int:
         return len(self.stack)
+
+    def peek(self) -> int:
+        # Get the value at the stack top without removing it
+        if self.is_empty():
+            raise Exception("Stack Underflow. Cannot peek at an empty stack")
+        return self.stack[-1]
 
     def pop(self) -> int:
         # Pop the value at the stack top
@@ -41,6 +48,6 @@ class Stack:
             self.stack.append(val)
             self.top += 1
 
-    def isEmpty(self) -> bool:
+    def is_empty(self) -> bool:
         # Check if the stack is empty
-        return bool(self.stack)
+        return not bool(self.stack)
