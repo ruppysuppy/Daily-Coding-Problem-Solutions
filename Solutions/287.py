@@ -99,3 +99,11 @@ if __name__ == "__main__":
     ]
     print(get_similar_websites(visited_websites, 1))
     print(get_similar_websites(visited_websites, 3))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n ^ 2)
+SPACE COMPLEXITY: O(n)
+"""
