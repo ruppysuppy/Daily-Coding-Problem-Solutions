@@ -29,3 +29,11 @@ def create_balanced_bst(arr: List[int]) -> BinarySearchTree:
 if __name__ == "__main__":
     print(create_balanced_bst([1, 2, 3, 4, 5]))
     print(create_balanced_bst([1, 2, 3, 4, 5, 6, 7]))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(n)
+"""
