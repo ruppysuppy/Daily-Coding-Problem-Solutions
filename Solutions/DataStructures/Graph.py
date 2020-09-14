@@ -1,3 +1,6 @@
+from typing import Union
+
+
 class GraphUndirectedUnweighted:
     """
     Graph Undirected Unweighted Class
@@ -17,13 +20,13 @@ class GraphUndirectedUnweighted:
     def __len__(self) -> int:
         return self.nodes
 
-    def add_node(self, node: int) -> None:
+    def add_node(self, node: Union[int, str]) -> None:
         # Add a node in the graph if it is not in the graph
         if node not in self.connections:
             self.connections[node] = set()
             self.nodes += 1
 
-    def add_edge(self, node1: int, node2: int) -> None:
+    def add_edge(self, node1: Union[int, str], node2: Union[int, str]) -> None:
         # Add an edge between 2 nodes in the graph
         self.add_node(node1)
         self.add_node(node2)
@@ -50,13 +53,13 @@ class GraphDirectedUnweighted:
     def __len__(self) -> int:
         return self.nodes
 
-    def add_node(self, node: int) -> None:
+    def add_node(self, node: Union[int, str]) -> None:
         # Add a node in the graph if it is not in the graph
         if node not in self.connections:
             self.connections[node] = set()
             self.nodes += 1
 
-    def add_edge(self, node1: int, node2: int) -> None:
+    def add_edge(self, node1: Union[int, str], node2: Union[int, str]) -> None:
         # Add an edge between 2 nodes in the graph
         self.add_node(node1)
         self.add_node(node2)
@@ -82,13 +85,15 @@ class GraphUndirectedWeighted:
     def __len__(self) -> int:
         return self.nodes
 
-    def add_node(self, node: int) -> None:
+    def add_node(self, node: Union[int, str]) -> None:
         # Add a node in the graph if it is not in the graph
         if node not in self.connections:
             self.connections[node] = {}
             self.nodes += 1
 
-    def add_edge(self, node1: int, node2: int, weight: int) -> None:
+    def add_edge(
+        self, node1: Union[int, str], node2: Union[int, str], weight: int
+    ) -> None:
         # Add an edge between 2 nodes in the graph
         self.add_node(node1)
         self.add_node(node2)
@@ -115,13 +120,15 @@ class GraphDirectedWeighted:
     def __len__(self) -> int:
         return self.nodes
 
-    def add_node(self, node: int) -> None:
+    def add_node(self, node: Union[int, str]) -> None:
         # Add a node in the graph if it is not in the graph
         if node not in self.connections:
             self.connections[node] = {}
             self.nodes += 1
 
-    def add_edge(self, node1: int, node2: int, weight: int) -> None:
+    def add_edge(
+        self, node1: Union[int, str], node2: Union[int, str], weight: int
+    ) -> None:
         # Add an edge between 2 nodes in the graph
         self.add_node(node1)
         self.add_node(node2)
