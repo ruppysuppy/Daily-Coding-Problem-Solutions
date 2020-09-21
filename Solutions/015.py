@@ -1,50 +1,45 @@
 """
 Problem:
 
-Given a stream of elements too large to store in memory, pick a random element from the stream with uniform probability.
+Given a stream of elements too large to store in memory, pick a random element from the
+stream with uniform probability.
 """
 
-# Library imports
-from random import random, randint
+from random import randint
 import matplotlib.pyplot as plt
+from typing import Generator
 
-# note to use matplotlib, you need to have it installed (run cmd as admin and run 'pip install matplotlib')
 
-# Generator function to simulate a stream of elements too large to store in memory
-def generator():
+def element_stream() -> Generator[int, None, None]:
+    # generator function to simulate a stream of elements too large to store in memory
     while True:
-        rand_float = random()
-        yield int(10000 * rand_float)
+        yield randint(1, 10_000)
 
 
-# FUNCTION TO PERFORM THE OPERATION
-def random_selector():
-    # using the generator function (created globally)
-    global gen
-
-    # an array to store 10 elements
+def random_selector(generator: Generator[int, None, None]) -> int:
+    # getting 10 elements from the stream of elements
     arr = [0 for i in range(10)]
-
-    # generating 10 elements (equivalent to getting 10 elements from the stream of elements)
     for i in range(10):
-        arr[i] = next(gen)
-
+        arr[i] = next(generator)
     # selecting a random element from the array of 10 elements
     pos = randint(0, 9)
     return arr[pos]
 
 
-# DRIVER CODE
-# creating the generator
-gen = generator()
+if __name__ == "__main__":
+    generator = element_stream()
+    # storing the selected elements for plotting a graph
+    values = []
+    for i in range(100_000):
+        values.append(random_selector(generator))
+    # plotting the histogram of frequencies of the selected elements
+    plt.hist(values, edgecolor="black")
+    plt.show()
 
-# list of values to plot and check if the distribution is uniform
-check = []
 
-# populating the list
-for i in range(100000):
-    check.append(random_selector())
+"""
+SPECS:
 
-# plotting the histogram of frequencies of the elements
-plt.hist(check, edgecolor="black")
-plt.show()
+TIME COMPLEXITY: O(1)
+SPACE COMPLEXITY: O(1)
+"""
