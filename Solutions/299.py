@@ -45,6 +45,7 @@ def dijkstras_algo(
         for neighbour in graph.connections[node]:
             if dist[neighbour] > dist[node] + graph.connections[node][neighbour]:
                 dist[neighbour] = dist[node] + graph.connections[node][neighbour]
+                priority_queue.update_key(neighbour, dist[neighbour])
                 parent[neighbour] = node
     return dist, parent
 
