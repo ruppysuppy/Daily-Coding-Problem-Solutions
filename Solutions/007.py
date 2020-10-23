@@ -14,7 +14,7 @@ You can assume that the messages are decodable. For example, '001' is not allowe
 def count_decoding(digits: str) -> int:
     len_digits = len(digits)
     # dynamic Programming table
-    count = [0] * (len_digits + 1)
+    count = [0 for _ in range(len_digits + 1)]
     # base cases
     count[0] = 1
     count[1] = 1

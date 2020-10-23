@@ -26,7 +26,7 @@ def first_missing_positive_integer(arr: List[int]) -> int:
         while 1 <= arr[i] <= length and arr[i] != arr[correctPos]:
             arr[i], arr[correctPos] = arr[correctPos], arr[i]
             correctPos = arr[i] - 1
-
+    # finding the first missing positive integer
     for i in range(length):
         if i + 1 != arr[i]:
             return i + 1
