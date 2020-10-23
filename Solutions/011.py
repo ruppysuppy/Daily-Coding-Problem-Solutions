@@ -13,12 +13,11 @@ queries.
 
 from typing import List
 
-# Local Import from the DataStructure module
 from DataStructures.Trie import Trie
 
 
 def get_suggestion(word_list: List[str], prefix: str) -> List[str]:
-    # using tree data structure to get the suggestions (for deatils, check
+    # using trie data structure to get the suggestions (for deatils, check
     # ./DataStructres/Trie)
     trie = Trie()
     trie.add_words(word_list)
