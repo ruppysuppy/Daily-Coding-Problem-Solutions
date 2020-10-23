@@ -17,18 +17,19 @@ def longest_substring_k_unique(string: str, k: int) -> str:
     longest_substring_till_now = string[0]
     char_freq = {string[0]: 1}
     num_unique = 1
-
+    # generating the longest substring
     while end < length:
-        if string[end] in char_freq and char_freq[string[end]] != 0:
+        if string[end] in char_freq:
             char_freq[string[end]] += 1
         else:
             char_freq[string[end]] = 1
             num_unique += 1
-            # updating moving window
+            # updating moving window and character frequency
             if num_unique > k:
                 while num_unique > k:
                     char_freq[string[start]] -= 1
                     if char_freq[string[start]] == 0:
+                        del char_freq[string[start]]
                         num_unique -= 1
                     start += 1
         # updating the longest substring

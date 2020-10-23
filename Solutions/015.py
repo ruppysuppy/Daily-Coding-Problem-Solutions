@@ -18,9 +18,7 @@ def element_stream() -> Generator[int, None, None]:
 
 def random_selector(generator: Generator[int, None, None]) -> int:
     # getting 10 elements from the stream of elements
-    arr = [0 for i in range(10)]
-    for i in range(10):
-        arr[i] = next(generator)
+    arr = [next(generator) for i in range(10)]
     # selecting a random element from the array of 10 elements
     pos = randint(0, 9)
     return arr[pos]
@@ -32,7 +30,8 @@ if __name__ == "__main__":
     values = []
     for i in range(100_000):
         values.append(random_selector(generator))
-    # plotting the histogram of frequencies of the selected elements
+    # plotting the histogram of frequencies of the selected elements (not stated in
+    # problem, added to display the uniform distribution)
     plt.hist(values, edgecolor="black")
     plt.show()
 

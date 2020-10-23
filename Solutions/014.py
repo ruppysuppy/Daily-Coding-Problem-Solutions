@@ -24,7 +24,7 @@ def pi_approx(iterations: int = 1_000_000) -> float:
         if pow(x, 2) + pow(y, 2) <= 1:
             circle_area += 1
     # Using Monte Carlo approximation [pi = 4 x (Area of circle / Area of square)]
-    # [Area of circle = number of pts in circle,
+    # [Area of circle = number of points in circle,
     #  Area of square = total number of points]
     return 4 * circle_area / iterations
 
@@ -37,5 +37,5 @@ if __name__ == "__main__":
 SPECS:
 
 TIME COMPLEXITY: O(n)
-SPACE COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(1)
 """

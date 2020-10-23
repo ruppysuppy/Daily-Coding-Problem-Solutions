@@ -1,55 +1,63 @@
 """
 Problem:
 
-A builder is looking to build a row of N houses that can be of K different colors. 
-He has a goal of minimizing cost while ensuring that no two neighboring houses are of the same color.
-Given an N by K matrix where the nth row and kth column represents the cost to build the nth house with kth color, return the minimum cost.
+A builder is looking to build a row of N houses that can be of K different colors. He
+has a goal of minimizing cost while ensuring that no two neighboring houses are of the
+same color.
+
+Given an N by K matrix where the nth row and kth column represents the cost to build
+the nth house with kth color, return the minimum cost which achieves this goal.
 """
 
-# FUNCTION TO PERFORM THE OPERATION
-def minimizeColorCost(arr, n, k):
-    # array to store the possible sequences
-    results = []
+from typing import List
 
-    # calling the helper function
-    helper(arr, results, 0, -1, 0, "", n, k)
-
-    return min(
-        results
-    )  # USE 'return min(results, key=lambda x: x[0])' incase you want to return the sequence too
+Matrix = List[List[int]]
 
 
-# helper function to carry out the main operations (Uses Recursion)
-def helper(arr, results, curr_house, prev_color, curr_cost, curr_sequence, n, k):
-    # Base case, the sequence has been generated
+def minimize_color_cost(color_matrix: Matrix) -> int:
+    sequence = []
+    n, k = len(color_matrix), len(color_matrix[0])
+    minimize_color_cost_helper(color_matrix, sequence, 0, -1, 0, n, k)
+    # returning the minimum cost
+    return min(sequence)
+
+
+def minimize_color_cost_helper(
+    color_matrix: Matrix,
+    results: List,
+    curr_house: int,
+    prev_color: int,
+    curr_cost: int,
+    n: int,
+    k: int,
+):
+    # helper function to calculate the cost for all color combinations
     if curr_house == n:
-        # adding the cost to the result array
-        results.append(
-            curr_cost
-        )  # USE 'results.append((curr_cost, curr_sequence))' to add the sequence too
+        results.append(curr_cost)
         return
-
-    # Loop to generate all the possible combinations
-    for i in range(k):
-        # When the current color is not equal to the previous color the helper function is called to generate the sequence
-        if i != prev_color:
-            helper(
-                arr,
+    # generating all the possible combinations
+    for curr_color in range(k):
+        # avoiding two neighboring houses having the same color
+        if curr_color != prev_color:
+            minimize_color_cost_helper(
+                color_matrix,
                 results,
                 curr_house + 1,
-                i,
-                arr[curr_house][i] + curr_cost,
-                curr_sequence + str(i),
+                curr_color,
+                curr_cost + color_matrix[curr_house][curr_color],
                 n,
                 k,
             )
 
 
-# DRIVER CODE
-mat1 = [[1, 5, 2], [2, 3, 1], [7, 3, 5], [6, 2, 3]]
-mat2 = [[1, 5, 2], [2, 3, 1], [7, 3, 5], [6, 3, 2]]
-n = 4
-k = 3
+if __name__ == "__main__":
+    print(minimize_color_cost([[1, 5, 2], [2, 3, 1], [7, 3, 5], [6, 2, 3]]))
+    print(minimize_color_cost([[1, 5, 2], [2, 3, 1], [7, 3, 5], [6, 3, 2]]))
 
-print(minimizeColorCost(mat1, n, k))
-print(minimizeColorCost(mat2, n, k))
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n x k!)
+SPACE COMPLEXITY: O(n x k!)
+"""

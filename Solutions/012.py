@@ -22,8 +22,8 @@ from typing import List
 
 
 def count_ways(steps: int, permissable_steps: List[int] = [1, 2]) -> int:
-    # dynamic array to store the number of ways a step can be reached
-    num_ways = [0 for i in range(steps + 1)]
+    # dynamic programming array to store the number of ways a step can be reached
+    num_ways = [0 for _ in range(steps + 1)]
     # base case
     num_ways[0] = 1
     # calculating using the formula steps_i = sum(steps_i(i - j))
