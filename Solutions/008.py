@@ -19,7 +19,6 @@ For example, the following tree has 5 unival subtrees:
 
 from typing import Tuple
 
-# Local Import from the datastructure module
 from DataStructures.Tree import Node, BinaryTree
 
 

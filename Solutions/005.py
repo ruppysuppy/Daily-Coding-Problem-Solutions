@@ -24,11 +24,13 @@ def cons(a, b):
     return pair
 
 
+# car implementation
 def car(f: Callable) -> int:
     z = lambda x, y: x
     return f(z)
 
 
+# cdr implementation
 def cdr(f: Callable) -> int:
     z = lambda x, y: y
     return f(z)

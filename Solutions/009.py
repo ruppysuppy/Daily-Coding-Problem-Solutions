@@ -15,10 +15,8 @@ def max_nonadjacent_sum(arr: List[int]) -> int:
     including = 0
     excluding = 0
     for elem in arr:
-        # updating including and excluding
-        temp = including
-        including = max(excluding + elem, elem)
-        excluding = max(temp, including - elem)
+        # updating maximum sum including and excluding the current element
+        including, excluding = max(excluding + elem, elem), max(excluding, including)
     return max(including, excluding)
 
 
