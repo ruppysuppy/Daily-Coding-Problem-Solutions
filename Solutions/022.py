@@ -16,7 +16,7 @@ Given the set of words 'bed', 'bath', 'bedbath', 'and', 'beyond', and the string
 from typing import List
 
 
-def get_words_in_string(word_list: List[str], string: str) -> List[str]:
+def get_sentence_split(word_list: List[str], string: str) -> List[str]:
     # function to get the words present in the input string
     word_set = set()
     buffer = ""
@@ -37,13 +37,13 @@ def get_words_in_string(word_list: List[str], string: str) -> List[str]:
 
 
 if __name__ == "__main__":
-    print(get_words_in_string(["quick", "brown", "the", "fox"], "thequickbrownfox"))
+    print(get_sentence_split(["quick", "brown", "the", "fox"], "thequickbrownfox"))
     print(
-        get_words_in_string(
+        get_sentence_split(
             ["bed", "bath", "bedbath", "and", "beyond"], "bedbathandbeyond"
         )
     )
-    print(get_words_in_string(["quick", "brown", "the", "fox"], "bedbathandbeyond"))
+    print(get_sentence_split(["quick", "brown", "the", "fox"], "bedbathandbeyond"))
 
 
 """
