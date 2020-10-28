@@ -78,7 +78,7 @@ class NodeWithLock(Node):
 
     def _is_any_descendant_unlocked(self) -> bool:
         # helper function to check if any of the descendant is unlocked
-        if not self.locked:
+        if not self.is_locked():
             return True
 
         if self.left:
