@@ -2,68 +2,52 @@
 Problem:
 
 Implement regular expression matching with the following special characters:
-. (period) which matches any single character
-* (asterisk) which matches zero or more of the preceding element
-That is, implement a function that takes in a string and a valid regular expression and returns whether or not the string matches the regular expression.
 
-Example:
-Input = "ra.", "ray"
-Output = True
+. (period) which matches any single character
+* (asterisk) which matches zero or more of the preceding element That is, implement a
+function that takes in a string and a valid regular expression and returns whether or
+not the string matches the regular expression.
+For example, given the regular expression "ra." and the string "ray", your function
+should return true. The same regular expression on the string "raymond" should return
+false.
+
+Given the regular expression ".*at" and the string "chat", your function should return
+true. The same regular expression on the string "chats" should return false.
 """
 
-# FUNCTION TO PERFORM THE OPERATION
-def regex(expression, string):
-    # Reversing the string (Not Mandatory, did it for ease of use - it could also be traversed from the end)
-    string = string[::-1]
-    expression = expression[::-1]
-    # Getting the length of the expression
-    len_ex = len(expression)
-    # Position tracker for the string
-    pos = 0
-    # Flag to check the "*" charcter
-    flag = False
 
-    # If index error occours, then its not possible to match the expression to the string
-    try:
-        # Looping over the expression
-        for i in range(len_ex):
-            # If no "*" has been encountered
-            if not flag:
-                # if the expression and the string have the same characters at the position under consideration, the value of pos is incremented
-                if expression[i] == string[pos]:
-                    pos += 1
-                # if the expression has a ".", pos is incremented
-                elif expression[i] == ".":
-                    pos += 1
-                # if the expression has a "*", flag is set to True
-                elif expression[i] == "*":
-                    flag = True
-                # if mismatch occours, False is returned
-                else:
-                    return False
-
-            # If "*" was encountered in previous iteration
-            else:
-                # Checking for the occouramce of the charcter before "*" (it occours after the "*" as the expression is now reversed)
-                temp = expression[i]
-
-                # Incrementing pos till a different character is encountered
-                while string[pos] == temp:
-                    pos += 1
-
-                # Resetting flag to ensure the control doesn't enter this segment again till another "*" is encounterd
-                flag = False
-
-    # Returning False incase of IndexError
-    except IndexError:
-        return False
-
-    return True
+def is_regex_match(pattern: str, text: str) -> bool:
+    n, m = len(text), len(pattern)
+    dp = [[False for _ in range(m + 1)] for _ in range(n + 1)]
+    dp[0][0] = True
+    # populating the 1st row of the lookup table
+    for i in range(1, m + 1):
+        if pattern[i - 1] == "*":
+            dp[0][i] = dp[0][i - 2]
+    # populating the remaining lookup table
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            if pattern[j - 1] == "." or pattern[j - 1] == text[i - 1]:
+                dp[i][j] = dp[i - 1][j - 1]
+            elif pattern[j - 1] == "*":
+                dp[i][j] = dp[i][j - 2]
+                if pattern[j - 2] == "." or pattern[j - 2] == text[i - 1]:
+                    dp[i][j] = dp[i][j] | dp[i - 1][j]
+    return dp[n][m]
 
 
-# DRIVER CODE
-print(regex("r.y", "ray"))
-print(regex("ra.", "ray"))
-print(regex("r.*", "rabcdefgh"))
-print(regex(".*at", "chat"))
-print(regex(".*at", "chats"))
+if __name__ == "__main__":
+    print(is_regex_match("r.y", "ray"))
+    print(is_regex_match("ra.", "rays"))
+    print(is_regex_match(".*at", "chat"))
+    print(is_regex_match(".*at", "chats"))
+    print(is_regex_match(".*", "random-word"))
+    print(is_regex_match(".*a", "random-word"))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n x m)
+SPACE COMPLEXITY: O(n x m)
+"""
