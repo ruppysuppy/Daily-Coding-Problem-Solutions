@@ -1,57 +1,72 @@
 """
 Problem:
 
-Given a singly linked list and an integer k, remove the kth last element from the list. 
+Given a singly linked list and an integer k, remove the kth last element from the list.
 k is guaranteed to be smaller than the length of the list.
+
 The list is very long, so making more than one pass is prohibitively expensive.
+
 Do this in constant space and in one pass.
 """
 
-# Importing from the local module
-from DataStructures.LinkedList import Node, Linked_list
+from DataStructures.LinkedList import Node, LinkedList
 
-# FUNCTION TO PERFORM THE OPERATION
-def del_LL_k(LL, k):
-    # Creating necessary vaibales
-    # ptr1 -> finds the end, ptr2 -> finds the k'th last element, iterations -> tracks the number of iterations
-    ptr1 = LL.head
-    ptr2 = LL.head
-    iterations = 0
 
-    # Looping over till the end of the linked list
-    while ptr1.next:
-        ptr1 = ptr1.next
-        iterations += 1
-
-        # If at least k iterations has been made, ptr2 is moved to the next node in each iteration
-        # So ptr2 trails ptr1 by k nodes
-        if iterations >= k:
-            ptr2 = ptr2.next
-
-    # Storing the reference (as it needs to be deleted after the reference is removed)
-    temp = ptr2.next
-
-    # Updating the values
-    ptr2.val = ptr2.next.val
-    ptr2.next = ptr2.next.next
-
-    # Deleting using the stored refernce
+def delete_kth_last_node(ll: LinkedList, k: int) -> None:
+    # function to delete the kth element from the end of a linked list
+    # case for head node removal
+    if k == len(ll):
+        temp = ll.head
+        if len(ll) == 1:
+            ll.head = None
+            ll.rear = None
+        else:
+            ll.head = temp.next
+            temp.next = None
+        ll.length -= 1
+        del temp
+        return
+    # generic node removal
+    ptr_end = ll.head
+    ptr_k = ll.head
+    # moving the ptr_end up by k nodes
+    for _ in range(k + 1):
+        if ptr_end is None:
+            raise ValueError(f"Linked list contains less than {k} nodes")
+        ptr_end = ptr_end.next
+    # searching for the end of the linked list
+    # ptr_k is trailing the ptr_end up by k nodes, when end pointer reaches the end,
+    # ptr_k is k nodes away from the end
+    while ptr_end is not None:
+        ptr_end = ptr_end.next
+        ptr_k = ptr_k.next
+    # removing the required element
+    temp = ptr_k.next
+    ptr_k.next = temp.next
+    temp.next = None
+    ll.length -= 1
     del temp
 
 
-# DRIVER CODE
-LL = Linked_list()
-LL.add(5)
-LL.add(6)
-LL.add(7)
-LL.add(8)
-LL.add(1)
-LL.add(2)
-LL.add(3)
-LL.add(4)
+if __name__ == "__main__":
+    ll1 = LinkedList()
+    for i in range(1, 10):
+        ll1.add(i)
+    print(ll1)
+    delete_kth_last_node(ll1, 5)
+    print(ll1)
 
-print(LL)
+    ll2 = LinkedList()
+    for i in range(1, 4):
+        ll2.add(i)
+    print(ll2)
+    delete_kth_last_node(ll2, 3)
+    print(ll2)
 
-del_LL_k(LL, 5)
 
-print(LL)
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(1)
+"""
