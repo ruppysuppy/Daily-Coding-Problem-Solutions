@@ -1,3 +1,6 @@
+from typing import Union
+
+
 class Queue:
     """
     Queue Class for FIFO Structure
@@ -20,12 +23,7 @@ class Queue:
     def __len__(self) -> int:
         return self.elements
 
-    def enqueue(self, val: int) -> None:
-        # Add an object to the end of the queue
-        self.elements += 1
-        self.queue.append(val)
-
-    def dequeue(self) -> int:
+    def dequeue(self) -> Union[int, str]:
         # Remove and return the object at the head of the queue
         # Raises error if the queue is empty
         if self.elements == 0:
@@ -33,11 +31,16 @@ class Queue:
         self.elements -= 1
         return self.queue.pop(0)
 
+    def enqueue(self, val: Union[int, str]) -> None:
+        # Add an object to the end of the queue
+        self.elements += 1
+        self.queue.append(val)
+
     def is_empty(self) -> bool:
         # Check if the queue is empty
         return not bool(self.queue)
 
-    def peek(self) -> int:
+    def peek(self) -> Union[int, str]:
         # Get the value at the queue head without removing it
         if self.is_empty():
             raise Exception("Queue Underflow. Cannot peek at an empty queue")

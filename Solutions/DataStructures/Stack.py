@@ -1,3 +1,6 @@
+from typing import Union
+
+
 class Stack:
     """
     Stack Class for LIFO Structure
@@ -21,13 +24,17 @@ class Stack:
     def __len__(self) -> int:
         return len(self.stack)
 
-    def peek(self) -> int:
+    def is_empty(self) -> bool:
+        # Check if the stack is empty
+        return not bool(self.stack)
+
+    def peek(self) -> Union[int, str]:
         # Get the value at the stack top without removing it
         if self.is_empty():
             raise Exception("Stack Underflow. Cannot peek at an empty stack")
         return self.stack[-1]
 
-    def pop(self) -> int:
+    def pop(self) -> Union[int, str]:
         # Pop the value at the stack top
         if self.rear == -1:
             raise Exception("Stack Underflow. Cannot pop from an empty stack")
@@ -38,7 +45,7 @@ class Stack:
             self.top -= 1
         return self.stack.pop()
 
-    def push(self, val: int) -> None:
+    def push(self, val: Union[int, str]) -> None:
         # Push a new value to the stack top
         if self.rear == -1:
             self.stack.append(val)
@@ -47,7 +54,3 @@ class Stack:
         else:
             self.stack.append(val)
             self.top += 1
-
-    def is_empty(self) -> bool:
-        # Check if the stack is empty
-        return not bool(self.stack)
