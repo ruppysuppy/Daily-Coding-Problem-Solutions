@@ -4,8 +4,7 @@ Problem:
 Write a program to serialize a tree into a string and deserialize a string into a tree.
 """
 
-from typing import List
-
+from DataStructures.Queue import Queue
 from DataStructures.Tree import Node, BinaryTree
 
 
@@ -31,21 +30,21 @@ def serialize(tree: BinaryTree) -> str:
     return serialize_helper(tree.root)
 
 
-def deserialize_helper(node: Node, data: List[str]) -> Node:
+def deserialize_helper(node: Node, queue: Queue) -> Node:
     # function to deserialize the string
     # data is a queue containing the data as a prefix notation can be easily decoded
     # using a queue
-    left = data.pop(0).strip("'")
+    left = queue.dequeue().strip("'")
     if left != "None":
         # if the left child exists, its added to the tree
         node.left = Node(left)
-        node.left = deserialize_helper(node.left, data)
+        node.left = deserialize_helper(node.left, queue)
 
-    right = data.pop(0).strip("'")
+    right = queue.dequeue().strip("'")
     if right != "None":
         # if the right child exists, its added to the tree
         node.right = Node(right)
-        node.right = deserialize_helper(node.right, data)
+        node.right = deserialize_helper(node.right, queue)
     return node
 
 
@@ -54,9 +53,12 @@ def deserialize(string: str) -> BinaryTree:
     # the string is considered to have the same format as the binary tree serialization
     # eg: data is padded with single quotes (') and comma (,) is used as a delimiter
     data = string.split(",")
+    queue = Queue()
+    for node in data:
+        queue.enqueue(node)
     tree = BinaryTree()
-    tree.root = Node(data.pop(0).strip("'"))
-    deserialize_helper(tree.root, data)
+    tree.root = Node(queue.dequeue().strip("'"))
+    deserialize_helper(tree.root, queue)
     return tree
 
 
