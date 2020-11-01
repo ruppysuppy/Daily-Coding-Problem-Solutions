@@ -1,41 +1,49 @@
 """
 Problem:
 
-Given a string of round, curly, and square open and closing brackets, return whether the brackets are balanced (well-formed).
+Given a string of round, curly, and square open and closing brackets, return whether
+the brackets are balanced (well-formed).
+
+For example, given the string "([])", you should return true.
+
+Given the string "([)]" or "((()", you should return false.
 """
 
-# FUNCTION TO PERFORM THE OPERATION
-def check(
-    string, inp_dict={"{": "}", "[": "]", "(": ")"}
-):  # By default round, curly, and square are considered, but other combinations can be used too
-    open_set = set(inp_dict.keys())  # Creating a set of opening brackets
+from typing import Dict
 
-    # Declaring the stack
-    stack = []
-
-    # Looping over the input string
-    try:
-        for i in string:
-            # If the charcter is an opening bracket and the stack is empty its added to the stack
-            if i in open_set:
-                stack.append(i)
-            # If its a closing bracket and the stack top contains the corresponding opening bracket, the opening bracket is pop-ed
-            elif inp_dict[stack[-1]] == i:
-                stack.pop()
-            # Otherwise it isn't balanced
-            else:
-                return False
-    except:
-        return False
-
-    # If the stack is empty, the number of opening and closing brackets are equal and balanced
-    if stack == []:
-        return True
-    else:
-        return False
+from DataStructures.Stack import Stack
 
 
-# DRIVER CODE
-print(check("([])[]({})"))
-print(check("([)]"))
-print(check("((()"))
+def is_parenthesis_balanced(
+    string: str, parenthesis_map: Dict[str, str] = {"{": "}", "[": "]", "(": ")"}
+) -> bool:
+    # function to check if the given string contains well-formed parenthesis
+    open_parenthesis_set = set(parenthesis_map.keys())
+    stack = Stack()
+    # iterating through the string and checking if its balanced
+    for char in string:
+        if char in open_parenthesis_set:
+            stack.push(char)
+        elif not stack.is_empty() and parenthesis_map[stack.peek()] == char:
+            stack.pop()
+        else:
+            return False
+    # the string is balanced only if the stack is empty (equal number of opening and
+    # closing parenthesis)
+    return stack.is_empty()
+
+
+if __name__ == "__main__":
+    print(is_parenthesis_balanced("([])"))
+    print(is_parenthesis_balanced("((([{}])))"))
+    print(is_parenthesis_balanced("([])[]({})"))
+    print(is_parenthesis_balanced("([)]"))
+    print(is_parenthesis_balanced("((()"))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(n)
+"""
