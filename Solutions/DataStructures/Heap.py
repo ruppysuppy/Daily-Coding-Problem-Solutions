@@ -23,6 +23,7 @@ class MinHeap:
     Functions:
     extract_min: Remove and return the minimum element from the heap
     insert: Insert a node into the heap
+    peek: Get the minimum element from the heap
     _bubble_up: helper function to place a node at the proper position (upward
                 movement)
     _bubble_down: helper function to place a node at the proper position (downward
@@ -58,6 +59,12 @@ class MinHeap:
         self.heap.append(elem)
         self._bubble_up(self.elements)
         self.elements += 1
+
+    def peek_min(self) -> Union[int, str]:
+        # function to get the minimum element from the heap
+        if self.elements == 0:
+            raise RuntimeError("Heap is empty")
+        return self.heap[0]
 
     def _bubble_up(self, curr_pos: int) -> None:
         # Place a node at the proper position (upward movement) [to be used internally
@@ -109,6 +116,7 @@ class MaxHeap:
     Functions:
     extract_max: Remove and return the maximum element from the heap
     insert: Insert a node into the heap
+    peek: Get the maximum element from the heap
     _bubble_up: helper function to place a node at the proper position (upward
                 movement)
     _bubble_down: helper function to place a node at the proper position (downward
@@ -144,6 +152,12 @@ class MaxHeap:
         self.heap.append(elem)
         self._bubble_up(self.elements)
         self.elements += 1
+
+    def peek_max(self) -> Union[int, str]:
+        # function to get the minimum element from the heap
+        if self.elements == 0:
+            raise RuntimeError("Heap is empty")
+        return self.heap[0]
 
     def _bubble_up(self, curr_pos: int) -> None:
         # Place a node at the proper position (upward movement) [to be used internally
