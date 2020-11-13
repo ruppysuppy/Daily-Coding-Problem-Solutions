@@ -1,46 +1,47 @@
 """
 Problem:
 
-Given a string, find the palindrome that can be made by inserting the fewest number of characters as possible anywhere in the word. 
-If there is more than one palindrome of minimum length that can be made, return the lexicographically earliest one (the first one alphabetically).
+Given a string, find the palindrome that can be made by inserting the fewest number of
+characters as possible anywhere in the word. If there is more than one palindrome of
+minimum length that can be made, return the lexicographically earliest one (the first
+one alphabetically).
 
-Example:
-"race" => "ecarace"
-"google" => "elgoogle"
+For example, given the string "race", you should return "ecarace", since we can add
+three letters to it (which is the smallest amount to make a palindrome). There are
+seven other palindromes that can be made from "race" by adding three letters, but
+"ecarace" comes first alphabetically.
+
+As another example, given the string "google", you should return "elgoogle".
 """
 
-# FUNCTION TO PERFORM THE OPERATION
-def nearest_palindrome(string):
-    # Getting the length of the string
-    length = len(string)
 
-    # if the passed string is already a palindrome, the string is returned
+def get_nearest_palindrome(string: str) -> str:
     if string[::-1] == string:
         return string
-
-    # if the first and last characters are same, the function is called recursively on the string without the first and last charater
-    # this is allowed as insertion anywhere in the word is allowed
+    # generating the closest palindrome possible
+    length = len(string)
     if string[0] == string[-1]:
-        return string[0] + nearest_palindrome(string[1 : length - 1]) + string[0]
-
-    else:
-        # if the first and last characters are different, the resultant strings are calculated by adding the 1st character (pal_1) and last charcter (pal_2)
-        pal_1 = string[0] + nearest_palindrome(string[1:]) + string[0]
-        pal_2 = string[-1] + nearest_palindrome(string[: length - 1]) + string[-1]
-
-        # if one of the string is shorter, it is returned
-        if len(pal_1) > len(pal_2):
-            return pal_2
-        elif len(pal_1) < len(pal_2):
-            return pal_1
-
-        # if both strings have the same length, the lexicographically earliest one is returned
-        if pal_1 < pal_2:
-            return pal_1
-        else:
-            return pal_2
+        return string[0] + get_nearest_palindrome(string[1 : length - 1]) + string[0]
+    # incase the 1st characters are different, strings using both the characters are
+    # generated
+    pal_1 = string[0] + get_nearest_palindrome(string[1:]) + string[0]
+    pal_2 = string[-1] + get_nearest_palindrome(string[: length - 1]) + string[-1]
+    # if one of the string is shorter, it is returned
+    if len(pal_1) != len(pal_2):
+        return min(pal_1, pal_2, key=lambda x: len(x))
+    # if both strings have the same length, the lexicographically earliest one is
+    # returned
+    return min(pal_1, pal_2)
 
 
-# DRIVER CODE
-print(nearest_palindrome("race"))
-print(nearest_palindrome("google"))
+if __name__ == "__main__":
+    print(get_nearest_palindrome("race"))
+    print(get_nearest_palindrome("google"))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(2 ^ n)
+SPACE COMPLEXITY: O(n)
+"""
