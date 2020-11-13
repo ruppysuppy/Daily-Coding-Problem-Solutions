@@ -25,7 +25,6 @@ from DataStructures.Heap import MaxHeap, MinHeap
 
 
 def get_running_medians(arr: List[int]) -> List[int]:
-    # function to generate the running median
     min_heap = MinHeap()
     max_heap = MaxHeap()
     medians = []

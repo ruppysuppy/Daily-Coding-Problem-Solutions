@@ -11,8 +11,7 @@ to be decoded is valid.
 """
 
 
-def encode(string: str) -> str:
-    # function to encode a string using run-length encoding
+def encode_run_length_encoding(string: str) -> str:
     # Time Complexity: O(n), Space Complexity: O(1)
     if not string:
         return ""
@@ -31,8 +30,7 @@ def encode(string: str) -> str:
     return encoded_string
 
 
-def decode(string: str) -> str:
-    # function to decode a string encoded with run-length encoding
+def decode_run_length_encoding(string: str) -> str:
     # Time Complexity: O(n), Space Complexity: O(1)
     decoded_string = ""
     char_frequency = 0
@@ -47,5 +45,5 @@ def decode(string: str) -> str:
 
 
 if __name__ == "__main__":
-    print(encode("AAAABBBCCDAA"))
-    print(decode("4A3B2C1D2A"))
+    print(encode_run_length_encoding("AAAABBBCCDAA"))
+    print(decode_run_length_encoding("4A3B2C1D2A"))

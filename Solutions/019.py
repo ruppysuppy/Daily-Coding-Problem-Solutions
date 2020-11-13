@@ -14,14 +14,6 @@ from typing import List
 Matrix = List[List[int]]
 
 
-def minimize_color_cost(color_matrix: Matrix) -> int:
-    sequence = []
-    n, k = len(color_matrix), len(color_matrix[0])
-    minimize_color_cost_helper(color_matrix, sequence, 0, -1, 0, n, k)
-    # returning the minimum cost
-    return min(sequence)
-
-
 def minimize_color_cost_helper(
     color_matrix: Matrix,
     results: List,
@@ -31,7 +23,6 @@ def minimize_color_cost_helper(
     n: int,
     k: int,
 ):
-    # helper function to calculate the cost for all color combinations
     if curr_house == n:
         results.append(curr_cost)
         return
@@ -48,6 +39,14 @@ def minimize_color_cost_helper(
                 n,
                 k,
             )
+
+
+def minimize_color_cost(color_matrix: Matrix) -> int:
+    sequence = []
+    n, k = len(color_matrix), len(color_matrix[0])
+    minimize_color_cost_helper(color_matrix, sequence, 0, -1, 0, n, k)
+    # returning the minimum cost
+    return min(sequence)
 
 
 if __name__ == "__main__":

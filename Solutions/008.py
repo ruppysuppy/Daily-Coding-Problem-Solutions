@@ -57,6 +57,8 @@ def num_universal_helper(node: Node, val: int, acc: int = 0) -> Tuple[int, bool]
 
 
 def num_universal(tree: BinaryTree) -> int:
+    if not tree.root:
+        return 0
     result, _ = num_universal_helper(tree.root, tree.root.val)
     return result
 

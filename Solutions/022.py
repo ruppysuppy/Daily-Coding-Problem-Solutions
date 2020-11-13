@@ -17,7 +17,6 @@ from typing import List
 
 
 def get_sentence_split(word_list: List[str], string: str) -> List[str]:
-    # function to get the words present in the input string
     word_set = set()
     buffer = ""
     words_found = []

@@ -56,7 +56,6 @@ def add_word_handler(
 
 
 def justify_text(word_list: List[str], k: int) -> List[str]:
-    # function to justify text
     result = []
     temp = []
     curr_string_length = 0

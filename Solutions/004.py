@@ -19,8 +19,6 @@ def first_missing_positive_integer(arr: List[int]) -> int:
     # if after the palcement is complete, index of the 1st element not in its proper
     # position is the answer
     length = len(arr)
-    # even though there is a nested loop it is a O(n) algorithm as the cap on the
-    # maximum iterations is 2 * n [Amortised analysis]
     for i in range(length):
         correctPos = arr[i] - 1
         while 1 <= arr[i] <= length and arr[i] != arr[correctPos]:
@@ -45,4 +43,7 @@ SPECS:
 
 TIME COMPLEXITY: O(n)
 SPACE COMPLEXITY: O(1)
+
+NOTE: Even though there is a nested loop it is a O(n) algorithm as the cap on the
+      maximum iterations is 2 * n [Amortised analysis]
 """

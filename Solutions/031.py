@@ -10,8 +10,7 @@ Given two strings, compute the edit distance between them.
 """
 
 
-def string_distance(str1: str, str2: str) -> int:
-    # function to get the distance between 2 strings
+def get_string_distance(str1: str, str2: str) -> int:
     n = len(str1)
     m = len(str2)
     dp = [[0 for x in range(m + 1)] for x in range(n + 1)]
@@ -40,7 +39,7 @@ def string_distance(str1: str, str2: str) -> int:
 
 
 if __name__ == "__main__":
-    print(string_distance("kitten", "sitting"))
+    print(get_string_distance("kitten", "sitting"))
 
 
 """
