@@ -38,12 +38,10 @@ in the system, return 0.
 
 
 def count_tabs(string: str) -> int:
-    # helper function to count the number of tabs
     return string.count("\t")
 
 
 def longest_dir(string: str) -> int:
-    # function to get length of the longest absolute path
     dir_list = string.split("\n")
     length = len(dir_list)
     longest_directory_length = 0

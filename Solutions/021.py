@@ -11,7 +11,6 @@ from typing import List, Tuple
 
 
 def minimum_rooms_required(intervals: List[Tuple[int, int]]) -> int:
-    # function to get the minimum number of rooms required
     delta_room_map = {}
     max_rooms = 0
     curr_rooms = 0

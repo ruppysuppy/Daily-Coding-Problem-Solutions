@@ -11,7 +11,6 @@ from DataStructures.LinkedList import Node, LinkedList
 
 
 def common_node(ll1: LinkedList, ll2: LinkedList) -> bool:
-    # function to check for common node
     # traversing to the end of the Linked Lists and comparing the nodes
     pos1 = ll1.head
     while pos1.next != None:
@@ -19,13 +18,12 @@ def common_node(ll1: LinkedList, ll2: LinkedList) -> bool:
     pos2 = ll2.head
     while pos2.next != None:
         pos2 = pos2.next
-    # If the location of the last nodes of the lists are same, then they must share a
+    # if the location of the last nodes of the lists are same, then they must share a
     # common node
     return pos1 is pos2
 
 
 def common_node_pos(ll1: LinkedList, ll2: LinkedList) -> Optional[Node]:
-    # function to find the common node between 2 Linked Lists
     if common_node(ll1, ll2):
         len1, len2 = len(ll1), len(ll2)
         pos1, pos2 = ll1.head, ll2.head
@@ -46,9 +44,8 @@ def common_node_pos(ll1: LinkedList, ll2: LinkedList) -> Optional[Node]:
                 return pos1
             pos1 = pos1.next
             pos2 = pos2.next
-    # returning None in case of no intersection
-    else:
-        return None
+    # no intersection
+    return None
 
 
 if __name__ == "__main__":

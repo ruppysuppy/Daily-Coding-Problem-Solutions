@@ -46,11 +46,9 @@ class NodeWithLock(Node):
         return f"({left} {curr_node} {right})"
 
     def is_locked(self) -> bool:
-        # function to check if a node is locked
         return self.locked
 
     def lock(self) -> bool:
-        # function to lock a node
         is_any_parent_unlocked = self._is_any_parent_unlocked()
         is_any_descendant_unlocked = self._is_any_descendant_unlocked()
         if is_any_parent_unlocked or is_any_descendant_unlocked:
@@ -59,7 +57,6 @@ class NodeWithLock(Node):
         return False
 
     def unlock(self) -> bool:
-        # function to unlock a node
         is_any_parent_unlocked = self._is_any_parent_unlocked()
         is_any_descendant_unlocked = self._is_any_descendant_unlocked()
         if is_any_parent_unlocked or is_any_descendant_unlocked:
@@ -68,7 +65,7 @@ class NodeWithLock(Node):
         return False
 
     def _is_any_parent_unlocked(self) -> bool:
-        # helper function to check if any of the ancestor is locked
+        # time complexity: O(log(n))
         node = self
         while node.parent:
             if not node.is_locked():
@@ -77,7 +74,7 @@ class NodeWithLock(Node):
         return False
 
     def _is_any_descendant_unlocked(self) -> bool:
-        # helper function to check if any of the descendant is unlocked
+        # time complexity: O(log(n))
         if not self.is_locked():
             return True
 

@@ -17,7 +17,6 @@ from DataStructures.Stack import Stack
 def is_parenthesis_balanced(
     string: str, parenthesis_map: Dict[str, str] = {"{": "}", "[": "]", "(": ")"}
 ) -> bool:
-    # function to check if the given string contains well-formed parenthesis
     open_parenthesis_set = set(parenthesis_map.keys())
     stack = Stack()
     # iterating through the string and checking if its balanced

@@ -20,7 +20,6 @@ from typing import List
 
 
 def calc_max_per_k_elems(arr: List[int], k: int) -> List[int]:
-    # function to get the maximum values of each subarray of length k
     length = len(arr)
     if not arr:
         return None

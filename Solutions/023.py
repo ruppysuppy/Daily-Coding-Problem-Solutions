@@ -30,7 +30,6 @@ Matrix = List[List[Union[int, str]]]
 
 
 def get_neighbours(pos: Tuple[int, int], n: int, m: int) -> List[Tuple[int, int]]:
-    # helper function to generate the neighbours of a given position
     i, j = pos
     neighbours = [
         (i - 1, j),
@@ -55,7 +54,7 @@ def transform_matrix(matrix: Matrix_str, n: int, m: int) -> None:
 
 
 def get_min_steps_helper(matrix: Matrix, pos: Tuple[int, int], n: int, m: int) -> None:
-    # helper function to calculate the distance of pos from the source
+    # helper function to calculate the distance of position from the source
     i, j = pos
     unexplored_positions = []
     neighbours = get_neighbours(pos, n, m)
@@ -77,7 +76,6 @@ def get_min_steps_helper(matrix: Matrix, pos: Tuple[int, int], n: int, m: int) -
 def get_min_steps(
     matrix: Matrix_str, start: Tuple[int, int], end: Tuple[int, int]
 ) -> int:
-    # function to get the shortest distance between the start and end coordinates
     n = len(matrix)
     m = len(matrix[0])
     transform_matrix(matrix, n, m)

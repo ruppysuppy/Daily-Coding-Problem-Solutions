@@ -26,12 +26,11 @@ def serialize_helper(node: Node) -> str:
 
 
 def serialize(tree: BinaryTree) -> str:
-    # function to serialize a binary tree
     return serialize_helper(tree.root)
 
 
 def deserialize_helper(node: Node, queue: Queue) -> Node:
-    # function to deserialize the string
+    # helper function to deserialize a string into a Binary Tree
     # data is a queue containing the data as a prefix notation can be easily decoded
     # using a queue
     left = queue.dequeue().strip("'")
@@ -49,8 +48,7 @@ def deserialize_helper(node: Node, queue: Queue) -> Node:
 
 
 def deserialize(string: str) -> BinaryTree:
-    # function to deserialize a string into a binary tree
-    # the string is considered to have the same format as the binary tree serialization
+    # the string needs to have the same format as the binary tree serialization
     # eg: data is padded with single quotes (') and comma (,) is used as a delimiter
     data = string.split(",")
     queue = Queue()

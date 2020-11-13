@@ -16,7 +16,7 @@ def cons(a, b):
 from typing import Callable
 
 
-# Given this implementation of cons:
+# given implementation of cons:
 def cons(a, b):
     def pair(f):
         return f(a, b)
@@ -41,3 +41,16 @@ if __name__ == "__main__":
 
     print(car(pair))
     print(cdr(pair))
+
+
+"""
+SPECS:
+
+car:
+TIME COMPLEXITY: O(1) 
+SPACE COMPLEXITY: O(1)
+
+cdr:
+TIME COMPLEXITY: O(1) 
+SPACE COMPLEXITY: O(1)
+"""

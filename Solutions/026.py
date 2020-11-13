@@ -13,7 +13,6 @@ from DataStructures.LinkedList import Node, LinkedList
 
 
 def delete_kth_last_node(ll: LinkedList, k: int) -> None:
-    # function to delete the kth element from the end of a linked list
     # case for head node removal
     if k == len(ll):
         temp = ll.head
