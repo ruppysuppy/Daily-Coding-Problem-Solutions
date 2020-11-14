@@ -24,6 +24,7 @@ class MinPriorityQueue:
                  removing it from the queue
     extract_min: function to remove and return the element with lowest weight (highest
                  priority)
+    get_priority: function to get the priority of the given key
     update_key: function to update the weight of the given key
     _bubble_up: helper function to place a node at the proper position (upward
                 movement)
@@ -42,6 +43,9 @@ class MinPriorityQueue:
 
     def __repr__(self) -> str:
         return str(self.heap)
+
+    def __contains__(self, key: int) -> bool:
+        return key in self.position_map
 
     def is_empty(self) -> bool:
         # Check if the priority queue is empty
@@ -71,6 +75,12 @@ class MinPriorityQueue:
             bubble_down_elem, _ = self.heap[0]
             self._bubble_down(bubble_down_elem)
         return elem
+
+    def get_priority(self, key: int) -> int:
+        if key not in self:
+            raise ValueError(f"{key} not found")
+        _, weight = self.heap[self.position_map[key]]
+        return weight
 
     def update_key(self, elem: int, weight: int) -> None:
         # Update the weight of the given key
@@ -152,6 +162,7 @@ class MaxPriorityQueue:
                  without removing it from the queue
     extract_max: function to remove and return the element with highest weight (highest
                  priority)
+    get_priority: function to get the priority of the given key
     update_key: function to update the weight of the given key
     _bubble_up: helper function to place a node at the proper position (upward
                 movement)
@@ -170,6 +181,9 @@ class MaxPriorityQueue:
 
     def __repr__(self) -> str:
         return str(self.heap)
+
+    def __contains__(self, key: int) -> bool:
+        return key in self.position_map
 
     def is_empty(self) -> bool:
         # Check if the priority queue is empty
@@ -199,6 +213,12 @@ class MaxPriorityQueue:
             bubble_down_elem, _ = self.heap[0]
             self._bubble_down(bubble_down_elem)
         return elem
+
+    def get_priority(self, key: int) -> int:
+        if key not in self:
+            raise ValueError(f"{key} not found")
+        _, weight = self.heap[self.position_map[key]]
+        return weight
 
     def update_key(self, elem: int, weight: int) -> None:
         # Update the weight of the given key
