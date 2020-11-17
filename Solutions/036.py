@@ -49,3 +49,11 @@ if __name__ == "__main__":
     tree.add(9)
 
     print(get_second_largest(tree))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(log(n))
+SPACE COMPLEXITY: O(1)
+"""
