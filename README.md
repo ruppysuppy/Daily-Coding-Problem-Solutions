@@ -13,8 +13,6 @@ Install the 3rd party packages, perform the following steps:
 
 ## Problems
 
----
-
 #### Problem 1
 
 Given a list of numbers, return whether any two sums to k.
