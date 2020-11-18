@@ -85,5 +85,5 @@ if __name__ == "__main__":
 SPECS:
 
 TIME COMPLEXITY: O(n)
-SPACE COMPLEXITY: O(n) [call stack included]
+SPACE COMPLEXITY: O(log(n)) [call stack]
 """
