@@ -26,11 +26,11 @@ def pi_approx(iterations: int = 1_000_000) -> float:
     # Using Monte Carlo approximation [pi = 4 x (Area of circle / Area of square)]
     # [Area of circle = number of points in circle,
     #  Area of square = total number of points]
-    return 4 * circle_area / iterations
+    return round(4 * circle_area / iterations, 3)
 
 
 if __name__ == "__main__":
-    print("{:.3f}".format(pi_approx()))
+    print(pi_approx())
 
 
 """
