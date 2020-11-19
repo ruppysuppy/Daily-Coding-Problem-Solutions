@@ -9,7 +9,7 @@ Install the 3rd party packages, perform the following steps:
 1.  `cd Daily-Coding-Challenge-Solutions`
 2.  Run `pip install -r requirements.txt`
 
-## NOTE:
+## Note:
 
 1. Modules `numpy` and `matplotlib` are used for presentation purpose only and hence are optional.
 2. Some solutions require an additional **[Data Structures](Solutions/DataStructures/)** module.
