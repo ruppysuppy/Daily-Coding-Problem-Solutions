@@ -1,9 +1,0 @@
-PROBLEM 205:
-
-Given an integer, find the next permutation of it in absolute order. 
-
-
-EXAMPLE:
-
-Input = 48975
-Output = 49578

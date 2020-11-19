@@ -1,9 +1,0 @@
-PROBLEM 222:
-
-Given an absolute pathname that may have . or .. as part of it, return the shortest standardized path.
-
-
-EXAMPLE:
-
-Input = "/usr/bin/../bin/./scripts/../"
-Output = "/usr/bin/"

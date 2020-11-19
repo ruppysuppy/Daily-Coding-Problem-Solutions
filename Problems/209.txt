@@ -1,9 +1,0 @@
-Problem 209:
-
-Write a program that computes the length of the longest common subsequence of three given strings. 
-
-
-EXAMPLE:
-
-Input = "epidemiologist", "refrigeration", "supercalifragilisticexpialodocious"
-Output = 5 (since the longest common subsequence is "eieio")
