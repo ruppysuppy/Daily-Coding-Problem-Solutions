@@ -1,9 +1,0 @@
-Problem 153:
-
-Find an efficient algorithm to find the smallest distance (measured in number of words) between any two given words in a string.
-
-
-EXAMPLE:
-
-Input = "hello", "world", "dog cat hello cat dog dog hello cat world"
-Output = 1 (as there's only one word "cat" in between the two words)

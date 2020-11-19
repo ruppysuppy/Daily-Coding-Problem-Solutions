@@ -1,9 +1,0 @@
-PROBLEM 228:
-
-Given a list of numbers, create an algorithm that arranges them in order to form the largest possible integer. 
-
-
-EXAMPLE:
-
-Input = [10, 7, 76, 415]
-Output = 77641510

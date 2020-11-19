@@ -1,9 +1,0 @@
-PROBLEM 111:
-
-Given a word W and a string S, find all starting indices in S which are anagrams of W.
-
-
-EXAMPLE:
-
-Input = "ab", "abxaba"
-Output = [0, 3, 4]
