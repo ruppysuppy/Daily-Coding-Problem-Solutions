@@ -15,12 +15,6 @@ from typing import List
 def get_unique(arr: List[int]) -> int:
     # Sum the bits in same positions for all the numbers modulo with 3 provides the
     # unique number's bit
-    # For example [9, 8, 9, 9]. [1001, 1000, 1001, 1001]
-    # Sum of first bits (2 ^ 0) % 3 = (1 + 1 + 1 + 0) % 3 = 0
-    # Sum of second bits (2 ^ 1) % 3 = (0 + 0 + 0 + 0) % 3 = 0
-    # Sum of third bits (2 ^ 2) % 3 = (0 + 0 + 0 + 0) % 3 = 0
-    # Sum of fourth bits (2 ^ 3) % 3 = (1 + 1 + 1 + 1) % 3 = 1
-    # Hence number which appears once is 1000
     unique_elem = 0
     mask = 1
     # iterate through all the bits (considering a 64 bit integer)
