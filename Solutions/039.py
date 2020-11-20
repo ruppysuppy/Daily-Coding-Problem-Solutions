@@ -136,3 +136,11 @@ if __name__ == "__main__":
         Coordinate(5, 10),
     ]
     play_game(board_2, 4)
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O((alive cells ^ 2) x n)
+SPACE COMPLEXITY: O(alive cells)
+"""
