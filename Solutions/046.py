@@ -1,38 +1,36 @@
 """
 Problem:
 
-Given a string, find the longest palindromic contiguous substring. 
-If there are more than one with the maximum length, return any one.
+Given a string, find the longest palindromic contiguous substring. If there are more
+than one with the maximum length, return any one.
 
-Example:
-
-"aabcdcb" => "bcdcb"
-"bananas" => "anana"
+For example, the longest palindromic substring of "aabcdcb" is "bcdcb". The longest
+palindromic substring of "bananas" is "anana".
 """
 
-# Function to check if a string is a palindrome
-def palindrome_check(string):
+
+def is_palindrome(string: str) -> bool:
+    # helper function to check if a string is a palindrome
     return string == string[::-1]
 
 
-# FUNCTION TO PERFORM THE OPERATION
-def longest_palindrome_substring(string):
-    # if the string is a palindrome, it is returned (BASE CASE FOR RECURSION)
-    if palindrome_check(string):
+def get_longest_palindrome_substring(string: str) -> str:
+    if is_palindrome(string):
         return string
-
-    # string1 removes the 1st character in the string and calls the function recursively
-    # string2 removes the last character in the string and calls the function recursively
-    string1 = longest_palindrome_substring(string[1:])
-    string2 = longest_palindrome_substring(string[:-1])
-
-    # The longer palindromic substring is returned
-    if len(string1) > len(string2):
-        return string1
-    else:
-        return string2
+    # generating the longest palindromic substring
+    string1 = get_longest_palindrome_substring(string[1:])
+    string2 = get_longest_palindrome_substring(string[:-1])
+    return max(string1, string2, key=lambda s: len(s))
 
 
-# DRIVER CODE
-print(longest_palindrome_substring("aabcdcb"))
-print(longest_palindrome_substring("bananas"))
+if __name__ == "__main__":
+    print(get_longest_palindrome_substring("aabcdcb"))
+    print(get_longest_palindrome_substring("bananas"))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n ^ 2)
+SPACE COMPLEXITY: O(n)
+"""
