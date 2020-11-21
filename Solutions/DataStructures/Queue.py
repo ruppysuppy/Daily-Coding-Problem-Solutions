@@ -23,6 +23,16 @@ class Queue:
     def __len__(self) -> int:
         return self.elements
 
+    def __delitem__(self, position: int) -> None:
+        del self.queue[position]
+        self.elements -= 1
+
+    def __getitem__(self, position: int) -> Union[int, str]:
+        return self.queue[position]
+
+    def __setitem__(self, position: int, value: Union[int, str]) -> None:
+        self.queue[position] = value
+
     def dequeue(self) -> Union[int, str]:
         # Remove and return the object at the head of the queue
         # Raises error if the queue is empty
