@@ -29,9 +29,17 @@ def rand7() -> int:
 
 if __name__ == "__main__":
     results = []
-    # executing rand7 100000 times (for plotting on a graph)
-    for i in range(100000):
+    # executing rand7 100,000 times (for plotting on a graph)
+    for _ in range(100_000):
         results.append(rand7())
     # plotting the distribution
     plt.hist(results, 7, edgecolor="black")
     plt.show()
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(1)
+SPACE COMPLEXITY: O(1)
+"""
