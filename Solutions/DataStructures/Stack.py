@@ -24,6 +24,16 @@ class Stack:
     def __len__(self) -> int:
         return len(self.stack)
 
+    def __delitem__(self, position: int) -> None:
+        del self.stack[position]
+        self.rear -= 1
+
+    def __getitem__(self, position: int) -> Union[int, str]:
+        return self.stack[position]
+
+    def __setitem__(self, position: int, value: Union[int, str]) -> None:
+        self.stack[position] = value
+
     def is_empty(self) -> bool:
         # Check if the stack is empty
         return not bool(self.stack)
