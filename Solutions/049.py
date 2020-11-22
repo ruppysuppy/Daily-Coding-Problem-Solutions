@@ -2,48 +2,44 @@
 Problem:
 
 Given an array of numbers, find the maximum sum of any contiguous subarray of the array.
-Do this in O(N) time.
 
-Example:
-[34, -50, 42, 14, -5, 86] => 137
-[-5, -1, -8, -9] => 0
+For example, given the array [34, -50, 42, 14, -5, 86], the maximum sum would be 137,
+since we would take elements 42, 14, -5, and 86.
+
+Given the array [-5, -1, -8, -9], the maximum sum would be 0, since we would not take
+any elements.
+
+Do this in O(N) time.
 """
 
-# FUNCTION TO PERFORM THE OPERATION
-def max_cont_sum(Arr):
-    # length: stores the length of the provided list
-    # max_loc: stores the position of the max value in the modified list
-    # min_loc: stores the position of the min value in the modified list
-    length = len(Arr)
-    max_loc = 0
-    min_loc = 0
+from sys import maxsize
+from typing import List
 
-    # looping over and modifying the list (Arr[i] is the sum of all the elements till i. Eg: [1, 2, 3] => [1, 3, 6])
-    for i in range(1, length):
-        Arr[i] = Arr[i] + Arr[i - 1]
 
-    # looping over the list and updating min_loc and max_loc
-    for i in range(length):
-        # min_loc updation
-        if Arr[min_loc] > Arr[i]:
-            min_loc = i
-
-        # min_loc updation
-        elif Arr[max_loc] < Arr[i]:
-            max_loc = i
-
-    # if the value if at max_loc is negative, all the elements are negative, 0 is returned
-    if Arr[max_loc] > 0:
-        # if min_loc is 0 and the element is positive, all the elements till max_loc is is the max sub arr, so Arr[max_loc] is returned
-        if (min_loc == 0) and (Arr[0] > 0):
-            return Arr[max_loc]
-        # else Arr[max_loc] - Arr[min_loc] is returned
-        return Arr[max_loc] - Arr[min_loc]
-    else:
+def kadanes_algorithm(arr: List[int]) -> int:
+    length = len(arr)
+    if length == 0:
         return 0
+    max_so_far = -maxsize
+    max_ending_here = 0
+    # generating the largest continuous sum
+    for i in range(length):
+        max_ending_here = max_ending_here + arr[i]
+        max_ending_here = max(max_ending_here, 0)
+        max_so_far = max(max_so_far, max_ending_here)
+    return max_so_far
 
 
-# DRIVER CODE
-print(max_cont_sum([34, -50, 42, 14, -5, 86]))
-print(max_cont_sum([-5, -1, -8, -9]))
-print(max_cont_sum([5, 1, 8, 9]))
+if __name__ == "__main__":
+    print(kadanes_algorithm([34, -50, 42, 14, -5, 86]))
+    print(kadanes_algorithm([-5, -1, -8, -9]))
+    print(kadanes_algorithm([5, 1, 8, 9]))
+    print(kadanes_algorithm([]))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(1)
+"""
