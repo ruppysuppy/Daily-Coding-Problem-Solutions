@@ -1,3 +1,7 @@
+from __future__ import annotations
+from typing import Any, Optional
+
+
 class Node:
     """
     Node Class for the nodes of a Binary Tree
@@ -5,16 +9,18 @@ class Node:
     Functions:
     insert_helper: Helper function to add node in a Binary Search Tree
     height_helper: Helper function to calculate the height of a Binary Tree
-    num_nodes: Helper function to calculate the number of Nodes in a Binary Tree
+    num_nodes_helper: Helper function to calculate the number of Nodes in a Binary Tree
     to_str: Helper function for __repr__
     """
 
-    def __init__(self, val: int, left: int = None, right: int = None) -> None:
+    def __init__(
+        self, val: int, left: Optional[Node] = None, right: Optional[Node] = None
+    ) -> None:
         self.val = val
         self.left = left
         self.right = right
 
-    def __eq__(self, other) -> bool:
+    def __eq__(self, other: Any) -> bool:
         if type(other) == Node and self.val == other.val:
             return self.left == other.left and self.right == other.right
         return False
@@ -47,13 +53,13 @@ class Node:
             else:
                 self.right.insert_helper(val)
 
-    def num_nodes(self) -> int:
+    def num_nodes_helper(self) -> int:
         # Helper function to calculate the number of Nodes in a Binary Tree
         left, right = 0, 0
         if self.left:
-            left = self.left.num_nodes()
+            left = self.left.num_nodes_helper()
         if self.right:
-            right = self.right.num_nodes()
+            right = self.right.num_nodes_helper()
         return left + right + 1
 
     def to_str(self) -> str:
@@ -92,7 +98,7 @@ class BinaryTree:
 
     def __len__(self) -> int:
         if self.root:
-            return self.root.num_nodes()
+            return self.root.num_nodes_helper()
         return 0
 
     def __repr__(self) -> str:
