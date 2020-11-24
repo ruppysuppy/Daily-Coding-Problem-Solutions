@@ -2,52 +2,41 @@
 Problem:
 
 Implement a URL shortener with the following methods:
-* shorten(url), which shortens the url into a six-character alphanumeric string, such as zLg6wl.
-* restore(short), which expands the shortened string into the original url. 
-If no such shortened string exists, return null.
 
+shorten(url), which shortens the url into a six-character alphanumeric string, such as
+zLg6wl.
+restore(short), which expands the shortened string into the original url. If no such
+shortened string exists, return null.
 Hint: What if we enter the same URL twice?
 """
 
-# importing sha224 hash function
 from hashlib import sha224
+from typing import Optional
 
-# URL_Shortner class
+
 class URL_Shortner:
-    # initialization function
-    def __init__(self):
-        # url_short: dictionary mapping the hash to the corresponding address
-        # url_prefix: domain of the site
-        self.url_short = {}
-        self.url_prefix = "http://short_url.in/"
+    def __init__(self, prefix: str = "http://short_url.in/") -> None:
+        self.shortened_url_map = {}
+        self.url_prefix = prefix
 
-    # shorten function
-    def shorten(self, url):
-        # taking the 6 hex characters (48 out of the 224 characters) for short_url
-        short_url = sha224(url.encode()).hexdigest()[:6]
+    def shorten(self, url: str) -> str:
+        shortened_url_hash = sha224(url.encode()).hexdigest()[:6]
+        if shortened_url_hash not in self.shortened_url_map:
+            self.shortened_url_map[shortened_url_hash] = url
+        return self.url_prefix + shortened_url_hash
 
-        # if the hash doesn't contains a value, its stored in the dictionary
-        if short_url not in self.url_short:
-            self.url_short[short_url] = url
-
-        # returning the full shortened url (with domain)
-        return self.url_prefix + short_url
-
-    # restore function
-    def restore(self, short):
-        # if the shortened url is valid, the corresponding address is returned
-        if short[-6:] in self.url_short:
-            return self.url_short[short[-6:]]
-        # else None is returned
+    def restore(self, short: str) -> Optional[str]:
+        if short[-6:] in self.shortened_url_map:
+            return self.shortened_url_map[short[-6:]]
         return None
 
 
-# DRIVER CODE
-us = URL_Shortner()
+if __name__ == "__main__":
+    us = URL_Shortner()
 
-url = "https://www.google.com/"
-short = us.shorten(url)
-print(short)
+    url = "https://www.google.com/"
+    shortened_url = us.shorten(url)
+    print(shortened_url)
 
-print(us.restore(short))
-print(us.restore("http://short_url.in/64f827"))
+    print(us.restore(shortened_url))
+    print(us.restore("http://short_url.in/64f827"))
