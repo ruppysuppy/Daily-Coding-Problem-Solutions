@@ -3,99 +3,89 @@ Problem:
 
 Given a N by M matrix of numbers, print out the matrix in a clockwise spiral.
 
-Example:
+For example, given the following matrix:
+
 [[1,  2,  3,  4,  5],
  [6,  7,  8,  9,  10],
  [11, 12, 13, 14, 15],
  [16, 17, 18, 19, 20]]
-=>1
-2
-3
-4
-5
-10
-15
-20
-19
-18
-17
-16
-11
-6
-7
-8
-9
-14
-13
-12
+You should print out the following:
+
+1, 2, 3, 4, 5, 10, 15, 20, 19, 18, 17, 16, 11, 6, 7, 8, 9, 14, 13, 12
 """
 
-# unwind helper function to get the current ring
-def unwind_mat_helper(mat, ring, n, m):
-    # ring_arr stores the elements of the current ring
-    ring_arr = []
+from typing import List
 
-    # getting the 1st row
+Matrix = List[List[int]]
+
+
+def unwind_matrix_helper(matrix: Matrix, ring: int, n: int, m: int) -> List[int]:
+    current_ring_elems = []
+    # 1st row
     for i in range(ring, m - ring):
-        ring_arr.append(mat[ring][i])
-
-    # getting the last column
+        current_ring_elems.append(matrix[ring][i])
+    # last column
     for i in range(ring + 1, n - ring):
-        ring_arr.append(mat[i][m - ring - 1])
-
-    # getting the last row (if it exists)
+        current_ring_elems.append(matrix[i][m - ring - 1])
+    # last row
     if n > 1 and m > 1:
         for i in range(m - ring - 2, ring - 1, -1):
-            ring_arr.append(mat[n - ring - 1][i])
-
-    # getting the last column (if it exists)
+            current_ring_elems.append(matrix[n - ring - 1][i])
+    # 1st column
     if n > 1 and m > 1:
         for i in range(n - ring - 2, ring, -1):
-            ring_arr.append(mat[i][ring])
+            current_ring_elems.append(matrix[i][ring])
+    return current_ring_elems
 
-    return ring_arr
 
-
-# FUNCTION TO PERFORM THE OPERATION
-def unwind_mat(mat, n, m):
-    # res stores the list of unwinded matrix elements
-    res = []
-
-    # if (there is more than 1 row/col)
+def unwind_matrix(matrix: Matrix) -> List[int]:
+    if not matrix:
+        return []
+    n = len(matrix)
+    m = len(matrix[0])
+    unwound_matrix = []
     if n > 1 and m > 1:
-        # the number of rings will be (max(n, m)//2)
-        # res is extended by the ring as per the number of iterations
         for i in range(max(n, m) // 2):
-            res.extend(unwind_mat_helper(mat, i, n, m))
-
-    # if there is 1 row or column, only 1 ring is present
+            unwound_matrix.extend(unwind_matrix_helper(matrix, i, n, m))
     else:
-        res = unwind_mat_helper(mat, 0, n, m)
+        unwound_matrix = unwind_matrix_helper(matrix, 0, n, m)
+    return unwound_matrix
 
-    return res
+
+if __name__ == "__main__":
+    matrix = [
+        [1, 2, 3, 4, 5],
+        [6, 7, 8, 9, 10],
+        [11, 12, 13, 14, 15],
+        [16, 17, 18, 19, 20],
+    ]
+    for elem in unwind_matrix(matrix):
+        print(elem)
+
+    print()
+    matrix = [[1, 2, 3], [4, 5, 6]]
+    for elem in unwind_matrix(matrix):
+        print(elem)
+
+    print()
+    matrix = [[1, 4], [2, 5], [3, 6]]
+    for elem in unwind_matrix(matrix):
+        print(elem)
+
+    print()
+    matrix = [[1], [2], [3], [4], [5], [6]]
+    for elem in unwind_matrix(matrix):
+        print(elem)
+
+    print()
+    matrix = [[1, 2, 3]]
+    for elem in unwind_matrix(matrix):
+        print(elem)
 
 
-# DRIVER CODE
-mat = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20]]
-for i in unwind_mat(mat, len(mat), len(mat[0])):
-    print(i)
+"""
+SPECS:
 
-print()
-mat = [[1, 2, 3], [4, 5, 6]]
-for i in unwind_mat(mat, len(mat), len(mat[0])):
-    print(i)
-
-print()
-mat = [[1, 4], [2, 5], [3, 6]]
-for i in unwind_mat(mat, len(mat), len(mat[0])):
-    print(i)
-
-print()
-mat = [[1], [2], [3], [4], [5], [6]]
-for i in unwind_mat(mat, len(mat), len(mat[0])):
-    print(i)
-
-print()
-mat = [[1, 2, 3]]
-for i in unwind_mat(mat, len(mat), len(mat[0])):
-    print(i)
+TIME COMPLEXITY: O(n x m)
+SPACE COMPLEXITY: O(n x m)
+"""
