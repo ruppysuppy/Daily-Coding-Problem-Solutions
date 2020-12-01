@@ -1,123 +1,114 @@
 """
 Problem:
 
-Implement an LFU (Least Frequently Used) cache. 
+Implement an LFU (Least Frequently Used) cache. It should be able to be initialized
+with a cache size n, and contain the following methods:
 
-It should be able to be initialized with a cache size n, and contain the following methods:
-* set(key, value): sets key to value. 
-If there are already n items in the cache and we are adding a new item, then it should also remove the least frequently used item. 
-If there is a tie, then the least recently used key should be removed.
-* get(key): gets the value at key. If no such key exists, return null.
-
+set(key, value): sets key to value. If there are already n items in the cache and we
+are adding a new item, then it should also remove the least frequently used item. If
+there is a tie, then the least recently used key should be removed.
+get(key): gets the value at key. If no such key exists, return null.
 Each operation should run in O(1) time.
 """
 
-# node class for the double linked list (in LFU Cache)
-class Node:
-    # initalize method
-    def __init__(self, key, val):
+from typing import Callable, Optional
+
+
+class DoubleLinkedListNode:
+    def __init__(self, key: int, val: int) -> None:
         self.key = key
         self.val = val
-        self.freq = 1
-        self.last = None
+        self.freq = 0
         self.next = None
-
-    # bollean method
-    def __bool__(self):
-        return bool(self.key)
+        self.prev = None
 
 
-# LFU Cache
-class LFU_Cache:
-    # initalize method
-    def __init__(self, size):
-        self.head = Node(None, None)
-        self.rear = Node(None, None)
-        self.head.next = self.rear
-        self.rear.last = self.head
-        self.cache = {}
-        self.size = size
-        self.elements = 0
+class DoubleLinkedList:
+    def __init__(self) -> None:
+        self.head = DoubleLinkedListNode(None, None)
+        self.rear = DoubleLinkedListNode(None, None)
+        self.head.next, self.rear.prev = self.rear, self.head
 
-    # helper method to add a node to the proper position in the cache linked list
-    def add(self, node):
-        # inserting the node at head.next
-        temp = self.head.next
-        self.head.next = node
-        node.last = self.head
-        temp.last = node
-        node.next = temp
-        # moving the node at the proper position based on the frequency of use
-        self.move_to_pos(node)
-
-    # helper function to move the node to the proper position based on the frequency
-    def move_to_pos(self, node):
-        while node.next and node.next.freq <= node.freq:
-            node1 = node
-            node2 = node.next
-
-            node1.last.next = node2
-            node2.last = node1.last
-
-            temp = node2.next
-            node2.next = node1
-            node1.last = node2
-            node1.next = temp
-            temp.last = node1
-
-    # helper method to remove a node
-    def remove(self, node):
-        node.last.next = node.next
-        node.next.last = node.last
-        node.next = None
-        node.last = None
-
-    # FUNCTION TO PERFORM THE OPERATION (get)
-    def get(self, key):
-        # if the key doesn't exist, None is returned
-        if key not in self.cache:
-            return None
-
-        # incrementing the freq of the accessed node
-        node = self.cache[key]
+    def add(self, node: DoubleLinkedListNode) -> None:
+        temp = self.rear.prev
+        self.rear.prev, node.next = node, self.rear
+        temp.next, node.prev = node, temp
         node.freq += 1
-        # moving the node at the proper position based on the frequency of use
-        self.move_to_pos(node)
+        self._position_node(node)
 
-        return node.val
+    def remove(self, node: DoubleLinkedListNode) -> DoubleLinkedListNode:
+        temp_last, temp_next = node.prev, node.next
+        node.prev, node.next = None, None
+        temp_last.next, temp_next.prev = temp_next, temp_last
+        return node
 
-    # FUNCTION TO PERFORM THE OPERATION (set)
-    def set(self, key, val):
-        # if the number of elements has reached the max size, the least used element is deleted
-        if self.size == self.elements:
-            node = self.head.next
-            self.remove(node)
-            self.elements -= 1
-            del self.cache[node.key]
-
-        # adding new node
-        node = Node(key, val)
-        self.add(node)
-        self.elements += 1
-        self.cache[key] = node
+    def _position_node(self, node: DoubleLinkedListNode) -> None:
+        while node.prev.key and node.prev.freq > node.freq:
+            node1, node2 = node, node.prev
+            node1.prev, node2.next = node2.prev, node1.prev
+            node1.next, node2.prev = node2, node1
 
 
-# DRIVER CODE
-cache = LFU_Cache(3)
+class LFUCache:
+    def __init__(self, capacity: int) -> None:
+        self.list = DoubleLinkedList()
+        self.capacity = capacity
+        self.num_keys = 0
+        self.hits = 0
+        self.miss = 0
+        self.cache = {}
 
-print(cache.get("a"))
+    def __repr__(self) -> str:
+        return (
+            f"CacheInfo(hits={self.hits}, misses={self.miss}, "
+            f"capacity={self.capacity}, current_size={self.num_keys})"
+        )
 
-cache.set("a", 1)
-cache.set("b", 2)
-cache.set("c", 3)
+    def __contains__(self, key: int) -> bool:
+        return key in self.cache
 
-print(cache.get("a"))
+    def get(self, key: int) -> Optional[int]:
+        if key in self.cache:
+            self.hits += 1
+            self.list.add(self.list.remove(self.cache[key]))
+            return self.cache[key].val
+        self.miss += 1
+        return None
 
-cache.set("d", 4)
-cache.set("e", 5)
+    def set(self, key: int, value: int) -> None:
+        if key not in self.cache:
+            if self.num_keys >= self.capacity:
+                key_to_delete = self.list.head.next.key
+                self.list.remove(self.cache[key_to_delete])
+                del self.cache[key_to_delete]
+                self.num_keys -= 1
+            self.cache[key] = DoubleLinkedListNode(key, value)
+            self.list.add(self.cache[key])
+            self.num_keys += 1
+        else:
+            node = self.list.remove(self.cache[key])
+            node.val = value
+            self.list.add(node)
 
-print(cache.get("a"))
-print(cache.get("b"))
-print(cache.get("c"))
-print(cache.get("d"))
-print(cache.get("e"))
+
+if __name__ == "__main__":
+    cache = LFUCache(3)
+
+    print(cache.get("a"))
+
+    cache.set("a", 1)
+    cache.set("b", 2)
+    cache.set("c", 3)
+
+    print(cache.get("a"))
+
+    cache.set("d", 4)
+    cache.set("e", 5)
+
+    print(cache.get("a"))
+    print(cache.get("b"))
+    print(cache.get("c"))
+    print(cache.get("d"))
+    print(cache.get("e"))
+
+    print(cache)
