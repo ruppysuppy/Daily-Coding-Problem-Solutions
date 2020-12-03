@@ -1,35 +1,38 @@
 """
 Problem:
 
-You have a function rand7() that returns an integer from 1 to 7 (inclusive) with uniform probability.
-Implement a function rand5() that returns an integer from 1 to 5 (inclusive).
+Using a function rand7() that returns an integer from 1 to 7 (inclusive) with uniform
+probability, implement a function rand5() that returns an integer from 1 to 5
+(inclusive).
 """
 
-# library imports (pyplot is not mandatory, its used to plot the distribution)
 from random import randint
 import matplotlib.pyplot as plt
 
-# rand7 function
-def rand7():
+
+# rand7 implementation
+def rand7() -> int:
     return randint(1, 7)
 
 
-# rand5 function
-def rand5():
-    # generating a random number between 1 to 7
+def rand5() -> int:
     val = rand7()
-    # if the generated number is in the range [1, 5], its returned
     if val <= 5:
         return val
-    # if the number is outside the range, rand5 is called again recursively
     return rand5()
 
 
-# code to plot the distribution by generating 10000 numbers
-res = []
+if __name__ == "__main__":
+    values = []
+    for i in range(100_000):
+        values.append(rand5())
+    plt.hist(values, bins=5, edgecolor="black")
+    plt.show()
 
-for i in range(10000):
-    res.append(rand5())
 
-plt.hist(res, bins=5, edgecolor="black")
-plt.show()
+"""
+SPECS:
+
+TIME COMPLEXITY: O(1)
+SPACE COMPLEXITY: O(1)
+"""
