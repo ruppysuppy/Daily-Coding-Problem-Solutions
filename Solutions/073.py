@@ -41,3 +41,11 @@ if __name__ == "__main__":
     print(ll)
     reverse_inplace(ll)
     print(ll)
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(1)
+"""
