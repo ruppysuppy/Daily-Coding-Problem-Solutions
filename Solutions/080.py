@@ -1,60 +1,60 @@
 """
 Problem:
 
-Given the root of a binary tree, return a deepest node.
+Given the root of a binary tree, return a deepest node. For example, in the following
+tree, return d.
 
-Example:
-
-Input =     a
-           / \
-          b   c
-         /
-        d
-Output = d
+    a
+   / \
+  b   c
+ /
+d
 """
 
-# local import
-from DataStructures.Tree import Binary_Tree, Node
+from typing import Optional, Tuple
 
-# helper function to do the heavy lifting
-def deepest_node_helper(node):
-    # the node is None, 0 and None is returned (base case of recursion)
-    if not node:
+from DataStructures.Tree import BinaryTree, Node
+
+
+def deepest_node_helper(node: Node) -> Tuple[int, Optional[Node]]:
+    if node is None:
         return 0, None
-
-    # if its a leaf node, 1 and the node is returned (base case of recursion)
-    if not (node.left or node.right):
+    if not (node.left and node.right):
         return 1, node
-
-    # getting the left height and the deepest node of the left-subtree
+    # getting the deepest node of the left-subtree
+    left_height, left_node = 0, None
     if node.left:
         left_height, left_node = deepest_node_helper(node.left)
-    else:
-        left_height, left_node = 0, None
-
-    # getting the right height and the deepest node of the right-subtree
+    # getting the deepest node of the right-subtree
+    right_height, right_node = 0, None
     if node.right:
         right_height, right_node = deepest_node_helper(node.right)
-    else:
-        right_height, right_node = 0, None
-
-    # comparing the left and right heights and returning the deeper node and its height
+    # comparing and returning the deepest node
     if left_height > right_height:
         return left_height + 1, left_node
-    else:
-        return right_height + 1, right_node
+    return right_height + 1, right_node
 
 
-# FUNCTION TO PERFORM THE OPERATION
-def deepest_node(tree):
+def deepest_node(tree: BinaryTree) -> Node:
     _, node = deepest_node_helper(tree.root)
-    return node.val
+    return node
 
 
-# DRIVER CODE
-tree = Binary_Tree("a")
-tree.root.left = Node("b")
-tree.root.right = Node("c")
-tree.root.left.left = Node("d")
+if __name__ == "__main__":
+    tree = BinaryTree()
+    tree.root = Node("a")
 
-print(deepest_node(tree))
+    tree.root.left = Node("b")
+    tree.root.right = Node("c")
+
+    tree.root.left.left = Node("d")
+
+    print(deepest_node(tree))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(log(n)) [recursion depth]
+"""
