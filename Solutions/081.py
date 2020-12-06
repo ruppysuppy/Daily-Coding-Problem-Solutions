@@ -1,41 +1,45 @@
 """
 Problem:
 
-Given a mapping of digits to letters (as in a phone number), and a digit string, return all possible letters the number could represent. 
-You can assume each valid number in the mapping is a single digit.
+Given a mapping of digits to letters (as in a phone number), and a digit string, return
+all possible letters the number could represent. You can assume each valid number in
+the mapping is a single digit.
 
-Example:
-
-Input = {'2': ['a', 'b', 'c'], '3': ['d', 'e', 'f']}, "23"
-Output = ['ad', 'ae', 'af', 'bd', 'be', 'bf', 'cd', 'ce', 'cf']
+For example if {'2': ['a', 'b', 'c'], '3': ['d', 'e', 'f'], } then "23" should return
+['ad', 'ae', 'af', 'bd', 'be', 'bf', 'cd', 'ce', 'cf'].
 """
 
-# FUNCTION TO PERFORM THE OPERATION
-def mapping(inp_map, string, res=[]):
-    # returning the res array if the string is empty (base case for recursion)
+from typing import Dict, List
+
+
+def get_mappings(
+    digit_to_character_map: Dict[str, str], string: str, result: List[str] = []
+) -> List[str]:
     if not string:
-        return res
-
-    # during the 1st call, adding the characters to the list
-    if not res:
-        for elem in inp_map[string[0]]:
-            res.append(elem)
-
-    # adding additional characters depending upon the next character of the input string
-    else:
-        # using another list as it cannot be modified while looping over it
-        temp = []
-        # adding new character to each character present in res and adding the result to temp list
-        for part in res:
-            for elem in inp_map[string[0]]:
-                temp.append(part + elem)
-        # overwriting res
-        res = temp
-
-    # recursive call for the next charcter
-    return mapping(inp_map, string[1:], res)
+        return result
+    if not result:
+        for elem in digit_to_character_map[string[0]]:
+            result.append(elem)
+        return get_mappings(digit_to_character_map, string[1:], result)
+    # generating the mappings
+    temp = []
+    for part in result:
+        for elem in digit_to_character_map[string[0]]:
+            temp.append(part + elem)
+    result[:] = temp
+    return get_mappings(digit_to_character_map, string[1:], result)
 
 
-# DRIVER CODE
-print(mapping({"2": ["a", "b", "c"], "3": ["d", "e", "f"]}, "23", []))
-print(mapping({"2": ["a", "b", "c"], "3": ["d", "e", "f"]}, "32", []))
+if __name__ == "__main__":
+    print(get_mappings({"2": ["a", "b", "c"], "3": ["d", "e", "f"]}, "23", []))
+    print(get_mappings({"2": ["a", "b", "c"], "3": ["d", "e", "f"]}, "32", []))
+    print(get_mappings({"2": ["a", "b", "c"], "3": ["d", "e", "f"]}, "222", []))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n ^ m)
+SPACE COMPLEXITY: O(n ^ m)
+[n = string length, m = no of characters in map]
+"""
