@@ -3,15 +3,15 @@ Problem:
 
 Invert a binary tree.
 
-Example:
+For example, given the following tree:
 
-Input:
     a
    / \
   b   c
  / \  /
 d   e f
-Output:
+should become:
+
   a
  / \
  c  b
@@ -19,42 +19,47 @@ Output:
   f e  d
 """
 
-# importing from the local datastructure module
-from DataStructures.Tree import Node, Binary_Tree
-
-# function to do the heavy lifting
-def invert_helper(self):
-    # interchanging the left and right children
-    self.right, self.left = self.left, self.right
-
-    # if the right child exists, the function is recursively called on it (to interchange its children too)
-    if self.right != None:
-        self.right.invert_helper()
-
-    # if the left child exists, the function is recursively called on it (to interchange its children too)
-    if self.left != None:
-        self.left.invert_helper()
+from DataStructures.Tree import BinaryTree, Node
 
 
-# FUNCTION TO PERFORM THE OPERATION
-def invert(self):
-    self.root.invert_helper()
+def invert_helper(node: Node) -> None:
+    node.right, node.left = node.left, node.right
+    # recursively inverting the children
+    if node.right is not None:
+        invert_helper(node.right)
+    if node.left is not None:
+        invert_helper(node.left)
 
 
-# adding the functions to the necessary class
-setattr(Node, "invert_helper", invert_helper)
-setattr(Binary_Tree, "invert", invert)
+def invert(tree: BinaryTree) -> None:
+    # inverts the tree in place
+    if not tree.root:
+        return
+    invert_helper(tree.root)
 
-# DRIVER CODE
-tree = Binary_Tree("a")
-tree.root.left = Node("b")
-tree.root.right = Node("c")
-tree.root.left.left = Node("d")
-tree.root.left.right = Node("e")
-tree.root.right.left = Node("f")
 
-print(tree)
+if __name__ == "__main__":
+    tree = BinaryTree()
+    tree.root = Node("a")
 
-tree.invert()
+    tree.root.left = Node("b")
+    tree.root.right = Node("c")
 
-print(tree)
+    tree.root.left.left = Node("d")
+    tree.root.left.right = Node("e")
+
+    tree.root.right.left = Node("f")
+
+    print(tree)
+
+    invert(tree)
+
+    print(tree)
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(log(n))
+"""
