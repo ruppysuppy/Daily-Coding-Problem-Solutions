@@ -11,13 +11,11 @@ from typing import List
 
 
 class MultipleVoteError(Exception):
-    # Custom Exception Class (inheriting from Exception)
     pass
 
 
 class VotingMachine:
     def __init__(self, filename: str = "data.txt") -> None:
-        # storing the data from the given file
         with open(filename, "r") as f:
             lines = f.readlines()
         self.data = [line.rstrip("\n").split(",") for line in lines]
@@ -29,7 +27,6 @@ class VotingMachine:
         # calculating votes
         for voter, candidate in self.data:
             if voter in voters:
-                # raising error for multiple votes
                 raise MultipleVoteError(f"Voter {voter} has voted multiple times")
             voters.add(voter)
             if candidate not in votes:
