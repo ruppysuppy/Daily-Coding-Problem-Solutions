@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Any, Optional
+from typing import Any, Optional, Union
 
 
 class Node:
@@ -91,7 +91,7 @@ class BinaryTree:
     def __init__(self) -> None:
         self.root = None
 
-    def __eq__(self, other) -> bool:
+    def __eq__(self, other: Any) -> bool:
         if type(other) == BinaryTree:
             return self.root == other.root
         return False
@@ -104,7 +104,7 @@ class BinaryTree:
     def __repr__(self) -> str:
         return str(self.root)
 
-    def find_height(self):
+    def find_height(self) -> int:
         # Calculate the height of a Binary Tree
         if self.root:
             return self.root.height_helper()
@@ -122,7 +122,7 @@ class BinarySearchTree(BinaryTree):
     def __init__(self) -> None:
         BinaryTree.__init__(self)
 
-    def add(self, val):
+    def add(self, val: Union[int, str]) -> None:
         # Add nodes to a Binary Search Tree
         if self.root is None:
             self.root = Node(val)
