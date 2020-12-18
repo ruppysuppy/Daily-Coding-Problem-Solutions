@@ -2,45 +2,41 @@
 Problem:
 
 Given a function f, and N return a debounced f of N milliseconds.
-That is, as long as the debounced f continues to be invoked, f itself will not be called for N milliseconds.
+
+That is, as long as the debounced f continues to be invoked, f itself will not be
+called for N milliseconds.
 """
 
-# import from the time module
 from time import sleep
+from typing import Any, Callable
 
-# debounce decorator function
-def debounce(s):
-    # converting milliseconds to seconds
-    interval = s / 1000
 
-    # decorate function
-    def decorate(f):
-        # wrapped function (with all arguements)
+def debounce(ms: int) -> Callable:
+    interval_seconds = ms / 1000
+
+    def decorate(f: Callable) -> Any:
         def wrapped(*args, **kwargs):
-            # waiting
-            print("\nwaiting initiated...")
-            sleep(interval)
+            print("waiting initiated...")
+            sleep(interval_seconds)
             print("waiting over...")
 
-            # calling the function
             return f(*args, **kwargs)
 
-        # returning the wrapped function
         return wrapped
 
-    # returning the decorate function
     return decorate
 
 
-# FUNCTION TO PERFORM THE OPERATION
-@debounce(3000)  # decorator function to implement debouncing
-# ordinary addition function
-def add_nums(x, y):
+@debounce(3000)
+def add_nums(x: int, y: int) -> int:
     return x + y
 
 
-# DRIVER CODE
-print(add_nums(1, 1))
-print(add_nums(1, 2))
-print(add_nums(1, 3))
-print(add_nums(1, 4))
+if __name__ == "__main__":
+    print(add_nums(1, 1))
+    print()
+    print(add_nums(1, 2))
+    print()
+    print(add_nums(1, 3))
+    print()
+    print(add_nums(1, 4))
