@@ -1,41 +1,35 @@
 """
 Problem:
 
-You are given an integer list where each number represents the number of hops you can make.
-Determine whether you can reach to the last index starting at index 0.
+Given an integer list where each number represents the number of hops you can make,
+determine whether you can reach to the last index starting at index 0.
 
-Example:
-
-Input = [2, 0, 1, 0]
-Output = true 
-
-Input = [1, 1, 0, 1]
-Output = false
+For example, [2, 0, 1, 0] returns true while [1, 1, 0, 1] returns false.
 """
 
-# FUNCTION TO PERFORM THE OPERATION
-def can_reach_end(arr):
-    # pos stores the current position
-    pos = 0
-    # length stores the length of the list
+from typing import List
+
+
+def can_reach_end(arr: List[int]) -> bool:
     length = len(arr)
-
-    # looping till the pointer value is less than the length of the list
-    while pos < length:
-        # if we reach the last position, True is returned
-        if pos == length - 1:
+    curr_position, last_index = 0, length - 1
+    while curr_position < length:
+        if curr_position == last_index:
             return True
-        # if the value in the list at the current position is 0, False is retuened (we cannot move any more)
-        elif arr[pos] == 0:
+        elif arr[curr_position] == 0:
             return False
-        # getting the next position
-        pos += arr[pos]
-
-    # if we surpass the last index, False is returned
+        curr_position += arr[curr_position]
     return False
 
 
-# DRIVER CODE
-print(can_reach_end([2, 0, 1, 0]))
-print(can_reach_end([1, 1, 0, 1]))
-print(can_reach_end([1, 1, 10, 1]))
+if __name__ == "__main__":
+    print(can_reach_end([2, 0, 1, 0]))
+    print(can_reach_end([1, 1, 0, 1]))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(1)
+"""
