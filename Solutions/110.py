@@ -3,62 +3,62 @@ Problem:
 
 Given a binary tree, return all paths from the root to leaves.
 
-Example:
+For example, given the tree
 
-Input =    1
-          / \
-         2   3
-            / \
-           4   5
-Output = [[1, 2], [1, 3, 4], [1, 3, 5]]"""
+   1
+  / \
+ 2   3
+    / \
+   4   5
+it should return [[1, 2], [1, 3, 4], [1, 3, 5]].
+"""
 
-# local import from the DataStructures module
-from DataStructures.Tree import Binary_Tree, Node
+from typing import List
 
-# helper function to do the heavy-lifting (part of Node class)
-def get_paths_helper(self, res, temp):
-    # if a leaf node is reached
-    if not self.left and not self.right:
-        # the leaf's value is added to temp
-        temp.append(self.val)
-        # a deep copy of temp is added to res
-        res.append(list(temp))
-        # the value of the leaf is poped from temp
-        temp.pop()
-    # if the node is not a leaf
-    else:
-        # the node's value is added to temp
-        temp.append(self.val)
-        # if the node has a left child, the function is recursively called on left child
-        if self.left:
-            self.left.get_paths_helper(res, temp)
-        # if the node has a right child, the function is recursively called on right child
-        if self.right:
-            self.right.get_paths_helper(res, temp)
-        # the node's value is removed from temp
-        temp.pop()
+from DataStructures.Tree import BinaryTree, Node
 
 
-# FUNCTION TO PERFORM THE OPERATION
-def get_paths(self):
-    # res stores the values from root to leaves
-    res = []
-    # calling the helper function on the root
-    self.root.get_paths_helper(res, [])
-    # returning res
-    return res
+def get_paths_helper(node: Node, paths: List[int], curr_path: List[int]) -> None:
+    if not node.left and not node.right:
+        # leaf node
+        curr_path.append(node.val)
+        paths.append([*curr_path])
+        curr_path.pop()
+        return
+    # non-leaf node
+    curr_path.append(node.val)
+    if node.left:
+        get_paths_helper(node.left, paths, curr_path)
+    if node.right:
+        get_paths_helper(node.right, paths, curr_path)
+    curr_path.pop()
 
 
-# adding the necessary functions to their respective classes
-setattr(Node, "get_paths_helper", get_paths_helper)
-setattr(Binary_Tree, "get_paths", get_paths)
+def get_paths(tree: BinaryTree):
+    if not tree.root:
+        return []
+    paths = []
+    get_paths_helper(tree.root, paths, [])
+    return paths
 
-# DRIVER CODE
-tree = Binary_Tree(1)
-tree.root.left = Node(2)
-tree.root.right = Node(3)
-tree.root.right.left = Node(4)
-tree.root.right.right = Node(5)
 
-print(tree)
-print(tree.get_paths())
+if __name__ == "__main__":
+    tree = BinaryTree()
+    tree.root = Node(1)
+
+    tree.root.left = Node(2)
+    tree.root.right = Node(3)
+
+    tree.root.right.left = Node(4)
+    tree.root.right.right = Node(5)
+
+    print(tree)
+    print(get_paths(tree))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(log(n))
+"""
