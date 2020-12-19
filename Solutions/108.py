@@ -1,27 +1,26 @@
 """
 Problem:
 
-Given two strings A and B, return whether or not A can be shifted some number of times to get B.
+Given two strings A and B, return whether or not A can be shifted some number of times
+to get B.
 
-Example:
-
-Input = abcde, cdeab
-Output = true
-
-Input = abc, acb
-Output = false
+For example, if A is abcde and B is cdeab, return true. If A is abc and B is acb,
+return false.
 """
 
-# FUNCTION TO PERFORM THE OPERATION
-def can_shift(str_A, str_B):
-    # if the strings are not empty and have equal length, the returned value is whether B can be found in twice A (due to shifting)
-    if (str_A and str_B) and (len(str_A) == len(str_B)):
-        return str_B in (str_A * 2)
 
-    # otherwise False is returned
-    return False
+def can_shift(A: str, B: str) -> bool:
+    return (A and B) and (len(A) == len(B)) and (B in A * 2)
 
 
-# DRIVER CODE
-print(can_shift("abcde", "cdeab"))
-print(can_shift("abc", "acb"))
+if __name__ == "__main__":
+    print(can_shift("abcde", "cdeab"))
+    print(can_shift("abc", "acb"))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(1)
+"""
