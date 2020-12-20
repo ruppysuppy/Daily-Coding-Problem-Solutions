@@ -1,20 +1,27 @@
 """
 Problem:
 
-Given a string of words delimited by spaces, reverse the words in string. 
-Follow-up: given a mutable string representation, can you perform this operation in-place?
+Given a string of words delimited by spaces, reverse the words in string. For example,
+given "hello world here", return "here world hello"
 
-Example:
-
-Input = "hello world here"
-Output = "here world hello"
+Follow-up: given a mutable string representation, can you perform this operation
+in-place?
 """
 
-# FUNCTION TO PERFORM THE OPERATION
-def rev(string):
-    # spilting the string into the words, reversing the list of words and joining the words with spaces
-    return " ".join(string.split()[::-1])
+
+def reverse_words_in_string(string: str) -> str:
+    words = string.split()
+    words.reverse()
+    return " ".join(words)
 
 
-# DRIVER CODE
-print(rev("hello world here"))
+if __name__ == "__main__":
+    print(reverse_words_in_string("hello world here"))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(n)
+"""
