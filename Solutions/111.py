@@ -3,80 +3,59 @@ Problem:
 
 Given a word W and a string S, find all starting indices in S which are anagrams of W.
 
-Example:
-
-Input = "ab", "abxaba"
-Output = [0, 3, 4]
+For example, given that W is "ab", and S is "abxaba", return 0, 3, and 4.
 """
 
-# helper to break the string into a dictionary of characters and number of occourances
-def break_char(string):
-    d = {}
-
-    for i in string:
-        if i in d:
-            d[i] += 1
-        else:
-            d[i] = 1
-
-    return d
+from typing import Dict, List
 
 
-# FUNCTION TO PERFORM THE OPERATION
-def get_word_start_loc(word, string):
-    # getting the length of the word
+def get_char_frequency(string: str) -> Dict[str, int]:
+    freq = {}
+    for char in string:
+        if char not in freq:
+            freq[char] = 0
+        freq[char] += 1
+    return freq
+
+
+def get_word_start_loc(word: str, string: str) -> List[int]:
     word_len = len(word)
-    # getting the length of the string
     str_len = len(string)
-    # breaking the string into its characters
-    needed_master = break_char(word)
-    # needed stores the characters left to be found in the string
-    needed = dict(needed_master)
-    # curr stores the current position
+    char_needed_master = get_char_frequency(word)
+    char_needed = dict(char_needed_master)
     curr = 0
-    # res stores the positions of the anagrams
-    res = []
-
+    starting_indices = []
     # if the word is longer than the string, no anagram is possible
     if (word_len > str_len) or (word_len == 0):
         return []
-
-    # looping till we reach the end of the string
+    # generating the starting indices
     while curr < str_len:
-        # looping till we reach the end of the string from current position
-        # [NOTE: the algo is O(n) evene though it has a nested loop]
         for i in range(curr, str_len):
-            # if a character mismatch occours, we break out (incrementing curr + reseting needed)
-            if string[i] not in needed:
+            if string[i] not in char_needed:
                 curr = i
-                needed = dict(needed_master)
+                char_needed = dict(char_needed_master)
                 break
-
-            # if the charater is in needed
-            elif string[i] in needed:
-                # the character count is reduced by 1
-                needed[string[i]] -= 1
-                # if the character count reaches 0
-                if needed[string[i]] == 0:
-                    # we delete the character from needed
-                    del needed[string[i]]
-
-                    # if needed is empty
-                    if needed == {}:
-                        # we add the current position to res
-                        res.append(curr)
-                        # setting curr to the current position
+            elif string[i] in char_needed:
+                char_needed[string[i]] -= 1
+                if char_needed[string[i]] == 0:
+                    del char_needed[string[i]]
+                    if char_needed == {}:
+                        starting_indices.append(curr)
                         curr = i - 1
-                        # reseting needed
-                        needed = dict(needed_master)
+                        char_needed = dict(char_needed_master)
                         break
-
-        # incrementing curr
         curr += 1
+    return starting_indices
 
-    return res
+
+if __name__ == "__main__":
+    print(get_word_start_loc("ab", "abxaba"))
+    print(get_word_start_loc("tac", "cataract"))
 
 
-# DRIVER CODE
-print(get_word_start_loc("ab", "abxaba"))
-print(get_word_start_loc("tac", "cataract"))
+"""
+SPECS:
+
+TIME COMPLEXITY: O(len(word) x len(string))
+SPACE COMPLEXITY: O(len(word))
+"""
