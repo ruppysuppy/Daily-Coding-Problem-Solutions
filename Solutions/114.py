@@ -73,3 +73,11 @@ if __name__ == "__main__":
     print(rev_words("hello//world:here", {":", "/"}))
     print(rev_words("hello", {":", "/"}))
     print(rev_words("//:", {":", "/"}))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(n)
+"""
