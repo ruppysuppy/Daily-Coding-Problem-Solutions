@@ -4,87 +4,78 @@ Problem:
 Given a binary tree, return the level of the tree with minimum sum.
 """
 
-# local import from the DataStructures module
-from DataStructures.Queue import Queue
-from DataStructures.Tree import Binary_Tree, Node
+from sys import maxsize
 
-# FUNCTION TO PERFROM THE OPERATION
-def get_min_sum(tree):
-    # if the tree is empty, 0 is returned
+from DataStructures.Queue import Queue
+from DataStructures.Tree import BinaryTree, Node
+
+
+def get_level_min_sum(tree: BinaryTree) -> int:
     if not tree.root:
         return 0
+    # the levels are delimited in the queue by None
+    queue = Queue()
+    queue.enqueue(tree.root)
+    queue.enqueue(None)
 
-    # creating a queue
-    queue_processing = Queue()
-    # adding the root node in the queue
-    queue_processing.enqueue(tree.root)
-    # adding a None to demarkate the end of a level
-    queue_processing.enqueue(None)
-
-    # setting the min_sum (stores the minimum sum of all the levels of the tree) to a high number (sys.maxsize preferably)
-    min_sum = 99999
-    # temp_sum stores the sum of the current level
-    temp_sum = 0
-
-    # processing all the nodes (till the queue is empty)
-    while not queue_processing.isEmpty():
-        # getting the current node
-        node = queue_processing.dequeue()
-
-        # if the node is not None
-        if node:
-            # the children of the node are added to the queue
+    min_level_sum = maxsize
+    curr_level_sum = 0
+    while not queue.is_empty():
+        node = queue.dequeue()
+        if node is not None:
             if node.left:
-                queue_processing.enqueue(node.left)
+                queue.enqueue(node.left)
             if node.right:
-                queue_processing.enqueue(node.right)
-
-            # the node's value is added to temp_sum
-            temp_sum += node.val
-
-        # if the node is None (end of a level)
+                queue.enqueue(node.right)
+            curr_level_sum += node.val
         else:
-            # if the level's sum is less than the min_sum, min_sum is updated
-            if temp_sum < min_sum:
-                min_sum = temp_sum
-
-            # if the queue has any elements, another None is added to demarkate the end of the current level
-            # length checking is necessary as if all the nodes are processed, it will keep adding Nones and the loop will go on infinitely
-            if len(queue_processing) > 0:
-                queue_processing.enqueue(None)
-                temp_sum = 0
-
-    # min_sum is returned
-    return min_sum
+            min_level_sum = min(curr_level_sum, min_level_sum)
+            if len(queue) > 0:
+                queue.enqueue(None)
+                curr_level_sum = 0
+    return min_level_sum
 
 
-# DRIVER CODE
-a = Node(100)
-b = Node(200)
-c = Node(300)
-a.left = b
-a.right = c
+if __name__ == "__main__":
+    a = Node(100)
+    b = Node(200)
+    c = Node(300)
+    d = Node(400)
+    e = Node(500)
+    f = Node(600)
+    g = Node(700)
+    h = Node(800)
 
-d = Node(400)
-e = Node(500)
-b.left = d
-b.right = e
+    a.left = b
+    a.right = c
 
-f = Node(600)
-g = Node(700)
-c.left = f
-c.right = g
+    b.left = d
+    b.right = e
 
-h = Node(800)
-d.right = h
+    c.left = f
+    c.right = g
 
-tree = Binary_Tree()
-tree.root = a
+    d.right = h
 
-print(get_min_sum(tree))
-a.val = 1000
-print(get_min_sum(tree))
-b.val = 1500
-print(get_min_sum(tree))
-h.val = 2000
-print(get_min_sum(tree))
+    tree = BinaryTree()
+    tree.root = a
+
+    print(tree)
+    print(get_level_min_sum(tree))
+    a.val = 1000
+    print(tree)
+    print(get_level_min_sum(tree))
+    b.val = 1500
+    print(tree)
+    print(get_level_min_sum(tree))
+    h.val = 2000
+    print(tree)
+    print(get_level_min_sum(tree))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(n)
+"""
