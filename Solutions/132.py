@@ -11,152 +11,109 @@ It should support the following operations:
 Follow-up: What if our system has limited memory?
 """
 
-# importing datetime from the datetime module
-from datetime import datetime
+from DataStructures.LinkedList import Node, LinkedList
 
-# local import from the DataStructure class
-from DataStructures.LinkedList import Node, Linked_list
 
-# helper function to add a value in the proper position of the linked list (ensures the list is sorted)
-def add_sorted(self, val):
-    # incrementing the length
-    self.length += 1
-
-    # if there is no values in the list, its added to the head
-    if not self.head:
-        self.head = Node(val)
-        self.rear = self.head
-
-    # if the value to be added is larger than all values in the list, its added after rear
-    elif val > self.rear.val:
-        self.rear.next = Node(val)
-        self.rear = self.rear.next
-
+def add_node_sorted(ll: LinkedList, val: int) -> None:
+    ll.length += 1
+    if not ll.head:
+        ll.head = Node(val)
+        ll.rear = ll.head
+    elif val > ll.rear.val:
+        ll.rear.next = Node(val)
+        ll.rear = ll.rear.next
     else:
-        pos = self.head
-
-        # else finding the proper position
+        pos = ll.head
         while pos.val < val:
             pos = pos.next
-
-        # overwriting the node's value with the new value and adding a new node with the node's old value next to the node
         temp = pos.val
         pos.val = val
-
         new_node = Node(temp)
         new_node.next = pos.next
-
         pos.next = new_node
-
-        # if the node is rear, its reset to the new node (end of the list)
-        if pos == self.rear:
-            self.rear = new_node
+        if pos == ll.rear:
+            ll.rear = new_node
 
 
-# helper function to get the number of nodes in the range
-def in_range(self, start, stop):
-    # if there is no values in the list, 0 is returned
-    if not self.head:
+def get_number_of_nodes_in_range(ll: LinkedList, start: int, stop: int) -> int:
+    if not ll.head:
         return 0
 
-    # moving to the proper position
-    pos = self.head
+    pos = ll.head
     num = 0
-
     while pos and pos.val < start:
         pos = pos.next
-
-    # if we reach the end of the list, 0 is returned
     if not pos:
         return 0
-
-    # counting the number of elements in the range
     while pos and pos.val <= stop:
         pos = pos.next
         num += 1
-
     return num
 
 
-# adding the necessary functions to the Linked List class
-setattr(Linked_list, "add_sorted", add_sorted)
-setattr(Linked_list, "in_range", in_range)
-
-# HitCounter class
 class HitCounter:
-    # initialization
-    def __init__(self):
-        self.List = Linked_list()
+    def __init__(self) -> None:
+        self.List = LinkedList()
         self.start = None
         self.end = None
 
-    # record function to store timestamp
-    def record(self, timestamp):
-        # adding the data in sorted order
-        self.List.add_sorted(timestamp)
-
+    def record(self, timestamp: int) -> None:
+        add_node_sorted(self.List, timestamp)
         # keeping track of the smallest and largest timestamp
         if not self.start:
             self.start = timestamp
             self.end = timestamp
-
         elif timestamp < self.start:
             self.start = timestamp
-
         elif timestamp > self.end:
             self.end = timestamp
 
-    # total function to get the total number of hits
-    def total(self):
+    def total(self) -> int:
         return len(self.List)
 
-    # range function to get the number of hits in the time range
-    def range(self, lower, upper):
-        # checking if the values are in the range of the linked list
+    def range(self, lower: int, upper: int) -> int:
         if upper < self.start or lower > self.end:
             return 0
+        return get_number_of_nodes_in_range(self.List, lower, upper)
 
-        return self.List.in_range(lower, upper)
-
-    # string function to display the object
-    def __str__(self):
+    def __repr__(self):
         return str(self.List)
 
 
-# DRIVER CODE
-hc = HitCounter()
+if __name__ == "__main__":
+    hc = HitCounter()
 
-time1 = datetime(2000, 1, 1, 1, 1, 1)
-time2 = datetime(2000, 1, 1, 1, 1, 10)
-time3 = datetime(2000, 1, 1, 1, 1, 20)
+    time1 = 1
+    time2 = 10
+    time3 = 20
 
-print(hc.total())
-print(hc)
-print()
+    print(hc.total())
+    print(hc)
+    print()
 
-hc.record(time2)
+    hc.record(time2)
 
-print(hc.total())
-print(hc)
-print("Number in range:")
-print(hc.range(datetime(2000, 1, 1, 1, 1, 5), datetime(2000, 1, 1, 1, 1, 15)))
-print(hc.range(datetime(2000, 1, 1, 1, 1, 10), datetime(2000, 1, 1, 1, 1, 15)))
-print()
+    print(hc.total())
+    print(hc)
+    print("Number in range:")
+    print(hc.range(5, 15))
+    print(hc.range(10, 15))
+    print()
 
-hc.record(time1)
+    hc.record(time1)
 
-print(hc.total())
-print(hc)
-print("Number in range:")
-print(hc.range(datetime(2000, 1, 1, 1, 1, 5), datetime(2000, 1, 1, 1, 1, 15)))
-print(hc.range(datetime(2000, 1, 1, 1, 1, 12), datetime(2000, 1, 1, 1, 1, 15)))
-print()
+    print(hc.total())
+    print(hc)
+    print("Number in range:")
+    print(hc.range(5, 15))
+    print(hc.range(12, 15))
+    print()
 
-hc.record(time3)
+    hc.record(time3)
 
-print(hc.total())
-print(hc)
-print("Number in range:")
-print(hc.range(datetime(2000, 1, 1, 1, 1, 5), datetime(2000, 1, 1, 1, 1, 15)))
-print(hc.range(datetime(2000, 1, 1, 1, 1, 0), datetime(2000, 1, 1, 1, 1, 25)))
-print()
+    print(hc.total())
+    print(hc)
+    print("Number in range:")
+    print(hc.range(5, 15))
+    print(hc.range(0, 25))
+    print()
