@@ -1,35 +1,42 @@
 """
 Problem:
 
-Write a function that rotates a list by k elements. 
-Try solving this without creating a copy of the list. How many swap or move operations do you need?
-
-Example:
-
-Input = [1, 2, 3, 4, 5, 6]
-Output = [3, 4, 5, 6, 1, 2]
+Write a function that rotates a list by k elements. For example, [1, 2, 3, 4, 5, 6]
+rotated by two becomes [3, 4, 5, 6, 1, 2]. Try solving this without creating a copy of
+the list. How many swap or move operations do you need?
 """
 
-# FUNCTION TO PERFORM THE OPERATION
-def rotate_list(List, k):
-    # getting the length of the list
-    length = len(List)
-    # getting the number of necessary rotations (needed for optimizing the function if k >> length)
+from typing import List
+
+
+def rotate_list_once(arr: List[int], length: int) -> None:
+    # updates the list inplace
+    first_elem = arr[0]
+    for i in range(length - 1):
+        arr[i] = arr[i + 1]
+    arr[length - 1] = first_elem
+
+
+def rotate_list(arr: List[int], k: int) -> List[int]:
+    length = len(arr)
     k = k % length
-
-    # rotating items the necessary times
     for _ in range(k):
-        temp = List.pop(0)
-        List.append(temp)
-
-    # returning the list
-    return List
+        rotate_list_once(arr, length)
+    return arr
 
 
-# DRIVER CODE
-print(rotate_list([1, 2, 3, 4, 5, 6], 0))
-print(rotate_list([1, 2, 3, 4, 5, 6], 2))
-print(rotate_list([1, 2, 3, 4, 5, 6], 4))
-print(rotate_list([1, 2, 3, 4, 5, 6], 6))
-print(rotate_list([1, 2, 3, 4, 5, 6], 10))
-print(rotate_list([1, 2, 3, 4, 5, 6], 1000000000))
+if __name__ == "__main__":
+    print(rotate_list([1, 2, 3, 4, 5, 6], 0))
+    print(rotate_list([1, 2, 3, 4, 5, 6], 2))
+    print(rotate_list([1, 2, 3, 4, 5, 6], 4))
+    print(rotate_list([1, 2, 3, 4, 5, 6], 6))
+    print(rotate_list([1, 2, 3, 4, 5, 6], 10))
+    print(rotate_list([1, 2, 3, 4, 5, 6], 1_000_000_000))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(k x n)
+SPACE COMPLEXITY: O(1)
+"""
