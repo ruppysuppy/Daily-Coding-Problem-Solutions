@@ -31,11 +31,9 @@ def inorder_successor_helper(node: Node) -> Optional[int]:
     return None
 
 
-def inorder_successor(tree: BinarySearchTree, node: Node) -> Optional[int]:
-    if not tree.root:
-        raise Exception("Empty Tree")
+def inorder_successor(node: Node) -> Optional[int]:
     if not node:
-        raise Exception("Node not Found")
+        return
     return inorder_successor_helper(node)
 
 
@@ -63,8 +61,8 @@ if __name__ == "__main__":
     tree.root = a
 
     print(tree)
-    print(inorder_successor(tree, d))
-    print(inorder_successor(tree, a))
+    print(inorder_successor(d))
+    print(inorder_successor(a))
 
 
 """
