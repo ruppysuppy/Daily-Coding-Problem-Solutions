@@ -1,101 +1,75 @@
 """
 Problem:
 
-Given a node in a binary search tree, return the next bigger element, also known as the inorder successor. 
-You can assume each node has a parent pointer.
+Given a node in a binary tree, return the next bigger element, also known as the
+inorder successor.
 
-Example:
+For example, the inorder successor of 22 is 30.
 
-Input = 22, 
    10
   /  \
  5    30
      /  \
    22    35
-Output = 30
+You can assume each node has a parent pointer.
 """
 
-# local import from Datastructure class
-from DataStructures.Tree import Node, Binary_Tree
+from typing import Optional
 
-# function to find the required node
-def search(self, val):
-    # if the node is found, its returned (base case for recursion)
-    if self.val == val:
-        return self
-
-    # using the binary search tree property to execute binary search
-    if val < self.val:
-        if self.left:
-            return self.left.search(val)
-        # if the required node is not present, None is returned (base case for recursion)
-        else:
-            return None
-
-    else:
-        if self.right:
-            return self.right.search(val)
-        # if the required node is not present, None is returned (base case for recursion)
-        else:
-            return None
+from DataStructures.Tree import Node, BinarySearchTree
 
 
-# helper function to compute the inorder successor
-def inorder_successor_helper(self):
-    # if the node has a right child, by bst property, the left-most node in the right subtree is the inorder sucessor
-    if self.right:
-        pos = self.right
-
+def inorder_successor_helper(node: Node) -> Optional[int]:
+    # using bst property to find the inorder successor
+    if node.right:
+        pos = node.right
         while pos.left:
             pos = pos.left
-
         return pos.val
-
-    # if the node doesn't have a right child, the node's parent is the inorder sucessor
-    else:
-        if self.parent:
-            return self.parent.val
-        else:
-            return None
+    if node.parent:
+        return node.parent.val
+    return None
 
 
-# FUNCTION TO PERFORM THE OPERATION
-def inorder_successor(self, val):
-    # checking whether the tree has nodes
-    if self.root:
-        # getting the required node
-        node = self.root.search(val)
-
-        # getting the inorder successor
-        if node:
-            return node.inorder_successor_helper()
-        else:
-            raise Exception("Node not Found")
-
-    else:
+def inorder_successor(tree: BinarySearchTree, node: Node) -> Optional[int]:
+    if not tree.root:
         raise Exception("Empty Tree")
+    if not node:
+        raise Exception("Node not Found")
+    return inorder_successor_helper(node)
 
 
-# adding the necessary functions and data to the classes
+# adding the parent pointer to Node class
 setattr(Node, "parent", None)
-setattr(Node, "search", search)
-setattr(Node, "inorder_successor_helper", inorder_successor_helper)
-setattr(Binary_Tree, "inorder_successor", inorder_successor)
 
-# DRIVER CODE
-root = Node(10)
-root.left = Node(5)
-root.right = Node(30)
-root.left.parent = root
-root.right.parent = root
-root.right.left = Node(22)
-root.right.right = Node(35)
-root.right.left.parent = root.right
-root.right.right.parent = root.right
+if __name__ == "__main__":
+    a = Node(10)
+    b = Node(5)
+    c = Node(30)
+    d = Node(22)
+    e = Node(35)
 
-tree = Binary_Tree()
-tree.root = root
+    a.left = b
+    a.right = c
+    c.left = d
+    c.right = e
 
-print(tree)
-print(tree.inorder_successor(22))
-print(tree.inorder_successor(10))
+    b.parent = a
+    c.parent = a
+    d.parent = c
+    e.parent = c
+
+    tree = BinarySearchTree()
+    tree.root = a
+
+    print(tree)
+    print(inorder_successor(tree, d))
+    print(inorder_successor(tree, a))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(1)
+"""
