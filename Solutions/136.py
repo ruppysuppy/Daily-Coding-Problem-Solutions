@@ -1,102 +1,127 @@
 """
 Problem:
 
-Given an N by M matrix consisting only of 1's and 0's, find the largest rectangle containing only 1's and return its area.
+Given an N by M matrix consisting only of 1's and 0's, find the largest rectangle
+containing only 1's and return its area.
 
-Example:
+For example, given the following matrix:
 
-Input = [[1, 0, 0, 0],
-         [1, 0, 1, 1],
-         [1, 0, 1, 1],
-         [0, 1, 0, 0]]
-Output = 4
+[[1, 0, 0, 0],
+ [1, 0, 1, 1],
+ [1, 0, 1, 1],
+ [0, 1, 0, 0]]
+Return 4.
 """
 
-# function to check if all elements in the given range is 1 (used to check if the covered rows can be extended)
-def extendable_row(matrix, erow, scol, ecol):
+from typing import List
+
+Matrix = List[List[int]]
+
+
+def is_row_extendable(matrix: Matrix, erow: int, scol: int, ecol: int) -> bool:
     return all(matrix[erow][scol:ecol])
 
 
-# function to check if all elements in the given range is 1 (used to check if the covered columns can be extended)
-def extendable_col(matrix, ecol, srow, erow):
+def is_column_extendable(matrix: Matrix, ecol: int, srow: int, erow: int) -> bool:
     for row in range(srow, erow):
         if not matrix[row][ecol]:
             return False
     return True
 
 
-# helper function to get the maximum covered rectangular area
-def area_helper(matrix, num_rows, num_cols, srow, erow, scol, ecol):
-    # getting the current area
+def area_helper(
+    matrix: Matrix,
+    num_rows: int,
+    num_cols: int,
+    srow: int,
+    erow: int,
+    scol: int,
+    ecol: int,
+) -> int:
     current_area = (erow - srow) * (ecol - scol)
-    # declaring default values for row and column extended area, to avoid errors while returning
     row_ex_area, col_ex_area = 0, 0
-
-    # checking if the rows considered can be extended
-    ex_row = erow < num_rows and extendable_row(matrix, erow, scol, ecol)
-
-    # getting the row extended area
-    if ex_row:
+    # checking if the area can be extended
+    can_extend_row = erow < num_rows and is_row_extendable(matrix, erow, scol, ecol)
+    if can_extend_row:
         row_ex_area = area_helper(
             matrix, num_rows, num_cols, srow, erow + 1, scol, ecol
         )
-
-    # checking if the columns considered can be extended
-    ex_col = ecol < num_cols and extendable_col(matrix, ecol, srow, erow)
-
-    # getting the column extended area
-    if ex_col:
+    can_extend_col = ecol < num_cols and is_column_extendable(matrix, ecol, srow, erow)
+    if can_extend_col:
         col_ex_area = area_helper(
             matrix, num_rows, num_cols, srow, erow, scol, ecol + 1
         )
-
-    # returning the maximum area
     return max(current_area, row_ex_area, col_ex_area)
 
 
-# FUNCTION TO PERFORM THE OPERATION
-def get_max_rect(matrix):
-    # if the matrix is empty 0 is returned
+def get_max_rect(matrix: Matrix) -> int:
     if not matrix:
         return 0
-
-    # max_area stores the area of the largest rectangle
+    # generating the maximum area
     max_area = 0
-
-    # getting the number of rows and columns
     num_rows, num_cols = len(matrix), len(matrix[0])
-
-    # iterating through the matrix
     for i in range(num_rows):
         for j in range(num_cols):
-            # getting the maximum possible area by considering the area under current row and column to the end
             upper_bound_area = (num_rows - i) * (num_cols - j)
-
-            # if the current position contains 1 and the upper bound on area is larger than the max area
             if matrix[i][j] and upper_bound_area > max_area:
-                # the maximum rectangular area covered the current and neighbouring elements is calculated
                 area = area_helper(matrix, num_rows, num_cols, i, i + 1, j, j + 1)
-                # max_area is updated according to need
                 max_area = max(area, max_area)
-
     return max_area
 
 
-# DRIVER CODE
-matrix = [[1, 0, 0, 0], [1, 0, 1, 1], [1, 0, 1, 1], [0, 1, 0, 0]]
-print(get_max_rect(matrix))
+if __name__ == "__main__":
+    matrix = [
+        [1, 0, 0, 0],
+        [1, 0, 1, 1],
+        [1, 0, 1, 1],
+        [0, 1, 0, 0]
+    ]
+    print(get_max_rect(matrix))
 
-matrix = [[1, 0, 0, 0], [1, 0, 1, 1], [1, 0, 1, 1], [0, 1, 1, 1]]
-print(get_max_rect(matrix))
+    matrix = [
+        [1, 0, 0, 0],
+        [1, 0, 1, 1],
+        [1, 0, 1, 1],
+        [0, 1, 1, 1]
+    ]
+    print(get_max_rect(matrix))
 
-matrix = [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]
-print(get_max_rect(matrix))
+    matrix = [
+        [1, 1, 1, 1],
+        [1, 1, 1, 1],
+        [1, 1, 1, 1],
+        [1, 1, 1, 1]
+    ]
+    print(get_max_rect(matrix))
 
-matrix = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
-print(get_max_rect(matrix))
+    matrix = [
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]
+    ]
+    print(get_max_rect(matrix))
 
-matrix = [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 0, 0], [0, 0, 0, 0]]
-print(get_max_rect(matrix))
+    matrix = [
+        [1, 1, 1, 1],
+        [1, 1, 1, 1],
+        [1, 1, 0, 0],
+        [0, 0, 0, 0]
+    ]
+    print(get_max_rect(matrix))
 
-matrix = [[1, 1, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0]]
-print(get_max_rect(matrix))
+    matrix = [
+        [1, 1, 0, 0],
+        [1, 0, 0, 0],
+        [1, 0, 0, 0],
+        [1, 0, 0, 0]
+    ]
+    print(get_max_rect(matrix))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O((n x m) ^ 2)
+SPACE COMPLEXITY: O(n + m)
+"""
