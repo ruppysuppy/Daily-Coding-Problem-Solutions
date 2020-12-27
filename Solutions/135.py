@@ -3,72 +3,70 @@ Problem:
 
 Given a binary tree, find a minimum path sum from root to a leaf.
 
-Example:
+For example, the minimum path in this tree is [10, 5, 1, -1], which has sum 15.
 
-Input =   10
-         /  \
-        5    5
-         \     \
-           2    1
-               /
-             -1
-Output = [10, 5, 1, -1] (sum 15)
+  10
+ /  \
+5    5
+ \     \
+   2    1
+       /
+     -1
 """
 
-# local import from the Datastructure module
-from DataStructures.Tree import Binary_Tree, Node
+from typing import List, Tuple
 
-# helper function to perform the operations
-def minimum_path_sum_helper(self):
-    # getting the minimum sum for the left subtree
-    if self.left:
-        left_sum, left = self.left.minimum_path_sum_helper()
-    else:
-        left_sum, left = None, None
-    # getting the minimum sum for the right subtree
-    if self.right:
-        right_sum, right = self.right.minimum_path_sum_helper()
-    else:
-        right_sum, right = None, None
+from DataStructures.Tree import BinaryTree, Node
 
-    # if its a leaf node (base case for recursion), the value and a list containing the value is returned
+
+def minimum_path_sum_helper(node: Node) -> Tuple[int, List[int]]:
+    left_sum, left = None, None
+    right_sum, right = None, None
+    if node.left:
+        left_sum, left = minimum_path_sum_helper(node.left)
+    if node.right:
+        right_sum, right = minimum_path_sum_helper(node.right)
+    # generating the minimum path sum
     if not left and not right:
-        return self.val, [self.val]
-    # if only left child is present, the updated values (updated using left sum and list) are returned
+        return node.val, [node.val]
     elif left and not right:
-        return (left_sum + self.val), left + [self.val]
-    # if only right child is present, the updated values (updated using right sum and list) are returned
+        return (left_sum + node.val), left + [node.val]
     elif right and not left:
-        return (right_sum + self.val), right + [self.val]
-    # if both children are present, the path with smaller sum is selected and values updated correspondingly
-    else:
-        if left_sum < right_sum:
-            return (left_sum + self.val), left + [self.val]
-        else:
-            return (right_sum + self.val), right + [self.val]
+        return (right_sum + node.val), right + [node.val]
+    return min(
+        ((left_sum + node.val), left + [node.val]),
+        ((right_sum + node.val), right + [node.val]),
+        key=lambda x: x[0],
+    )
 
 
-# FUNCTION TO PERFORM THE OPERATION
-def minimum_path_sum(self):
-    # checking if the tree has nodes
-    if self.root:
-        # getting the path from the leaf to root and returning the reverse
-        _, path = self.root.minimum_path_sum_helper()
-        return path[::-1]
-    # raising ValueError in case the tree is empty
-    else:
+def minimum_path_sum(tree: BinaryTree) -> List[int]:
+    if not tree.root:
         raise ValueError("Empty Tree")
+    _, path = minimum_path_sum_helper(tree.root)
+    return path[::-1]
 
 
-# adding the necessary functions to the classes
-setattr(Node, "minimum_path_sum_helper", minimum_path_sum_helper)
-setattr(Binary_Tree, "minimum_path_sum", minimum_path_sum)
+if __name__ == "__main__":
+    tree = BinaryTree()
+    tree.root = Node(10)
 
-# DRIVER CODE
-tree = Binary_Tree()
-tree.root = Node(10)
-tree.root.left = Node(5, right=Node(2))
-tree.root.right = Node(5, right=Node(1, left=Node(-1)))
+    tree.root.left = Node(5)
+    tree.root.right = Node(5)
 
-print(tree)
-print(tree.minimum_path_sum())
+    tree.root.left.right = Node(2)
+
+    tree.root.right.right = Node(1)
+
+    tree.root.right.right.left = Node(-1)
+
+    print(tree)
+    print(minimum_path_sum(tree))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(n)
+"""
