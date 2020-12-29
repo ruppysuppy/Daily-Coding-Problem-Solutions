@@ -2,6 +2,7 @@
 Problem:
 
 Implement 3 stacks using a single list:
+
 class Stack:
     def __init__(self):
         self.list = []
@@ -13,90 +14,74 @@ class Stack:
         pass
 """
 
-# stack class
+
 class Stack:
-    # initialization
-    def __init__(self):
+    def __init__(self) -> None:
         self.list = []
-        # pos1 stores the starting index of stack 1
-        # pos2 stores the starting index of stack 2
-        # pos3 stores the starting index of stack 3
-        self.pos1 = 0
-        self.pos2 = 0
-        self.pos3 = 0
+        self.stack1_last_index = 0
+        self.stack2_last_index = 0
+        self.stack3_last_index = 0
 
-    # pop function
-    def pop(self, stack_number):
+    def __repr__(self) -> str:
+        return (
+            f"Stack1: {self.list[:self.stack1_last_index]}"
+            + f"\nStack2: {self.list[self.stack1_last_index:self.stack2_last_index]}"
+            + f"\nStack3: {self.list[self.stack2_last_index:]}"
+        )
+
+    def pop(self, stack_number: int) -> int:
         if stack_number == 1:
-            # calculating the length and checking for underflow
-            if len(self.list[: self.pos1]) == 0:
+            if len(self.list[: self.stack1_last_index]) == 0:
                 raise ValueError("Stack Underflow")
-            # getting the necessary value
-            self.list.pop(self.pos1 - 1)
-            # updating the position markers
-            self.pos1 -= 1
-            self.pos2 -= 1
-            self.pos3 -= 1
+            self.list.pop(self.stack1_last_index - 1)
+            self.stack1_last_index -= 1
+            self.stack2_last_index -= 1
+            self.stack3_last_index -= 1
         elif stack_number == 2:
-            # calculating the length and checking for underflow
-            if len(self.list[self.pos1 : self.pos2]) == 0:
+            if len(self.list[self.stack1_last_index : self.stack2_last_index]) == 0:
                 raise ValueError("Stack Underflow")
-            # getting the necessary value
-            self.list.pop(self.pos2 - 1)
-            # updating the position markers
-            self.pos2 -= 1
-            self.pos3 -= 1
-        else:
-            # calculating the length and checking for underflow
-            if len(self.list[self.pos2 :]) == 0:
+            self.list.pop(self.stack2_last_index - 1)
+            self.stack2_last_index -= 1
+            self.stack3_last_index -= 1
+        elif stack_number == 3:
+            if len(self.list[self.stack2_last_index :]) == 0:
                 raise ValueError("Stack Underflow")
-            # getting the necessary value
             self.list.pop()
-            # updating the position markers
-            self.pos3 -= 1
+            self.stack3_last_index -= 1
 
-    # push function
-    def push(self, item, stack_number):
+    def push(self, item: int, stack_number: int) -> None:
         if stack_number == 1:
-            # adding the value to the list
-            self.list.insert(self.pos1, item)
-            # updating the position markers
-            self.pos1 += 1
-            self.pos2 += 1
-            self.pos3 += 1
+            self.list.insert(self.stack1_last_index, item)
+            self.stack1_last_index += 1
+            self.stack2_last_index += 1
+            self.stack3_last_index += 1
         elif stack_number == 2:
-            # adding the value to the list
-            self.list.insert(self.pos2, item)
-            # updating the position markers
-            self.pos2 += 1
-            self.pos3 += 1
-        else:
-            # adding the value to the list
-            self.list.insert(self.pos3, item)
-            # updating the position markers
-            self.pos3 += 1
-
-    # string function
-    def __str__(self):
-        return f"Stack1: {self.list[:self.pos1]}\nStack2: {self.list[self.pos1:self.pos2]}\nStack3: {self.list[self.pos2:]}"
+            self.list.insert(self.stack2_last_index, item)
+            self.stack2_last_index += 1
+            self.stack3_last_index += 1
+        elif stack_number == 3:
+            self.list.insert(self.stack3_last_index, item)
+            self.stack3_last_index += 1
 
 
-# DRIVER CODE
-stack = Stack()
-stack.push(5, 3)
-stack.push(10, 2)
-stack.push(1, 1)
+if __name__ == "__main__":
+    stack = Stack()
+    stack.push(5, 3)
+    stack.push(10, 2)
+    stack.push(1, 1)
 
-print(stack, "\n")
+    print(stack)
+    print()
 
-stack.push(3, 3)
-stack.push(1, 2)
-stack.push(0, 2)
+    stack.push(3, 3)
+    stack.push(1, 2)
+    stack.push(0, 2)
 
-print(stack, "\n")
+    print(stack)
+    print()
 
-stack.pop(2)
-stack.pop(1)
-stack.pop(3)
+    stack.pop(2)
+    stack.pop(1)
+    stack.pop(3)
 
-print(stack, "\n")
+    print(stack)
