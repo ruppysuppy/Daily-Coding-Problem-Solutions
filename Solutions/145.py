@@ -3,48 +3,39 @@ Problem:
 
 Given the head of a singly linked list, swap every two nodes and return its head.
 
-Example:
-
-Input = 1 -> 2 -> 3 -> 4
-Output = 2 -> 1 -> 4 -> 3
+For example, given 1 -> 2 -> 3 -> 4, return 2 -> 1 -> 4 -> 3.
 """
 
-# local import from the Datastructure module
-from DataStructures.LinkedList import Node, Linked_list
+from DataStructures.LinkedList import Node, LinkedList
 
-# FUNCTION TO PERFORM THE OPERATION
-def swap_nodes(self):
-    # creating pointers for the 2 nodes
-    node1 = self.head
-    node2 = self.head.next
 
-    # looping till all nodes have been processed
+def swap_nodes(ll: LinkedList) -> Node:
+    node1 = ll.head
+    node2 = ll.head.next
     while True:
         try:
-            # swapping the values of the nodes
             node1.val, node2.val = node2.val, node1.val
-
-            # moving on to the next set of nodes
-            node1 = node1.next.next
-            node2 = node2.next.next
-
+            node1, node2 = node1.next.next, node2.next.next
         except:
             break
-
-    # returning the head
-    return self.head
+    return ll.head
 
 
-# adding the swap_node function to Linked List
-setattr(Linked_list, "swap_nodes", swap_nodes)
+if __name__ == "__main__":
+    LL = LinkedList()
 
-# DRIVER CODE
-LL = Linked_list()
-LL.add(1)
-LL.add(2)
-LL.add(3)
-LL.add(4)
+    LL.add(1)
+    LL.add(2)
+    LL.add(3)
+    LL.add(4)
 
-print(LL)
+    print(LL)
+    print(swap_nodes(LL))
 
-print(LL.swap_nodes())
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(1)
+"""
