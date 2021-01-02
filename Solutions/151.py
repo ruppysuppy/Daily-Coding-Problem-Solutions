@@ -1,35 +1,35 @@
 """
 Problem:
 
-You are given a 2-D matrix representing an image, a location of a pixel in the screen and a color C.
-Replace the color of the given pixel and all adjacent same colored pixels with C.
+Given a 2-D matrix representing an image, a location of a pixel in the screen and a
+color C, replace the color of the given pixel and all adjacent same colored pixels
+with C.
 
-Example:
+For example, given the following matrix, and location pixel of (2, 2), and 'G' for
+green:
 
-Input: (2, 2), 'G',
 B B W
 W W W
 W W W
 B B B
+Becomes
 
-Output:
 B B G
 G G G
 G G G
 B B B
 """
 
-# importing array from numpy (its used to properly format the matrix while displaying, not a mandatory requirement)
+from typing import List, Set, Tuple
 from numpy import array
 
-# helper function to generate all the valid neighbouring positions
-def gen_neighbours(pos, rows, cols):
-    # breaking the position into i and j
-    i, j = pos
-    # res stores the valid neighbours
-    res = []
+Matrix = List[List[int]]
+Position = Tuple[int, int]
 
-    # getting all neighbours
+
+def generate_neighbours(position: Position, rows: int, cols: int) -> List[Position]:
+    i, j = position
+    valid_neighbours = []
     neighbours = [
         (i - 1, j - 1),
         (i - 1, j),
@@ -40,65 +40,86 @@ def gen_neighbours(pos, rows, cols):
         (i + 1, j - 1),
         (i, j - 1),
     ]
-
-    # looping over neighbours and adding the valid neighbours to res
     for neighbour in neighbours:
         y, x = neighbour
-
-        if (not (x >= cols) and not (x < 0)) and (not (y >= rows) and not (y < 0)):
-            res.append(neighbour)
-
-    # returning res
-    return res
+        if (0 <= x < cols) and (0 <= y < rows):
+            valid_neighbours.append(neighbour)
+    return valid_neighbours
 
 
-# helper function to modify the matrix
-def dfs(mat, pos, new_color, prev_color, visited, rows, cols):
-    # updating the color at the current position
-    mat[pos[0]][pos[1]] = new_color
-    # adding the position to visited set
-    visited.add(pos)
+def update_color_dfs_helper(
+    matrix: Matrix,
+    position: Position,
+    new_color: str,
+    prev_color: str,
+    visited: Set[Position],
+    rows: int,
+    cols: int,
+) -> None:
+    i, j = position
+    matrix[i][j] = new_color
+    visited.add(position)
 
-    # getting the neighbours
-    neighbours = gen_neighbours(pos, rows, cols)
-
-    # looping over neighbours
+    neighbours = generate_neighbours(position, rows, cols)
     for neighbour in neighbours:
-        # checking if the color has to be modified for the given position and calling dfs as required
-        if neighbour not in visited and mat[neighbour[0]][neighbour[1]] == prev_color:
-            dfs(mat, neighbour, new_color, prev_color, visited, rows, cols)
+        y, x = neighbour
+        if neighbour not in visited and matrix[y][x] == prev_color:
+            update_color_dfs_helper(
+                matrix, neighbour, new_color, prev_color, visited, rows, cols
+            )
 
 
-# FUNCTION TO PERFORM THE OPERATION
-def update(mat, pos, new_color):
-    # getting the rows and columns
-    rows = len(mat)
-    cols = len(mat[0])
+def update_color(matrix: Matrix, position: Position, new_color: str) -> Matrix:
+    rows = len(matrix)
+    cols = len(matrix[0])
+    i, j = position
 
-    # calling dfs the modify the matrix
-    dfs(mat, pos, new_color, mat[pos[0]][pos[1]], set(), rows, cols)
-
-    # returning the matrix
-    return mat
+    update_color_dfs_helper(
+        matrix, position, new_color, matrix[i][j], set(), rows, cols
+    )
+    return matrix
 
 
-# DRIVER CODE
-print("Initial Matrix:")
-mat = [["B", "B", "W"], ["W", "W", "W"], ["W", "W", "W"], ["B", "B", "B"]]
-print(array(mat))
-print("Updated Matrix:")
-print(array(update(mat, (2, 2), "G")))
-print()
+if __name__ == "__main__":
+    print("Initial Matrix:")
+    matrix = [
+        ["B", "B", "W"],
+        ["W", "W", "W"],
+        ["W", "W", "W"],
+        ["B", "B", "B"]
+    ]
+    print(array(matrix))
+    print("Updated Matrix:")
+    print(array(update_color(matrix, (2, 2), "G")))
+    print()
 
-print("Initial Matrix:")
-mat = [["B", "B", "W"], ["W", "W", "W"], ["W", "W", "W"], ["B", "B", "B"]]
-print(array(mat))
-print("Updated Matrix:")
-print(array(update(mat, (3, 2), "G")))
-print()
+    print("Initial Matrix:")
+    matrix = [
+        ["B", "B", "W"],
+        ["W", "W", "W"],
+        ["W", "W", "W"],
+        ["B", "B", "B"]
+    ]
+    print(array(matrix))
+    print("Updated Matrix:")
+    print(array(update_color(matrix, (3, 2), "G")))
+    print()
 
-print("Initial Matrix:")
-mat = [["B", "B", "W"], ["W", "W", "W"], ["W", "W", "W"], ["B", "B", "B"]]
-print(array(mat))
-print("Updated Matrix:")
-print(array(update(mat, (0, 0), "G")))
+    print("Initial Matrix:")
+    matrix = [
+        ["B", "B", "W"],
+        ["W", "W", "W"],
+        ["W", "W", "W"],
+        ["B", "B", "B"]
+    ]
+    print(array(matrix))
+    print("Updated Matrix:")
+    print(array(update_color(matrix, (0, 0), "G")))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n x m)
+SPACE COMPLEXITY: O(n x m)
+"""
