@@ -1,67 +1,66 @@
 """
 Problem:
 
-Given a list of words, return the shortest unique prefix of each word. 
+Given a list of words, return the shortest unique prefix of each word. For example, given the list:
 
-Example:
+dog
+cat
+apple
+apricot
+fish
 
-Input = ["dog", "cat", "apple", "apricot", "fish"]
-Output = ["d", "c", "app", "apr", "f"]
+Return the list:
+
+d
+c
+app
+apr
+f
 """
 
-# helper function to get the unique prefix for the current word
-def get_unique(dictionary, string, string_list):
-    # prefix stores the current prefix
+from typing import Dict, List, Optional
+
+
+def get_unique_prefix_for_string(
+    dictionary: Dict[str, int], string: str, string_list: List[str]
+) -> Optional[str]:
     prefix = ""
-
-    # iterating through the word
     for char in string:
-        # updating prefix
         prefix += char
-
-        # if the prefix doesn't exist in the dictionary, its returned
         if prefix not in dictionary:
             return prefix
-        else:
-            # if the prefix exists, the prefix of the word which collided with the current prefix is updated
-            # updation takes place by adding another character to the respective prefixes from both the current and collided word
-            # if the current word or the collided word ends before finding a proper prefix, None is returned
-            temp_str = string_list[dictionary[prefix]]
-            temp_pre = prefix
-            temp_pos = dictionary[prefix]
+        # if a string with the current prefix exists, the prefix for the string is
+        # updated
+        prev_str_with_same_prefix = string_list[dictionary[prefix]]
+        prev_prefix = prefix
+        prev_str_index = dictionary[prefix]
 
-            del dictionary[prefix]
-
-            try:
-                temp_pre = temp_str[: len(temp_pre) + 1]
-            except:
-                return None
-
-            dictionary[temp_pre] = temp_pos
-
-    return None
+        del dictionary[prefix]
+        try:
+            prev_prefix = prev_str_with_same_prefix[: len(prev_prefix) + 1]
+        except:
+            return
+        dictionary[prev_prefix] = prev_str_index
 
 
-# FUNCTION TO PERFORM THE OPERATION
-def unique_prefix(string_list):
-    # dictionary maps the prefix to the index of the word
+def get_unique_prefix(string_list: List[str]) -> List[str]:
     dictionary = {}
-
-    # enumerating through the list of strings
+    # generating the unique prefix
     for index, string in enumerate(string_list):
-        # getting the prefix for the current word
-        prefix = get_unique(dictionary, string, string_list)
-
-        # if unique prefix doesn't exist, ValueError is raised
+        prefix = get_unique_prefix_for_string(dictionary, string, string_list)
         if not prefix:
             raise ValueError("Unique Prefix Generation not possible")
-
-        # the prefix is updated in the dictionary
         dictionary[prefix] = index
-
-    # returning the list of prefixes
     return list(dictionary.keys())
 
 
-# DRIVER CODE
-print(unique_prefix(["dog", "cat", "apple", "apricot", "fish"]))
+if __name__ == "__main__":
+    print(get_unique_prefix(["dog", "cat", "apple", "apricot", "fish"]))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(n)
+"""
