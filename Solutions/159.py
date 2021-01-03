@@ -1,35 +1,34 @@
 """
 Problem:
 
-Given a string, return the first recurring character in it, or null if there is no recurring chracter.
+Given a string, return the first recurring character in it, or null if there is no
+recurring chracter.
 
-Example:
-
-Input = "acbbac"
-Output = "b"
-
-Input = "abcdef"
-Output = null
+For example, given the string "acbbac", return "b". Given the string "abcdef", return
+null.
 """
 
-# FUNCTION TO PERFORM THE OPERATION
-def get_first_recurring(string):
-    # seen set to hold the previously seen characters
-    seen = set()
+from typing import Optional
 
-    # iterating through the string
+
+def get_first_recurring_character(string: str) -> Optional[str]:
+    seen_characters = set()
+
     for char in string:
-        # if a previously seen character is encountered, its returned
-        if char in seen:
+        if char in seen_characters:
             return char
-
-        # the current character is added to the set
-        seen.add(char)
-
-    # if there is no recurring character, None is returned
+        seen_characters.add(char)
     return None
 
 
-# DRIVER CODE
-print(get_first_recurring("acbbac"))
-print(get_first_recurring("abcdef"))
+if __name__ == "__main__":
+    print(get_first_recurring_character("acbbac"))
+    print(get_first_recurring_character("abcdef"))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(n)
+"""
