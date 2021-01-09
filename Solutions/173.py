@@ -3,9 +3,8 @@ Problem:
 
 Write a function to flatten a nested dictionary. Namespace the keys with a period.
 
-Example:
+For example, given the following dictionary:
 
-Input =
 {
     "key": 3,
     "foo": {
@@ -15,38 +14,49 @@ Input =
         }
     }
 }
-Output =
+
+it should become:
+
 {
     "key": 3,
     "foo.a": 5,
     "foo.bar.baz": 8
 }
+
+You can assume keys do not contain dots in them, i.e. no clobbering will occur.
 """
 
-# FUNCTION TO PERFORM THE OPERATION
-def flatten_dict(dictionary):
-    # getting the keys in a list (essential as dict_keys would not permit dictionary modification while iterating)
-    keys = list(dictionary.keys())
+from typing import Any, Dict
 
-    # iterating through the keys
-    for key in keys:
-        # getting the value for the key
-        temp = dictionary[key]
 
-        # if the value is a dictionary
-        if type(temp) == dict:
-            # its flattened recursively
-            temp = flatten_dict(temp)
-
-            # the value in the dictionary is deleted
+def flatten_dictionary(dictionary: Dict[str, Any]) -> Dict[str, Any]:
+    for key in list(dictionary.keys()):
+        value = dictionary[key]
+        if type(value) == dict:
+            value = flatten_dictionary(value)
             del dictionary[key]
-
-            # the flatted dictionary is added to the parent dictionary using the convention "<key>.<children_keys>"
-            for j in temp:
-                dictionary[key + f".{j}"] = temp[j]
-
+            for nested_dictionary_key in value:
+                dictionary[f"{key}.{nested_dictionary_key}"] = value[
+                    nested_dictionary_key
+                ]
     return dictionary
 
 
-# DRIVER CODE
-print(flatten_dict({"key": 3, "foo": {"a": 5, "bar": {"baz": 8}}}))
+if __name__ == "__main__":
+    print(flatten_dictionary({
+        "key": 3,
+        "foo": {
+            "a": 5,
+            "bar": {
+                "baz": 8
+            }
+        }
+    }))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(number of key-value pairs)
+SPACE COMPLEXITY: O(levels of nesting)
+"""
