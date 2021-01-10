@@ -1,49 +1,42 @@
 """
 Problem:
 
-Determine whether there exists a one-to-one character mapping from one string s1 to another s2.
+Determine whether there exists a one-to-one character mapping from one string s1 to
+another s2.
 
-Example:
+For example, given s1 = abc and s2 = bcd, return true since we can map a to b, b to c
+and c to d.
 
-s1 = 'abc'
-s2 = 'bcd'
-Output = true (since we can map 'a' to 'b', 'b' to 'c', and 'c' to 'd')
-
-s1 = 'foo'
-s2 = 'bar'
-Output = false (since the 'o' cannot map to two characters)
+Given s1 = foo and s2 = bar, return false since the o cannot map to two characters.
 """
 
-# FUNCTION TO PERFORM THE OPERATION
-def check(s1, s2):
-    # getting the lengths of the strings
-    l1 = len(s1)
-    l2 = len(s2)
 
-    # creating a dictionary
+def check(s1: str, s2: str) -> bool:
+    l1, l2 = len(s1), len(s2)
+    # checking if each character in s1 maps to 1 character in s2
     d = {}
-
-    # checking if each character of s1 maps to a unique character of s2
-    # (part of the condition for one-to-one map)
     for i in range(l1):
         if s1[i] in d and d[s1[i]] != s2[i]:
             return False
         d[s1[i]] = s2[i]
-
-    # creating a dictionary
+    # checking if each character in s2 maps to 1 character in s1
     d = {}
-
-    # checking if each character of s2 maps to a unique character of s1
-    # (part of the condition for one-to-one map)
     for i in range(l2):
         if s2[i] in d and d[s2[i]] != s1[i]:
             return False
         d[s2[i]] = s1[i]
-
-    # returning True if both the conditions are satisfied
     return True
 
 
-# DRIVER CODE
-print(check("abc", "bcd"))
-print(check("abc", "foo"))
+if __name__ == "__main__":
+    print(check("abc", "bcd"))
+    print(check("abc", "foo"))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n)
+SPACE COMPLEXITY: O(n)
+[n = number of characters in the strings]
+"""
