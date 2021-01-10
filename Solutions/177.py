@@ -3,47 +3,49 @@ Problem:
 
 Given a linked list and a positive integer k, rotate the list to the right by k places.
 
-Example:
+For example, given the linked list 7 -> 7 -> 3 -> 5 and k = 2, it should become
+3 -> 5 -> 7 -> 7.
 
-Linked list = 7 -> 7 -> 3 -> 5
-k = 2
-Output = 3 -> 5 -> 7 -> 7
-
-Linked list = 1 -> 2 -> 3 -> 4 -> 5
-k = 3
-Output = 3 -> 4 -> 5 -> 1 -> 2
+Given the linked list 1 -> 2 -> 3 -> 4 -> 5 and k = 3, it should become
+3 -> 4 -> 5 -> 1 -> 2.
 """
 
-# importing the necessary classes
-from DataStructures.LinkedList import Linked_list, Node
+from DataStructures.LinkedList import Node, LinkedList
 
-# FUNCTION TO PERFORM THE OPERATION
-def rot_right(self, k=0):
-    # getting the number of rotations to be performed
-    k = k % self.length
 
-    # shifting the element from head to the rear of the linked list
+def rotate_linked_list(ll: LinkedList, k: int = 0) -> None:
+    k = k % ll.length
+
     for _ in range(k):
-        temp = self.head
-        self.head = self.head.next
+        temp = ll.head
+        ll.head = ll.head.next
         temp.next = None
-        self.rear.next = temp
-        self.rear = self.rear.next
+        ll.rear.next = temp
+        ll.rear = ll.rear.next
 
 
-# binding the function to the linked list class
-setattr(Linked_list, "rot_right", rot_right)
+if __name__ == "__main__":
+    LL = LinkedList()
+    for num in [7, 7, 3, 5]:
+        LL.add(num)
 
-# DRIVER CODE
-LL = Linked_list()
-LL.add(1)
-LL.add(2)
-LL.add(3)
-LL.add(4)
-LL.add(5)
+    print(LL)
+    rotate_linked_list(LL, 2)
+    print(LL)
+    print()
 
-print(LL)
+    LL = LinkedList()
+    for num in [1, 2, 3, 4, 5]:
+        LL.add(num)
 
-LL.rot_right(3)
+    print(LL)
+    rotate_linked_list(LL, 3)
+    print(LL)
 
-print(LL)
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(k)
+SPACE COMPLEXITY: O(1)
+"""
