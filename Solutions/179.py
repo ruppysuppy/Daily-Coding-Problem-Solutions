@@ -1,12 +1,12 @@
 """
 Problem:
 
-Given the sequence of keys visited by a postorder traversal of a binary search tree, reconstruct the tree.
+Given the sequence of keys visited by a postorder traversal of a binary search tree,
+reconstruct the tree.
 
-Example:
+For example, given the sequence 2, 4, 3, 8, 7, 5, you should construct the following
+tree:
 
-Input = [2, 4, 3, 8, 7, 5]
-Output =
     5
    / \
   3   7
@@ -14,30 +14,27 @@ Output =
 2   4   8
 """
 
-# importing the required classes from the Datastructures module
-from DataStructures.Tree import Binary_Search_Tree, Node
+from typing import List
 
-# construct (helper function)
-def construct(tree, postorder):
-    # each node is added to the tree
-    for val in postorder:
-        tree.add(val)
+from DataStructures.Tree import BinarySearchTree, Node
 
 
-# FUNCTION TO PERFORM THE OPERATION
-def bst_from_postorder(postorder):
-    # creating the bst
-    tree = Binary_Search_Tree()
-
-    # if there are elements in the postorder traversal
-    # the root is added and the construct function is called to create the rest of the tree
-    # (reversed postorder array is passed excluding the root element)
+def bst_from_postorder(postorder: List[int]) -> BinarySearchTree:
+    tree = BinarySearchTree()
     if postorder:
         tree.add(postorder[-1])
-        construct(tree, postorder[-2::-1])
-
+        for val in postorder[-2::-1]:
+            tree.add(val)
     return tree
 
 
-# DRIVER CODE
-print(bst_from_postorder([2, 4, 3, 8, 7, 5]))
+if __name__ == "__main__":
+    print(bst_from_postorder([2, 4, 3, 8, 7, 5]))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n log(n))
+SPACE COMPLEXITY: O(n)
+"""
