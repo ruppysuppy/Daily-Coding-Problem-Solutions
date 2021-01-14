@@ -3,33 +3,32 @@ Problem:
 
 Given n numbers, find the greatest common denominator between them.
 
-Example:
-
-Input = [42, 56, 14]
-Output = 14
+For example, given the numbers [42, 56, 14], return 14.
 """
 
-# importingg gcd function from math module
 from math import gcd as gcd_of_2
+from typing import List
 
-# FUNCTION TO PERFORM THE OPERATION
-def gcd(nums):
-    # if the array is empty, None is returned
+
+def gcd(nums: List[int]) -> int:
     if not nums:
         return None
 
-    # initializing the result
     result = nums[0]
-
-    # finding the gcd of all the numbers
     for num in nums[1:]:
         result = gcd_of_2(result, num)
-
-    # returning the result
     return result
 
 
-# DRIVER CODE
-print(gcd([42, 56, 14]))
-print(gcd([3, 5]))
-print(gcd([9, 15]))
+if __name__ == "__main__":
+    print(gcd([42, 56, 14]))
+    print(gcd([3, 5]))
+    print(gcd([9, 15]))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n log(n))
+SPACE COMPLEXITY: O(1)
+"""
