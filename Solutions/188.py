@@ -27,13 +27,11 @@ def make_functions():
     flist = []
 
     for i in [1, 2, 3]:
-        # the function can (and should) be shifted outside the loop
-        # this program shows the minimum necessary changes required to print 1 to 3
+
         def print_i(i):
             print(i)
 
         flist.append((print_i, i))
-
     return flist
 
 
