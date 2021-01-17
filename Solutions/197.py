@@ -1,30 +1,35 @@
 """
 Problem:
 
-Given an array and a number `k` that's smaller than the length of the array, rotate the array to the right `k` elements in-place.
+Given an array and a number k that's smaller than the length of the array, rotate the
+array to the right k elements in-place.
 """
 
-# FUNCTION TO PERFORM THE OPERATION
-def rotate_right(arr, k):
-    # getting the length of the array
+from typing import List
+
+
+def rotate_array_right(arr: List[int], k: int) -> List[int]:
     length = len(arr)
-
-    # checking if the rotation has to be performed
-    if k != 0:
-        # storing the part to be shifted to the front in cache
+    k = k % length
+    # rotating array
+    if k > 0:
         cache = arr[-k:]
-
-        # shifting the necessary front part to the end
         for i in range(length - k - 1, -1, -1):
             arr[k + i] = arr[i]
-
-        # adding the end (in cache) to the front
         arr[:k] = cache
-
     return arr
 
 
-# DRIVER CODE
-print(rotate_right([(i + 1) for i in range(5)], 3))
-print(rotate_right([(i + 1) for i in range(5)], 2))
-print(rotate_right([(i + 1) for i in range(5)], 1))
+if __name__ == "__main__":
+    print(rotate_array_right([(i + 1) for i in range(5)], 9))
+    print(rotate_array_right([(i + 1) for i in range(5)], 3))
+    print(rotate_array_right([(i + 1) for i in range(5)], 2))
+    print(rotate_array_right([(i + 1) for i in range(5)], 1))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(n ^ 2)
+SPACE COMPLEXITY: O(n)
+"""
