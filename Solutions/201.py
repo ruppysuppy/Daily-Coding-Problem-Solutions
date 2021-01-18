@@ -17,7 +17,7 @@ Write a program that returns the weight of the maximum weight path.
 from typing import List
 
 
-def calc_path(triangle: List[List[int]]) -> List[int]:
+def get_maximum_weight_path(triangle: List[List[int]]) -> List[int]:
     rows = len(triangle)
 
     if rows == 0:
@@ -44,8 +44,8 @@ def calc_path(triangle: List[List[int]]) -> List[int]:
 
 
 if __name__ == "__main__":
-    print(calc_path([[1], [2, 3], [1, 5, 1]]))
-    print(calc_path([[1], [2, 3], [7, 5, 1]]))
+    print(get_maximum_weight_path([[1], [2, 3], [1, 5, 1]]))
+    print(get_maximum_weight_path([[1], [2, 3], [7, 5, 1]]))
 
 
 """
