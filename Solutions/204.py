@@ -1,80 +1,73 @@
 """
 Problem:
 
-Given a complete binary tree, count the number of nodes in faster than O(n) time. 
-Recall that a complete binary tree has every level filled except the last, and the nodes in the last level are filled starting from the left.
+Given a complete binary tree, count the number of nodes in faster than O(n) time.
+Recall that a complete binary tree has every level filled except the last, and the
+nodes in the last level are filled starting from the left.
 """
 
-# local import from the Datastructure class
-from DataStructures.Tree import Binary_Tree, Node
+from typing import Optional
 
-# helper function to get the number of nodes
+from DataStructures.Tree import BinaryTree, Node
+
+
 def get_num_node_complete_bin_tree_helper(
-    self, left_route_levels=0, right_route_levels=0
-):
-    # getting the number of levels in the left sub-tree (runs in the 1st call only)
-    if not left_route_levels:
-        node = self
-
-        while node:
-            node = node.left
+    node: Node,
+    left_route_levels: Optional[int] = None,
+    right_route_levels: Optional[int] = None,
+) -> int:
+    # generating the route levels incase it is not passed to the function
+    if left_route_levels is None:
+        curr_node = node
+        while curr_node:
+            curr_node = curr_node.left
             left_route_levels += 1
-
-    # getting the number of levels in the right sub-tree (runs in the 1st call only)
-    if not right_route_levels:
-        node = self
-
-        while node:
-            node = node.right
+    if right_route_levels is None:
+        curr_node = node
+        while curr_node:
+            curr_node = curr_node.right
             right_route_levels += 1
-
     # checking if the binary tree is completely filled
     if left_route_levels == right_route_levels:
-        return 2 ** left_route_levels - 1
-
-    # getting the number of nodes in the left sub-tree
-    if self.left:
-        left_route_nodes = self.left.get_num_node_complete_bin_tree_helper(
-            left_route_levels - 1, 0
+        return pow(2, left_route_levels) - 1
+    # getting the number of nodes in the sub-trees
+    left_route_nodes, right_route_nodes = 0, 0
+    if node.left:
+        left_route_nodes = get_num_node_complete_bin_tree_helper(
+            node.left, left_route_levels - 1, 0
         )
-    else:
-        left_route_nodes = 0
-    # getting the number of nodes in the right sub-tree
-    if self.right:
-        right_route_nodes = self.right.get_num_node_complete_bin_tree_helper(
-            0, right_route_levels - 1
+    if node.right:
+        right_route_nodes = get_num_node_complete_bin_tree_helper(
+            node.right, 0, right_route_levels - 1
         )
-    else:
-        right_route_nodes = 0
-
-    # returning the total nodes in the current sub-tree
     return left_route_nodes + right_route_nodes + 1
 
 
-# adding the function to the Node class
-setattr(
-    Node, "get_num_node_complete_bin_tree_helper", get_num_node_complete_bin_tree_helper
-)
-
-# FUNCTION TO PERFORM THE OPERATION
-def get_num_node_complete_bin_tree(tree):
-    # returning 0 if the tree is empty
+def get_num_node_complete_bin_tree(tree: BinaryTree) -> int:
     if not tree.root:
         return 0
-    # getting the number of nodes using the helper function
-    return tree.root.get_num_node_complete_bin_tree_helper()
+    return get_num_node_complete_bin_tree_helper(tree.root)
 
 
-# DRIVER CODE
-tree = Binary_Tree()
+if __name__ == "__main__":
+    tree = BinaryTree()
 
-tree.root = Node(1)
+    tree.root = Node(1)
 
-tree.root.left = Node(2)
-tree.root.right = Node(3)
+    tree.root.left = Node(2)
+    tree.root.right = Node(3)
 
-tree.root.left.left = Node(4)
-tree.root.left.right = Node(5)
-tree.root.right.left = Node(6)
+    tree.root.left.left = Node(4)
+    tree.root.left.right = Node(5)
 
-print(get_num_node_complete_bin_tree(tree))
+    tree.root.right.left = Node(6)
+
+    print(get_num_node_complete_bin_tree(tree))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(log(n))
+SPACE COMPLEXITY: O(log(n))
+"""
