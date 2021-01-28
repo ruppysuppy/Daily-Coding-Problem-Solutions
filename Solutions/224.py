@@ -22,9 +22,10 @@ def get_smallest_subset_sum_not_in_arr(arr: List[int]) -> int:
     return res
 
 
-print(get_smallest_subset_sum_not_in_arr([1, 2, 3, 10]))
-print(get_smallest_subset_sum_not_in_arr([1, 2, 10]))
-print(get_smallest_subset_sum_not_in_arr([1, 10]))
+if __name__ == "__main__":
+    print(get_smallest_subset_sum_not_in_arr([1, 2, 3, 10]))
+    print(get_smallest_subset_sum_not_in_arr([1, 2, 10]))
+    print(get_smallest_subset_sum_not_in_arr([1, 10]))
 
 
 """
