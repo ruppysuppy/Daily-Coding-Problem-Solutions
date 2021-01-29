@@ -10,11 +10,11 @@ Find the total number of valid unlock patterns of length N, where 1 <= N <= 9.
 """
 
 from copy import deepcopy
+from typing import Set
 
 
 class Dialpad:
-    # dial-pad class to hold the nodes and update the connections
-    def __init__(self):
+    def __init__(self) -> None:
         self.nodes = set(range(1, 10))
         self.edges = {}
         self.edges[1] = {2, 4, 5, 6, 8}
@@ -27,8 +27,7 @@ class Dialpad:
         self.edges[8] = {1, 4, 3, 5, 6, 7, 9}
         self.edges[9] = {2, 4, 5, 6, 8}
 
-    def update_connections(self, curr):
-        # function to update the connections
+    def update_connections(self, curr: int) -> None:
         if 2 == curr:
             self.edges[1].add(3)
             self.edges[3].add(1)
@@ -52,9 +51,9 @@ class Dialpad:
             self.edges[6].add(4)
 
 
-def count_code_helper(dp, code_len, curr, seen):
+def count_code_helper(dp: Dialpad, code_length: int, curr: int, seen: Set[int]) -> int:
     # helper function to trace the patterns and get the number of combinations
-    if code_len == 0:
+    if code_length == 0:
         return 1
     seen_cp = deepcopy(seen)
     seen_cp.add(curr)
@@ -66,30 +65,35 @@ def count_code_helper(dp, code_len, curr, seen):
 
     for node in nodes:
         if node not in seen_cp:
-            sub_count += count_code_helper(copied_dp, code_len - 1, node, seen_cp)
+            sub_count += count_code_helper(copied_dp, code_length - 1, node, seen_cp)
     return sub_count
 
 
-def count_codes(dp, code_len):
-    # function to generate the number of combinations of pattens of given length
-    if code_len == 1:
+def count_codes_of_n_length(dp: Dialpad, code_length: int) -> int:
+    if code_length == 1:
         return len(dp.nodes)
     count = 0
     for node in dp.nodes:
-        count += count_code_helper(dp, code_len, node, set())
+        count += count_code_helper(dp, code_length, node, set())
     return count
 
 
-# FUNCTION TO PERFORM THE OPERATION
-def valid_unlock_patterns_number():
+def get_number_of_valid_unlock_patterns() -> int:
     dp = Dialpad()
     result = 0
-    for i in range(1, 10):
-        temp = count_codes(dp, i)
-        result += temp
+    for n in range(1, 10):
+        result += count_codes_of_n_length(dp, n)
     return result
 
 
-# DRIVER CODE
-# NOTE: computationally intensive operation as the number of patterns is really high
-print(valid_unlock_patterns_number())
+if __name__ == "__main__":
+    # NOTE: computationally intensive operation as the number of patterns is really high
+    print(get_number_of_valid_unlock_patterns())
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O((nodes ^ 2) x (code length ^ 2))
+SPACE COMPLEXITY: O((nodes ^ 2) x code length)
+"""
