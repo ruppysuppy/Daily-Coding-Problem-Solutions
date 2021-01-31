@@ -20,7 +20,6 @@ from typing import List
 
 
 def get_config_helper(dominos: List[str], length: int) -> List[str]:
-    # creating and updating the new copy of dominos
     has_been_updated = False
     updated_dominos = dominos.copy()
     for i in range(length):
@@ -40,15 +39,12 @@ def get_config_helper(dominos: List[str], length: int) -> List[str]:
         ):
             updated_dominos[i + 1] = "R"
             has_been_updated = True
-    # if updation has been performed in the current iteration, the function is called
-    # recursively
     if has_been_updated:
         return get_config_helper(updated_dominos, length)
     return dominos
 
 
 def get_config(initial_state: str) -> str:
-    # breaking dominos into list as string is immutable
     dominoes = list(initial_state)
     return "".join(get_config_helper(dominoes, len(dominoes)))
 

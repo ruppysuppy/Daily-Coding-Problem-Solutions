@@ -14,8 +14,9 @@ Create an algorithm that finds a De Bruijn sequence.
 from typing import List, Set
 
 
-def combinations(characters: Set[str], size: int, accumulator: List[str]) -> None:
-    # function to generate all combination of length k with the given characters
+def generate_all_combinations(
+    characters: Set[str], size: int, accumulator: List[str]
+) -> None:
     if not accumulator:
         accumulator.extend(characters)
         size -= 1
@@ -32,13 +33,9 @@ def combinations(characters: Set[str], size: int, accumulator: List[str]) -> Non
 def get_de_bruijn_helper(
     characters: Set[str], combinations_set: Set[str], k: int, context: str = ""
 ) -> Set[str]:
-    # helper function to genenrate all the De Bruijn sequences for the given
-    # combinations
-    # base case for recursion
     if not combinations_set:
         return set([context])
 
-    # generating the sequences
     dseqs = set()
     if not context:
         # if context is empty, it is initized using a combination
@@ -60,10 +57,8 @@ def get_de_bruijn_helper(
 
 
 def get_de_bruijn(characters: Set[str], k: int) -> Set[str]:
-    # generating the combinations and calling the helper function for computing the
-    # sequences
     combinations_list = []
-    combinations(characters, k, combinations_list)
+    generate_all_combinations(characters, k, combinations_list)
     combinations_set = set(combinations_list)
     return get_de_bruijn_helper(characters, combinations_set, k)
 

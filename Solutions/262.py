@@ -81,3 +81,11 @@ if __name__ == "__main__":
     g3.add_edge(4, 5)
     print("\nBridges in third graph:")
     print(*get_bridges(g3))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(v + e)
+SPACE COMPLEXITY: O(v)
+"""
