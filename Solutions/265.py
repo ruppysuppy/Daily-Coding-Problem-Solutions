@@ -21,7 +21,7 @@ def get_bonus(arr: List[int]) -> List[int]:
         return []
     if length == 1:
         return [1]
-    # generating a array with elements compared to the previous elements
+
     comparison = [None for _ in range(length)]
     for i in range(1, length):
         if arr[i] > arr[i - 1]:
@@ -31,7 +31,6 @@ def get_bonus(arr: List[int]) -> List[int]:
         else:
             comparison[i] = "="
 
-    # generating the results
     i = 0
     comparison[0] = comparison[1]
     result = [0 for _ in range(length)]

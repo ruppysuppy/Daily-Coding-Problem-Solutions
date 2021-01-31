@@ -25,26 +25,20 @@ that much time
 """
 
 from sys import maxsize
-from typing import Dict, Optional, Tuple
+from typing import Dict, List, Optional, Tuple
 
-# Local Import from the DataStructure module
 from DataStructures.Graph import GraphDirectedWeighted
 from DataStructures.PriorityQueue import MinPriorityQueue
 
 
-def dijkstras_algo(
+def dijkstra(
     graph: GraphDirectedWeighted, start: int
 ) -> Tuple[Dict[int, int], Dict[int, Optional[int]]]:
-    """
-    Dijkstras Single Source Shortest Path Algorithm
-    """
-    # intialization
     dist = {node: maxsize for node in graph.connections}
     parent = {node: None for node in graph.connections}
     dist[start] = 0
     priority_queue = MinPriorityQueue()
     [priority_queue.push(node, weight) for node, weight in dist.items()]
-    # distance updation
     while not priority_queue.isEmpty():
         node = priority_queue.extract_min()
         for neighbour in graph.connections[node]:
@@ -55,13 +49,12 @@ def dijkstras_algo(
     return dist, parent
 
 
-def get_propagation_time(edges):
-    # graph generation from edges
+def get_propagation_time(edges: List[Tuple[int, int, int]]) -> int:
     graph = GraphDirectedWeighted()
     for src, dest, wt in edges:
         graph.add_edge(src, dest, wt)
-    # returning the greatest distance
-    time, _ = dijkstras_algo(graph, 0)
+
+    time, _ = dijkstra(graph, 0)
     return max(time.values())
 
 
@@ -76,3 +69,11 @@ if __name__ == "__main__":
         (3, 4, 5),
     ]
     print(get_propagation_time(edges))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(v + e x log(v))
+SPACE COMPLEXITY: O(v)
+"""
