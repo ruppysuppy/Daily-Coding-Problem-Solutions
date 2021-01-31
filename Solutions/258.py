@@ -19,7 +19,7 @@ You should return [1, 3, 2, 4, 5, 6, 7].
 """
 
 from typing import Dict, List
-from .DataStructures.Tree import Node, BinaryTree
+from DataStructures.Tree import Node, BinaryTree
 
 
 def get_boustrophedon_helper(

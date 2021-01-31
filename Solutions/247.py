@@ -8,7 +8,7 @@ never differ by more than one.
 
 from typing import Tuple
 
-from .DataStructures.Tree import Node, BinaryTree
+from DataStructures.Tree import Node, BinaryTree
 
 
 def height_helper(node: Node) -> Tuple[int, bool]:
