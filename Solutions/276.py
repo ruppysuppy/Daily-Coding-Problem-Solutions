@@ -15,7 +15,6 @@ from typing import List, Union
 
 def kmp_search(text: str, pattern: str) -> Union[int, bool]:
     # modified kmp search to return the first match only
-    # result is 0 based index
     len_pattern = len(pattern)
     len_text = len(text)
     lps = compute_lps(pattern, len_pattern)
@@ -27,7 +26,6 @@ def kmp_search(text: str, pattern: str) -> Union[int, bool]:
             i += 1
             j += 1
             if j == len_pattern:
-                # match
                 return i - j
         elif i < len_text and pattern[j] != text[i]:
             if j != 0:

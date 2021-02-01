@@ -10,7 +10,7 @@ For example, given '-1 + (2 + 3)', you should return 4.
 """
 
 
-def evaluate(expression: str) -> int:
+def evaluate_expression(expression: str) -> int:
     result = 0
     add = True
     sub_eval_string = ""
@@ -23,11 +23,10 @@ def evaluate(expression: str) -> int:
             elif char == ")":
                 number_of_parentheses -= 1
             if number_of_parentheses == 0:
-                # evaluating part within parentheses recursively
                 if add:
-                    result += evaluate(sub_eval_string)
+                    result += evaluate_expression(sub_eval_string)
                 else:
-                    result -= evaluate(sub_eval_string)
+                    result -= evaluate_expression(sub_eval_string)
                 sub_eval_string = ""
             else:
                 sub_eval_string += char
@@ -47,9 +46,9 @@ def evaluate(expression: str) -> int:
 
 
 if __name__ == "__main__":
-    print(evaluate("-1 + (2 + 3)"))
-    print(evaluate("-1 + (2 + 3) + (2 - 3)"))
-    print(evaluate("-1 + (2 + 3) + ((2 - 3) + 1)"))
+    print(evaluate_expression("-1 + (2 + 3)"))
+    print(evaluate_expression("-1 + (2 + 3) + (2 - 3)"))
+    print(evaluate_expression("-1 + (2 + 3) + ((2 - 3) + 1)"))
 
 
 """

@@ -16,7 +16,6 @@ from typing import List, Set
 
 
 def get_prime_factors(num: int) -> Set[int]:
-    # function to generate the prime factors of the input number
     factors = set()
     curr = 2
     while num > 1:
@@ -34,12 +33,12 @@ def get_regular_numbers(N: int) -> List[int]:
     result = []
     count = 0
     factors = set([2, 3, 5])
-    # finding the required numbers
+
     for factor in factors:
         for i in range(factor, total_range, factor):
             if not SoE[i] and not (get_prime_factors(i) - factors):
                 SoE[i] = True
-    # generating results
+
     for index, value in enumerate(SoE):
         if value:
             result.append(index)

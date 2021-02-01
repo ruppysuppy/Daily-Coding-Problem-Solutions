@@ -8,23 +8,24 @@ from copy import deepcopy
 from functools import lru_cache
 from typing import List
 
+from DataStructures.Stack import Stack
 from DataStructures.Tree import BinaryTree, Node
 
 
-# memorized fibonacci function
 @lru_cache(maxsize=128)
 def fib(n: int) -> int:
+    # memorized fibonacci function
     if n in (1, 2):
         return 1
     return fib(n - 1) + fib(n - 2)
 
 
-# Tree generator functions
 def generate_tree_helper(i: int, arr: List[BinaryTree], nodes: int) -> BinaryTree:
     tree = arr[i]
-    stack = [tree.root]
+    stack = Stack()
+    stack.push(tree.root)
 
-    while stack:
+    while not stack.is_empty():
         # generating the new tree with 1 new node
         node = stack.pop()
         if not node.left:
@@ -36,7 +37,7 @@ def generate_tree_helper(i: int, arr: List[BinaryTree], nodes: int) -> BinaryTre
             else:
                 return tree
         else:
-            stack.append(node.left)
+            stack.push(node.left)
         if not node.right:
             node.right = Node(0)
             for j in range(nodes):
@@ -46,12 +47,10 @@ def generate_tree_helper(i: int, arr: List[BinaryTree], nodes: int) -> BinaryTre
             else:
                 return tree
         else:
-            stack.append(node.right)
+            stack.push(node.right)
 
 
 def generate_tree(tree: BinaryTree) -> List[BinaryTree]:
-    # generating a list of trees to update with a new node and calling the helper
-    # function
     nodes = sum([fib(i) for i in range(1, len(tree) + 2)])
     arr = [deepcopy(tree) for _ in range(nodes)]
     for i in range(nodes):
@@ -59,7 +58,6 @@ def generate_tree(tree: BinaryTree) -> List[BinaryTree]:
     return arr
 
 
-# Tree generation initialization
 def create_trees_helper(tree_arr: List[BinaryTree], n: int) -> None:
     if n == 0:
         return
@@ -74,7 +72,6 @@ def create_trees_helper(tree_arr: List[BinaryTree], n: int) -> None:
 
 
 def create_trees(n: int) -> List[BinaryTree]:
-    # function to create all binary trees containing n nodes
     tree_arr = []
     if n == 0:
         return tree_arr

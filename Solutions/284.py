@@ -18,21 +18,19 @@ from typing import List, Optional
 from DataStructures.Tree import BinaryTree, Node
 
 
-# Node functions
-def dfs_get_depth_helper(
+def get_depth_dfs_helper(
     node: Node, search_node_val: int, depth: int, parent_val: Optional[int] = None
 ) -> Optional[int]:
-    # function to get the depth and parent of the target node
     if node.val == search_node_val:
         return depth, parent_val
     if node.left:
-        left_depth, parent = dfs_get_depth_helper(
+        left_depth, parent = get_depth_dfs_helper(
             node.left, search_node_val, depth + 1, node
         )
         if left_depth:
             return left_depth, parent
     if node.right:
-        right_depth, parent = dfs_get_depth_helper(
+        right_depth, parent = get_depth_dfs_helper(
             node.right, search_node_val, depth + 1, node
         )
         if right_depth:
@@ -80,13 +78,11 @@ def get_node_by_depth(
         )
 
 
-# Tree functions
 def dfs_get_depth(tree: BinaryTree, search_node_val: int):
-    return dfs_get_depth_helper(tree.root, search_node_val, 0)
+    return get_depth_dfs_helper(tree.root, search_node_val, 0)
 
 
 def get_cousins(tree: BinaryTree, node_val: int) -> List[int]:
-    # function to generate all the cousins of a node
     depth, parent = dfs_get_depth(tree, node_val)
     if depth is None:
         raise ValueError("Node not present in Tree")
