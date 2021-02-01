@@ -40,7 +40,7 @@ def get_min_moves_helper(
         # if a loop back occours, the target pattern cannot be reached
         return maxsize
     seen.add(curr_val)
-    # generating moves
+
     moves = []
     for i in range(3):
         temp = curr.copy()
@@ -53,7 +53,7 @@ def get_min_moves_helper(
             temp[i] = turn_wheel_down(temp[i])
             if tuple(temp) not in dead_ends:
                 moves.append(temp)
-    # getting the minimum number of moves required to reach the pattern
+
     temp = maxsize
     for move in moves:
         temp = min(

@@ -7,13 +7,11 @@ and N.
 
 
 def get_set_bits(num: int) -> int:
-    # get the number of bits set in a number [runs in O(log(n))]
     bin_num = bin(num)[2:]
     return sum([int(digit) for digit in bin_num])
 
 
 def get_total_set_bits(N: int) -> int:
-    # sums up the number of bits set in all positive numbers till N
     result = 0
     for i in range(1, N + 1):
         result += get_set_bits(i)

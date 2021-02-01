@@ -8,30 +8,27 @@ horizontally or vertically into an empty space, but may not be removed from the 
 Design a class to represent the board, and find a series of steps to bring the board
 to the state [[1, 2, 3], [4, 5, 6], [7, 8, None]].
 """
+# this is an improvised version of the method available at:
+# https://gist.github.com/flatline/838202
 
-# SOLUTION FROM: https://gist.github.com/flatline/838202 (MODIFIED AND OPTIMIZED)
-
+from __future__ import annotations
 from math import sqrt
+from typing import Callable, List, Mapping, Tuple, Union
 
-FINAL_STATE = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 0]
-]
+FINAL_STATE = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 
 
-def index(item, seq):
+def index(item: EightPuzzle, seq: List[EightPuzzle]) -> int:
     """
     Helper function that returns -1 for non-found index value of a seq
     """
     if item in seq:
         return seq.index(item)
-    else:
-        return -1
+    return -1
 
 
 class EightPuzzle:
-    def __init__(self, board):
+    def __init__(self, board: List[List[int]]) -> None:
         # heuristic value
         self._hval = 0
         # search depth of current instance
@@ -41,25 +38,22 @@ class EightPuzzle:
         self.adj_matrix = []
         self.adj_matrix = board
 
-    def __eq__(self, other):
-        if self.__class__ != other.__class__:
-            return False
-        else:
-            return self.adj_matrix == other.adj_matrix
+    def __eq__(self, other: EightPuzzle) -> bool:
+        return self.adj_matrix == other.adj_matrix
 
-    def __str__(self):
+    def __str__(self) -> str:
         res = ""
         for row in range(3):
             res += " ".join(map(str, self.adj_matrix[row]))
             res += "\r\n"
         return res
 
-    def _clone(self):
+    def _clone(self) -> EightPuzzle:
         copy = [[elem for elem in row] for row in self.adj_matrix]
         p = EightPuzzle(copy)
         return p
 
-    def _get_legal_moves(self):
+    def _get_legal_moves(self) -> List[Tuple[int, int]]:
         """
         Returns list of tuples with which the free space may be swapped
         """
@@ -78,11 +72,11 @@ class EightPuzzle:
 
         return free
 
-    def _generate_moves(self):
+    def _generate_moves(self) -> Mapping[EightPuzzle]:
         free = self._get_legal_moves()
         zero = self.find(0)
 
-        def swap_and_clone(a, b):
+        def swap_and_clone(a: int, b: int) -> EightPuzzle:
             p = self._clone()
             p.swap(a, b)
             p._depth = self._depth + 1
@@ -91,20 +85,19 @@ class EightPuzzle:
 
         return map(lambda pair: swap_and_clone(zero, pair), free)
 
-    def _generate_solution_path(self, path):
-        if self._parent == None:
+    def _generate_solution_path(self, path: List[EightPuzzle]):
+        if self._parent is None:
             return path
-        else:
-            path.append(self)
-            return self._parent._generate_solution_path(path)
+        path.append(self)
+        return self._parent._generate_solution_path(path)
 
-    def solve(self, h):
+    def solve(self, h: Callable) -> Tuple[List[EightPuzzle], int]:
         """
         Performs A* search for goal state.
         h(puzzle) - heuristic function, returns an integer
         """
 
-        def is_solved(puzzle):
+        def is_solved(puzzle: EightPuzzle) -> bool:
             return puzzle.adj_matrix == FINAL_STATE
 
         openl = [self]
@@ -150,7 +143,7 @@ class EightPuzzle:
         # if finished state not found, return failure
         return [], 0
 
-    def find(self, value):
+    def find(self, value: int) -> Tuple[int, int]:
         """
         returns the row, col coordinates of the specified value in the graph
         """
@@ -162,19 +155,19 @@ class EightPuzzle:
                 if self.adj_matrix[row][col] == value:
                     return row, col
 
-    def peek(self, row, col):
+    def peek(self, row: int, col: int) -> int:
         """
         returns the value at the specified row and column
         """
         return self.adj_matrix[row][col]
 
-    def poke(self, row, col, value):
+    def poke(self, row: int, col: int, value: int) -> int:
         """
         sets the value at the specified row and column
         """
         self.adj_matrix[row][col] = value
 
-    def swap(self, pos_a, pos_b):
+    def swap(self, pos_a: Tuple[int, int], pos_b: Tuple[int, int]) -> None:
         """
         swaps values at the specified coordinates
         """
@@ -183,7 +176,9 @@ class EightPuzzle:
         self.poke(pos_b[0], pos_b[1], temp)
 
 
-def heur(puzzle, item_total_calc, total_calc):
+def heur(
+    puzzle: EightPuzzle, item_total_calc: Callable, total_calc: Callable
+) -> Union[int, float]:
     """
     Heuristic template that provides the current and target position for each number
     and the total function.
@@ -215,11 +210,11 @@ def heur(puzzle, item_total_calc, total_calc):
 # admissible.
 
 
-def h_manhattan(puzzle):
+def h_manhattan(puzzle: EightPuzzle) -> Union[int, float]:
     return heur(puzzle, lambda r, tr, c, tc: abs(tr - r) + abs(tc - c), lambda t: t)
 
 
-def h_manhattan_lsq(puzzle):
+def h_manhattan_lsq(puzzle: EightPuzzle) -> Union[int, float]:
     return heur(
         puzzle,
         lambda r, tr, c, tc: (abs(tr - r) + abs(tc - c)) ** 2,
@@ -227,7 +222,7 @@ def h_manhattan_lsq(puzzle):
     )
 
 
-def h_linear(puzzle):
+def h_linear(puzzle: EightPuzzle) -> Union[int, float]:
     return heur(
         puzzle,
         lambda r, tr, c, tc: sqrt(sqrt((tr - r) ** 2 + (tc - c) ** 2)),
@@ -235,13 +230,13 @@ def h_linear(puzzle):
     )
 
 
-def h_linear_lsq(puzzle):
+def h_linear_lsq(puzzle: EightPuzzle) -> Union[int, float]:
     return heur(
         puzzle, lambda r, tr, c, tc: (tr - r) ** 2 + (tc - c) ** 2, lambda t: sqrt(t),
     )
 
 
-def solve_8_puzzle(board):
+def solve_8_puzzle(board: List[List[int]]) -> None:
     transformed_board = [[elem if elem else 0 for elem in row] for row in board]
     p = EightPuzzle(transformed_board)
     print(p)
@@ -261,9 +256,5 @@ def solve_8_puzzle(board):
 
 
 if __name__ == "__main__":
-    board = [
-        [4, 1, 2],
-        [7, 5, 3],
-        [None, 8, 6]
-    ]
+    board = [[4, 1, 2], [7, 5, 3], [None, 8, 6]]
     solve_8_puzzle(board)

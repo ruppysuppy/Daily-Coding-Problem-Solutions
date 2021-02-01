@@ -8,24 +8,24 @@ end up at indices 3, 4, or 5.
 Come up with an algorithm that sorts this list in O(N log k) time.
 """
 
-from heapq import heappop, heappush, heapify
 from typing import List
+
+from DataStructures.Heap import MinHeap
 
 
 def k_sort(arr: List[int], k: int) -> List[int]:
     length = len(arr)
-    # generating the heap
-    heap = arr[: k + 1]
-    heapify(heap)
+    heap = MinHeap()
+    [heap.insert(elem) for elem in arr[: k + 1]]
     # updating the values of the array (to hold sorted elements)
     curr_index = 0
     for index in range(k + 1, length):
-        arr[curr_index] = heappop(heap)
-        heappush(heap, arr[index])
+        arr[curr_index] = heap.extract_min()
+        heap.insert(arr[index])
         curr_index += 1
     # updating the last k positions in the array by emptying the heap
     while heap:
-        arr[curr_index] = heappop(heap)
+        arr[curr_index] = heap.extract_min()
         curr_index += 1
     return arr
 

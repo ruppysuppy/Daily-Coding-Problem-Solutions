@@ -20,17 +20,14 @@ def get_ceiling(node: Node, value: int) -> Optional[int]:
         if node.left:
             if node.left.val >= value:
                 return get_ceiling(node.left, value)
-            else:
-                return node.val
-        else:
             return node.val
+        return node.val
     elif node.val == value:
         return value
     else:
         if node.right:
             return get_ceiling(node.right, value)
-        else:
-            return None
+        return None
 
 
 def get_floor(node: Node, value: int) -> Optional[int]:
@@ -40,17 +37,14 @@ def get_floor(node: Node, value: int) -> Optional[int]:
         if node.right:
             if node.right.val <= value:
                 return get_floor(node.right, value)
-            else:
-                return node.val
-        else:
             return node.val
+        return node.val
     elif node.val == value:
         return value
     else:
         if node.left:
             return get_floor(node.left, value)
-        else:
-            return None
+        return None
 
 
 def get_floor_and_ceiling(
@@ -75,3 +69,11 @@ if __name__ == "__main__":
     print(get_floor_and_ceiling(tree, 7))
     print(get_floor_and_ceiling(tree, -1))
     print(get_floor_and_ceiling(tree, 5))
+
+
+"""
+SPECS:
+
+TIME COMPLEXITY: O(log(n))
+SPACE COMPLEXITY: O(log(n))
+"""

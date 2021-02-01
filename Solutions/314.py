@@ -23,7 +23,6 @@ def get_min_range(listeners: List[int], towers: List[int]) -> int:
     listeners_distance = {listener: maxsize for listener in listeners}
     for listener in listeners:
         for tower in towers:
-            # updating distance
             listeners_distance[listener] = min(
                 listeners_distance[listener], abs(tower - listener)
             )

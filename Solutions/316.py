@@ -13,7 +13,6 @@ from typing import List
 
 
 def count_ways_to_generate_change(changes: List[int], target: int) -> int:
-    # function to generate in how many ways the given change can be reached
     length = len(changes)
     if not length:
         return 0
@@ -37,7 +36,7 @@ def count_ways_to_generate_change(changes: List[int], target: int) -> int:
 def get_changes(num_ways_to_get_change: List[int]) -> List[int]:
     length = len(num_ways_to_get_change)
     changes_list = []
-    # generating the changes list
+
     for i in range(1, length):
         if num_ways_to_get_change[i] > 0:
             count = count_ways_to_generate_change(changes_list, i)
