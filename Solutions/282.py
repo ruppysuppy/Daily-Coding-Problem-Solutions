@@ -18,7 +18,7 @@ def get_pythogorean_triplet(
     # generating the set of squared values for O(1) access
     squared_arr = [elem * elem for elem in arr]
     value_set = set(squared_arr)
-    # checking for Pythagorian triplet
+
     for i in range(length - 1):
         for j in range(i + 1, length):
             if squared_arr[i] + squared_arr[j] in value_set:

@@ -27,7 +27,6 @@ from typing import List
 
 def get_min_cut_position(wall: List[List[int]]) -> int:
     rows = len(wall)
-    # base case 1 row in the wall
     if rows == 1:
         cols = len(wall[0])
         if cols > 1:

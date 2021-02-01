@@ -35,7 +35,7 @@ def generate_look_and_say_term(num: str) -> str:
     return result
 
 
-# cache is unnecessary for such a small size, but in case of large value of n, it
+# cache is unnecessary for small sizes, but in case of large value of n, it drastically
 # speeds up the process using memorization
 @lru_cache(maxsize=5)
 def get_look_and_say_term(n: int) -> str:

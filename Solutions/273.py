@@ -18,7 +18,7 @@ def get_fixed_point(arr: List[int]) -> Union[int, False]:
             # fixed point found
             return value
         elif value > index:
-            # since the array is sorted and has distinct elements once the value
+            # since the array is sorted and has distinct elements, once the value
             # exceeds the index, the index can never be equal to the value at any
             # position
             break

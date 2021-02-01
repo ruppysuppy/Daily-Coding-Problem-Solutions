@@ -9,7 +9,7 @@ from typing import Set
 from DataStructures.Graph import GraphUndirectedUnweighted
 
 
-def dfs_components_helper(
+def get_components_helper(
     graph: GraphUndirectedUnweighted,
     node: int,
     component: Set[int],
@@ -23,7 +23,7 @@ def dfs_components_helper(
     for neighbour in graph.connections[node]:
         degree += 1
         if neighbour not in visited:
-            degree += dfs_components_helper(graph, neighbour, component, visited)
+            degree += get_components_helper(graph, neighbour, component, visited)
     return degree
 
 
@@ -32,8 +32,7 @@ def is_cyclic(graph: GraphUndirectedUnweighted) -> bool:
     for node in graph.connections:
         if node not in visited:
             component = set()
-            component_degree = dfs_components_helper(graph, node, component, visited)
-            # condition for a acyclic graph (tree)
+            component_degree = get_components_helper(graph, node, component, visited)
             if component_degree > 2 * (len(component) - 1):
                 return False
     return True

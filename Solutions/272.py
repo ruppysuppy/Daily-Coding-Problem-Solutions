@@ -9,7 +9,6 @@ For example, throw_dice(3, 6, 7) should equal 15.
 
 
 def throw_dice(N: int, faces: int, total: int, accumulator: int = 0) -> int:
-    # base case for recursion
     if N == 0 and total == 0:
         return accumulator + 1
     elif total < 0:

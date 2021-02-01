@@ -28,32 +28,28 @@ from typing import Dict, List, Set
 from DataStructures.Graph import GraphUndirectedUnweighted
 
 
-# graph functions
-def dfs_components_helper(
+def get_components_dfs_helper(
     graph: GraphUndirectedUnweighted, node: int, component: Set[int], visited: Set[int]
 ) -> None:
-    # function to get all nodes in a component using dfs
     visited.add(node)
     component.add(node)
     for neighbour in graph.connections[node]:
         if neighbour not in visited:
-            dfs_components_helper(graph, neighbour, component, visited)
+            get_components_dfs_helper(graph, neighbour, component, visited)
 
 
 def get_components(graph: GraphUndirectedUnweighted) -> List[Set[int]]:
-    # function to generate the components
     components = []
     visited = set()
     for node in graph.connections:
         if node not in visited:
             component = set()
-            dfs_components_helper(graph, node, component, visited)
+            get_components_dfs_helper(graph, node, component, visited)
             components.append(component)
     return components
 
 
-# function to generate the transitive closure
-def friendship_transitive_closure(
+def get_friendship_transitive_closure(
     friendship_list: Dict[int, List[int]],
 ) -> List[Set[int]]:
     graph = GraphUndirectedUnweighted()
@@ -66,7 +62,7 @@ def friendship_transitive_closure(
 
 if __name__ == "__main__":
     print(
-        friendship_transitive_closure(
+        get_friendship_transitive_closure(
             {0: [1, 2], 1: [0, 5], 2: [0], 3: [6], 4: [], 5: [1], 6: [3]}
         )
     )
