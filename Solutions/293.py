@@ -17,7 +17,7 @@ create [0, 1, 2, 3, 2, 1].
 from typing import List
 
 
-def min_pyramid_cost(arr: List[int]) -> int:
+def get_min_pyramid_cost(arr: List[int]) -> int:
     length = len(arr)
     left = [0 for _ in range(length)]
     right = [0 for _ in range(length)]
@@ -56,9 +56,9 @@ def min_pyramid_cost(arr: List[int]) -> int:
 
 
 if __name__ == "__main__":
-    print(min_pyramid_cost([1, 1, 3, 3, 2, 1]))
-    print(min_pyramid_cost([1, 1, 1, 1, 1]))
-    print(min_pyramid_cost([1, 1, 1, 5, 1]))
+    print(get_min_pyramid_cost([1, 1, 3, 3, 2, 1]))
+    print(get_min_pyramid_cost([1, 1, 1, 1, 1]))
+    print(get_min_pyramid_cost([1, 1, 1, 5, 1]))
 
 
 """

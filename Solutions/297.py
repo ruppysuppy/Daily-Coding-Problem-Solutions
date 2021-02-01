@@ -25,7 +25,6 @@ from typing import Dict, List, Set
 def check_all_customers_satisfied(
     customers: Set[int], combination: List[int], drinks: Dict[int, Set[int]]
 ) -> bool:
-    # check if the current combination can satisfy all customers
     temp = None
     for drink in combination:
         if temp is None:
@@ -77,7 +76,6 @@ def get_min_drinks(preferences: Dict[int, List[int]]) -> int:
         set(preferences.keys()),
         combinations,
     )
-    # returning the combination with minimum drinks
     # NOTE: "min()" can be wrapped with "len()" to get the number of drinks
     return min(combinations, key=lambda x: len(x))
 

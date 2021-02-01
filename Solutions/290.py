@@ -24,6 +24,7 @@ from typing import List
 
 from DataStructures.Stack import Stack
 
+
 QUXES = set(["R", "G", "B"])
 
 
@@ -51,7 +52,8 @@ def get_transformation(arrangement: List[str]) -> List[str]:
     return stack
 
 
-print(get_transformation(["R", "G", "B", "G", "B"]))
+if __name__ == "__main__":
+    print(get_transformation(["R", "G", "B", "G", "B"]))
 
 
 """

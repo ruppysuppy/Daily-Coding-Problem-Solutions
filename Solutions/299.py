@@ -30,7 +30,7 @@ from DataStructures.Graph import GraphUndirectedWeighted
 from DataStructures.PriorityQueue import MinPriorityQueue
 
 
-def dijkstras_algo(
+def dijkstra(
     graph: GraphUndirectedWeighted, start: str
 ) -> Tuple[Dict[str, int], Dict[str, Optional[str]]]:
     # dijkstra's algorithm for single source shortest path
@@ -67,7 +67,7 @@ def get_minimum_cost(pipes: Dict[str, Dict[str, int]]) -> int:
         for dest in pipes[src]:
             graph.add_edge(src, dest, pipes[src][dest])
     # minimum cost calculation
-    dist, parent = dijkstras_algo(graph, "plant")
+    dist, parent = dijkstra(graph, "plant")
     return tree_weight_sum(dist, parent)
 
 
