@@ -31,7 +31,6 @@ from typing import Dict, List, Set, Tuple
 
 
 def floyd_warshall(graph: List[List[int]]) -> List[List[int]]:
-    # floyd warshall algorithm for all pair shortest path
     dist = [[elem for elem in row] for row in graph]
     nodes = len(graph)
     for i in range(nodes):
@@ -46,8 +45,9 @@ def floyd_warshall(graph: List[List[int]]) -> List[List[int]]:
     return dist
 
 
-def generate_graph(paths: Dict[Tuple[int, int], int], nodes: int) -> List[List[int]]:
-    # generating adjacency matix for the paths
+def generate_graph_adjacency_matix(
+    paths: Dict[Tuple[int, int], int], nodes: int
+) -> List[List[int]]:
     graph = [[maxsize for _ in range(nodes)] for _ in range(nodes)]
     for src, dest in paths:
         graph[src][dest] = paths[src, dest]
@@ -80,8 +80,7 @@ def get_route_dfs_helper(
 
 
 def get_route(elevations: Dict[int, int], paths: Dict[Tuple[int, int], int]) -> int:
-    # uses adjacency matrix as its easier to use in floyd warshall algorithm
-    graph = generate_graph(paths, len(elevations))
+    graph = generate_graph_adjacency_matix(paths, len(elevations))
     dist = floyd_warshall(graph)
     return get_route_dfs_helper(0, 0, 0, set(), dist)
 

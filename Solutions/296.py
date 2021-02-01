@@ -34,6 +34,8 @@ if __name__ == "__main__":
 """
 SPECS:
 
-TIME COMPLEXITY: O(n)
+TIME COMPLEXITY: O(n x log(n))
 SPACE COMPLEXITY: O(n)
+[time complexity can be reduced to O(n) using node reference inplace of calling
+tree.add()]
 """

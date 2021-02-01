@@ -12,7 +12,6 @@ from typing import List, Tuple
 
 
 def get_moves(position: Tuple[int, int]) -> List[Tuple[int, int]]:
-    # generating all possible moves for the knight from the given position
     i, j = position
     moves = [
         (i + 2, j + 1),
@@ -30,10 +29,8 @@ def get_moves(position: Tuple[int, int]) -> List[Tuple[int, int]]:
 def get_knight_on_board_probability_helper(position: Tuple[int, int], k: int) -> int:
     i, j = position
     if not (0 <= i < 8) or not (0 <= j < 8):
-        # move restricted after moving off the board
         return 0
     if k == 0:
-        # a valid end position reached
         return 1
     # generating total number of valid moves from current position
     moves = get_moves(position)

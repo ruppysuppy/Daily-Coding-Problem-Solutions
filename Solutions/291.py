@@ -14,9 +14,8 @@ from typing import List
 
 def calculate_boats(arr: List[int], k: int) -> int:
     length = len(arr)
-    # sorting the array to optimize the computation
     arr.sort()
-    # calculating the number of boats
+
     ptr1 = 0
     ptr2 = length - 1
     result = 0

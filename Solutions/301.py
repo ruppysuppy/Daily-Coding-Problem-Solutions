@@ -11,7 +11,7 @@ identifying an element as part of the set), but should always correctly identify
 element.
 """
 
-# copied from:
+# this is an improvised version of the method available at:
 # https://www.geeksforgeeks.org/bloom-filters-introduction-and-python-implementation/
 
 from bitarray import bitarray
@@ -25,7 +25,7 @@ class BloomFilter:
     Class for Bloom filter, using murmur3 hash function 
     """
 
-    def __init__(self, items_count, fp_prob):
+    def __init__(self, items_count: int, fp_prob: float) -> None:
         """ 
         items_count : int 
             Number of items expected to be stored in bloom filter 
@@ -36,10 +36,10 @@ class BloomFilter:
         self.fp_prob = fp_prob
 
         # Size of bit array to use
-        self.size = self.get_size(items_count, fp_prob)
+        self.size = BloomFilter.get_size(items_count, fp_prob)
 
         # number of hash functions to use
-        self.hash_count = self.get_hash_count(self.size, items_count)
+        self.hash_count = BloomFilter.get_hash_count(self.size, items_count)
 
         # Bit array of given size
         self.bit_array = bitarray(self.size)
@@ -47,7 +47,7 @@ class BloomFilter:
         # initialize all bits as 0
         self.bit_array.setall(0)
 
-    def add(self, item):
+    def add(self, item: str) -> None:
         """ 
         Add an item in the filter 
         """
@@ -63,7 +63,7 @@ class BloomFilter:
             # set the bit True in bit_array
             self.bit_array[digest] = True
 
-    def check(self, item):
+    def check(self, item: str) -> bool:
         """ 
         Check for existence of an item in filter 
         """
@@ -77,8 +77,8 @@ class BloomFilter:
                 return False
         return True
 
-    @classmethod
-    def get_size(self, n, p):
+    @staticmethod
+    def get_size(n: int, p: float) -> int:
         """ 
         Return the size of bit array(m) to used using 
         following formula 
@@ -91,8 +91,8 @@ class BloomFilter:
         m = -(n * log(p)) / (log(2) ** 2)
         return int(m)
 
-    @classmethod
-    def get_hash_count(self, m, n):
+    @staticmethod
+    def get_hash_count(m: int, n: int) -> int:
         """ 
         Return the hash function(k) to be used using 
         following formula 
