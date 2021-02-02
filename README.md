@@ -2,6 +2,10 @@
 
 This repository contains the **[Daily Coding Problem](https://www.dailycodingproblem.com)** solutions in python.
 
+## Contribution Guidelines
+
+Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
+
 ## Setup
 
 Install the 3rd party packages, perform the following steps:
