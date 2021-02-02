@@ -22,28 +22,27 @@ from typing import List, Optional
 from DataStructures.Tree import Node, BinaryTree
 
 
-def generategenerate_cartesian_tree_helper(
+def generate_cartesian_tree_helper(
     arr: List[int], last: Optional[Node] = None, root: Optional[Node] = None
 ) -> Node:
     if not arr:
         return root
-
     # Cartesian tree generation
     node = Node(arr[0])
     if not last:
         # root of the tree
-        return generategenerate_cartesian_tree_helper(arr[1:], node, node)
+        return generate_cartesian_tree_helper(arr[1:], node, node)
     if last.val > node.val:
         # property of Cartesian tree
         node.left = last
-        return generategenerate_cartesian_tree_helper(arr[1:], node, node)
+        return generate_cartesian_tree_helper(arr[1:], node, node)
     last.right = node
-    return generategenerate_cartesian_tree_helper(arr[1:], last, last)
+    return generate_cartesian_tree_helper(arr[1:], last, last)
 
 
 def generate_cartesian_tree(sequence: List[int]) -> BinaryTree:
     tree = BinaryTree()
-    tree.root = generategenerate_cartesian_tree_helper(sequence)
+    tree.root = generate_cartesian_tree_helper(sequence)
     return tree
 
 

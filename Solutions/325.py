@@ -26,7 +26,7 @@ class UnitConverter:
     def add_unit(
         self, new_unit: str, available_unit: str, value: Union[int, float]
     ) -> None:
-        # function to add a new unit with respect to an unit already present
+        # add a new unit with respect to an unit already present
         if available_unit not in self.metrics:
             raise ValueError(f"Unit not found: {available_unit}")
         self.metrics[new_unit] = self.metrics[available_unit] * value
@@ -38,8 +38,8 @@ class UnitConverter:
         value: Union[int, float],
         precision: int = 4,
     ) -> float:
-        # function to convert one metric to another, rounds off the result to required
-        # decimal places
+        # convert one metric to another, rounds off the result to required decimal
+        # places
         if source_unit not in self.metrics:
             raise ValueError(f"Unit not found: {source_unit}")
         if result_unit not in self.metrics:

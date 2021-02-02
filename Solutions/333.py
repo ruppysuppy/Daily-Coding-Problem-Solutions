@@ -21,9 +21,8 @@ class Party:
         return b in self.people[a]
 
     def get_celebrity(self) -> str:
-        # function to get the celebrity of the party
-        # [runs in O(v + e) time & space (e = the maximum people a person knows,
-        # v = number of people)]
+        # runs in O(v + e) time & space (e = the maximum people a person knows,
+        # v = number of people)
         celebrity_candidates = {}
         for person in self.people:
             if celebrity_candidates == {}:
@@ -34,12 +33,12 @@ class Party:
                 for person2 in self.people[person]:
                     if not self.knows(person2, person):
                         celebrity_candidates[person2] = 1
-            else:
-                # checking for the person known by most people in case there is other
-                # popular people
-                for potential_celebrity in celebrity_candidates:
-                    if potential_celebrity in self.people[person]:
-                        celebrity_candidates[potential_celebrity] += 1
+                continue
+            # checking for the person known by most people in case there is other
+            # popular people
+            for potential_celebrity in celebrity_candidates:
+                if potential_celebrity in self.people[person]:
+                    celebrity_candidates[potential_celebrity] += 1
         return max(
             celebrity_candidates.keys(),
             key=lambda candidate: celebrity_candidates[candidate],
@@ -48,7 +47,7 @@ class Party:
 
 if __name__ == "__main__":
     people = {
-        "a": {"b"},  # popular person
+        "a": {"b"},  # popular person (but not the celebrity)
         "b": set(),  # celebrity
         "c": {"a", "b", "d"},
         "d": {"a", "b"},

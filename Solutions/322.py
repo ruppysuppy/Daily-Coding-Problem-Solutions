@@ -10,17 +10,16 @@ Find a path with the fewest number of jumps required to get from 0 to N.
 """
 
 
-def get_sum(x):
-    # Utitlity function to calculate sum of numbers from 1 to x
-    return (x * (x + 1)) // 2
+def get_sum_till_n(n: int) -> int:
+    return (n * (n + 1)) // 2
 
 
-def count_jumps(n):
-    # getting the absolute value, answer will be same either it is positive or negative
+def count_jumps(n: int) -> int:
+    # answer will be same either it is positive or negative
     n = abs(n)
     ans = 0
-    # Continue till number is lesser or not in same parity
-    while get_sum(ans) < n or (get_sum(ans) - n) & 1:
+    # continue till number is lesser or not in same parity
+    while get_sum_till_n(ans) < n or (get_sum_till_n(ans) - n) & 1:
         ans += 1
     return ans
 
@@ -43,4 +42,3 @@ SPECS:
 TIME COMPLEXITY: O(n)
 SPACE COMPLEXITY: O(1)
 """
-
