@@ -22,19 +22,18 @@ Implement your own version of reduce.
 from typing import Any, Callable, Iterable
 
 
-def reduce(iterable: Iterable, func: Callable, initial_value: Any) -> Any:
-    # impementation of reduce or fold
+def reduce(iterable: Iterable, func: Callable, initial_value: int) -> int:
     value = initial_value
     for item in iterable:
         value = func(value, item)
     return value
 
 
-def add(a, b):
+def add(a: int, b: int) -> int:
     return a + b
 
 
-def sum(lst):
+def sum(lst: Iterable) -> int:
     return reduce(lst, add, 0)
 
 

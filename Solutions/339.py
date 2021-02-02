@@ -10,7 +10,6 @@ from typing import List
 
 
 def target_sum_of_two(arr: List[int], k: int, index_1: int, index_2: int) -> bool:
-    # helper function to check if 2 numbers add up to a given number
     while index_1 < index_2:
         elem_1, elem_2 = arr[index_1], arr[index_2]
         curr_sum = elem_1 + elem_2
@@ -24,12 +23,11 @@ def target_sum_of_two(arr: List[int], k: int, index_1: int, index_2: int) -> boo
 
 
 def target_sum_of_three(arr: List[int], k: int) -> bool:
-    # function to check if 3 numbers add up to a given number
     length = len(arr)
     # sorting the array to utilize the optimizations offered by a sorted array to find
     # target sum of 2 numbers
     arr.sort()
-    # selecting an element and running target sum of 2 to check if k can be obtained
+
     for index_1, elem in enumerate(arr):
         index_2, index_3 = index_1 + 1, length - 1
         if elem >= k:

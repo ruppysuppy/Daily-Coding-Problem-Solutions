@@ -20,8 +20,6 @@ from DataStructures.Tree import BinarySearchTree, Node
 
 
 def get_sum_over_range_helper(node: Node, low: int, high: int) -> int:
-    # helper function to calculate the sum over the given range (while traversing
-    # through the tree)
     if node is None:
         return 0
     if low <= node.val <= high:
@@ -32,12 +30,10 @@ def get_sum_over_range_helper(node: Node, low: int, high: int) -> int:
         )
     elif low > node.val:
         return get_sum_over_range_helper(node.right, low, high)
-    else:
-        return get_sum_over_range_helper(node.left, low, high)
+    return get_sum_over_range_helper(node.left, low, high)
 
 
 def get_sum_over_range(tree: BinarySearchTree, sum_range: Tuple[int, int]) -> int:
-    # function to calculate the sum over the given range
     if tree.root is None:
         return 0
     low, high = sum_range

@@ -32,16 +32,15 @@ from DataStructures.Graph import GraphDirectedWeighted
 from DataStructures.PriorityQueue import MinPriorityQueue
 
 
-def modified_dijkstras_algo(
+def modified_dijkstra(
     graph: GraphDirectedWeighted, start: str, k: int
 ) -> Tuple[Dict[str, int], Dict[str, Optional[str]]]:
-    # dijkstra's algorithm for single source shortest path
     dist = {node: maxsize for node in graph.connections}
     parent = {node: None for node in graph.connections}
     dist[start] = 0
     priority_queue = MinPriorityQueue()
     [priority_queue.push(node, weight) for node, weight in dist.items()]
-    # running dijkstra's algorithm
+
     while not priority_queue.is_empty():
         node = priority_queue.extract_min()
         ancestors = 0
@@ -68,7 +67,7 @@ def generate_path(
     for src, dest, wt in flights:
         graph.add_edge(src, dest, wt)
     # running dijkstra's algorithm
-    dist, parent = modified_dijkstras_algo(graph, start, k)
+    dist, parent = modified_dijkstra(graph, start, k)
     # getting the cost and path
     if not parent[dest]:
         return []

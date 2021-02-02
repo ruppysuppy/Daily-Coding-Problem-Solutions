@@ -48,7 +48,6 @@ CHAR_DIGIT_MAP = {
 
 
 def soundex(word: str) -> str:
-    # function to implement soundex
     # removing irrelevant characters from the word
     word = "".join([char for char in word.lower() if char not in IRRELEVANT_CHAR])
     last_char = word[0]

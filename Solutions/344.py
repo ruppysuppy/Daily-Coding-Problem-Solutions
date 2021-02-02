@@ -14,6 +14,7 @@ For example, suppose your input was the following tree:
    4   5
  / | \
 6  7  8
+
 In this case, removing the edge (3, 4) satisfies our requirement.
 
 Write a function that returns the maximum number of edges you can remove while still
@@ -39,7 +40,6 @@ class Tree:
 
 
 def get_even_edge_split_helper(node: Node) -> Tuple[int, int]:
-    # helper function to get the number of possible even splits
     nodes_count = 0
     even_splits = 0
     for child in node.children:
@@ -52,7 +52,6 @@ def get_even_edge_split_helper(node: Node) -> Tuple[int, int]:
 
 
 def get_even_edge_split(tree: Tree) -> int:
-    # function to get the number of possible even splits
     if tree.root:
         _, result = get_even_edge_split_helper(tree.root)
         return result

@@ -20,7 +20,6 @@ from DataStructures.Graph import GraphUndirectedUnweighted
 
 
 def generate_graph(synonyms: List[Tuple[str, str]]) -> GraphUndirectedUnweighted:
-    # helper function to construct the graph from the synonym list
     graph = GraphUndirectedUnweighted()
     for word_1, word_2 in synonyms:
         graph.add_edge(word_1, word_2)
@@ -30,14 +29,12 @@ def generate_graph(synonyms: List[Tuple[str, str]]) -> GraphUndirectedUnweighted
 def check_equivalence(
     sentence_1: str, sentence_2: str, synonyms: List[Tuple[str, str]]
 ) -> bool:
-    # function to check if 2 sentences have same meaning
     graph = generate_graph(synonyms)
     word_list_1 = sentence_1.strip().split()
     word_list_2 = [word for word in word_list_1]
 
     if len(word_list_1) != len(word_list_2):
         return False
-    # comparing the meaning of each non-matching word
     for word_1, word_2 in zip(word_list_1, word_list_2):
         if word_1 != word_2:
             if word_1 not in graph.connections or word_2 not in graph.connections:

@@ -13,18 +13,14 @@ this case is ailyd.
 
 
 def generate_next(string: str, k: int) -> str:
-    # helper function to generate the next string
     return string[k:] + string[:k]
 
 
-def lexicographically_smallest_string(string: str, k: int) -> str:
-    # function to generate the lexicographically smallest string from the input string
-    # using the stated operation
+def get_lexicographically_smallest_string(string: str, k: int) -> str:
     seen = set()
     result = string
     curr = generate_next(string, k)
-    # continuously generating and checking new string till a already seen string is
-    # generated
+
     while curr not in seen:
         result = min(result, curr)
         seen.add(curr)
@@ -33,10 +29,10 @@ def lexicographically_smallest_string(string: str, k: int) -> str:
 
 
 if __name__ == "__main__":
-    print(lexicographically_smallest_string("daily", 1))
-    print(lexicographically_smallest_string("salloo", 2))
+    print(get_lexicographically_smallest_string("daily", 1))
+    print(get_lexicographically_smallest_string("salloo", 2))
     # unlimited number of moves allowed (so the word of length 5 and k = 2 goes round)
-    print(lexicographically_smallest_string("daily", 2))
+    print(get_lexicographically_smallest_string("daily", 2))
 
 
 """
