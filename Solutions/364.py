@@ -8,9 +8,7 @@ numbers in O(n log n) time.
 from typing import List
 
 
-def ceil_index(arr: List[int], l: int, r: int, key: int) -> int:
-    # helper to generate the index for the ceil element (last candidate of an existing
-    # subsequence) [time complexity = O(log(n))]
+def get_ceil_index(arr: List[int], l: int, r: int, key: int) -> int:
     while r - l > 1:
         m = l + (r - l) // 2
         if arr[m] >= key:
@@ -37,7 +35,9 @@ def get_longest_increasing_subsequence(arr: List[int]) -> int:
         else:
             # current element is the last candidate of an existing subsequence.
             # it will replace ceil value in tail_table
-            tail_table[ceil_index(tail_table, -1, result_length - 1, arr[i])] = arr[i]
+            tail_table[get_ceil_index(tail_table, -1, result_length - 1, arr[i])] = arr[
+                i
+            ]
     return result_length
 
 

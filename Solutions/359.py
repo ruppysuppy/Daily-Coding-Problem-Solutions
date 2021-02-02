@@ -30,7 +30,6 @@ WORDS = [
 
 
 def generate_num_helper(counter: C[str]) -> C[int]:
-    # helper function to generate the numbers from the given string
     # runs in O(1) as all the loops run in constant time
     result = Counter()
     for value, word_counter in enumerate(WORDS):
@@ -53,10 +52,9 @@ def generate_num_helper(counter: C[str]) -> C[int]:
 
 
 def generate_num(string: str) -> int:
-    # function to generate the numbers from the given string
     str_counter = Counter(string)
     numbers_counter = generate_num_helper(str_counter)
-    # generating the sorted number as integer
+
     numbers_list = [str(num) for num in sorted(numbers_counter.elements())]
     return int("".join(numbers_list))
 

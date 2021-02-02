@@ -24,7 +24,6 @@ from typing import Dict
 
 
 def validate_guess(guess: int, matches: Dict[int, int]) -> bool:
-    # check if the current guess is a valid match for all the input matches
     for match, match_count in matches.items():
         count = 0
         for char_1, char_2 in zip(str(guess).zfill(6), str(match).zfill(6)):
@@ -36,7 +35,6 @@ def validate_guess(guess: int, matches: Dict[int, int]) -> bool:
 
 
 def is_match_valid(matches: Dict[int, int]) -> bool:
-    # generation all possible combinations and validating against the input matches
     for guess in range(1_000_000):
         if validate_guess(guess, matches):
             return True

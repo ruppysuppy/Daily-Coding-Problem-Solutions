@@ -17,11 +17,9 @@ Given this representation, determine the depth of the tree.
 """
 
 
-def get_depth(tree_repr: str) -> int:
-    # function to get the depth of a tree from its string representation
-    depth = 0
-    max_depth = 0
-    for char in tree_repr:
+def get_depth(tree_representation: str) -> int:
+    depth, max_depth = 0, 0
+    for char in tree_representation:
         if char == "(":
             # entering a node (depth addition)
             depth += 1

@@ -17,15 +17,12 @@ than [1, 2, 5], which has an absolute difference of
 from typing import List, Tuple
 
 
-def get_fraction_from_tuple(tup: Tuple[float]) -> float:
-    # helper function to get the fractional part of a number
+def get_fraction_from_tuple(tup: Tuple[int, float]) -> float:
     _, elem = tup
     return elem - int(elem)
 
 
 def round_arr(arr: List[float]) -> List[int]:
-    # function to find the rounded sum minimizing pair-wise difference
-    # getting the rounded array
     rounded_arr = [round(elem) for elem in arr]
     sum_arr = int(sum(arr))
     sum_rounded_arr = sum(rounded_arr)

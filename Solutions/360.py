@@ -43,7 +43,7 @@ def interleave_playlist(playlists: List[List[int]]) -> List[int]:
             if old_priority > priority:
                 offset = max(offset, old_priority - priority)
             queue.update_key(song, priority + offset)
-    # result generation
+
     while not queue.is_empty():
         result.append(queue.extract_min())
     return result

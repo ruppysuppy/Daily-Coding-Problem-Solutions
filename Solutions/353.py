@@ -21,11 +21,10 @@ from DataStructures.Stack import Stack
 
 
 def max_area_histogram(histogram: List[int]):
-    # function to calulate maximum rectangular area under a given histogram
     stack = Stack()
     max_area = 0
     index = 0
-    # iterating through the histogram
+
     while index < len(histogram):
         if stack.is_empty() or histogram[stack.peek()] <= histogram[index]:
             stack.push(index)

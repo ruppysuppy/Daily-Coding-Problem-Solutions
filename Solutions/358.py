@@ -21,7 +21,7 @@ class MagicDS:
         self.min_priority_queue = MinPriorityQueue()
 
     def plus(self, elem: int) -> None:
-        # runs in O(log(n)) [O(1) through Amortized analysis]
+        # runs in O(log(n)) [O(1) on Amortized analysis]
         if elem not in self.map:
             self.map[elem] = 1
             self.max_priority_queue.push(elem, 1)
@@ -32,7 +32,7 @@ class MagicDS:
             self.min_priority_queue.update_key(elem, self.map[elem])
 
     def minus(self, elem: int) -> None:
-        # runs in O(log(n)) [O(1) through Amortized analysis]
+        # runs in O(log(n)) [O(1) on Amortized analysis]
         if elem not in self.map:
             raise ValueError("Cannot decrement a non-existing key")
         if self.map[elem] == 1:
