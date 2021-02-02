@@ -2,16 +2,16 @@
 
 This repository contains the **[Daily Coding Problem](https://www.dailycodingproblem.com)** solutions in python.
 
-## Contribution Guidelines
-
-Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
-
 ## Setup
 
 Install the 3rd party packages, perform the following steps:
 
 1.  `cd Daily-Coding-Challenge-Solutions`
 2.  Run `pip install -r requirements.txt`
+
+## Contribution Guidelines
+
+Please go through [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ## Note:
 

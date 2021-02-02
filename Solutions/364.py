@@ -33,8 +33,8 @@ def get_longest_increasing_subsequence(arr: List[int]) -> int:
             tail_table[result_length] = arr[i]
             result_length += 1
         else:
-            # current element is the last candidate of an existing subsequence.
-            # it will replace ceil value in tail_table
+            # current element is the last candidate of an existing subsequence and will
+            # replace ceil value in tail_table
             tail_table[get_ceil_index(tail_table, -1, result_length - 1, arr[i])] = arr[
                 i
             ]
