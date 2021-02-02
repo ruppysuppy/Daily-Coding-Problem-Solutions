@@ -11,12 +11,11 @@ from typing import List
 
 
 def get_strobogrammatic_numbers_helper(N: int) -> List[str]:
-    # base cases
     if N == 0:
         return [""]
     if N == 1:
         return ["1", "8", "0"]
-    # generating the strobogrammatic numbers
+
     smaller_strobogrammatic_numbers = get_strobogrammatic_numbers_helper(N - 2)
     strob_numbers = []
     for x in smaller_strobogrammatic_numbers:

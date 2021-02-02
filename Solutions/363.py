@@ -14,8 +14,8 @@ from __future__ import annotations
 
 class CallableInt(int):
     def __init__(self, value: int) -> None:
-        self.should_add = True
         int.__init__(value)
+        self.should_add = True
 
     def __call__(self, value: int) -> CallableInt:
         if self.should_add:

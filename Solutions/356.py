@@ -10,7 +10,6 @@ from typing import Any
 
 
 class Queue:
-    # queue class using fixed length arrays
     def __init__(self, num_of_arr: int, size_of_arr: int) -> None:
         # storing the fixed length arrays as matrix
         self.matrix = [[None for _ in range(size_of_arr)] for _ in range(num_of_arr)]
@@ -18,7 +17,6 @@ class Queue:
         self.head_pos, self.rear_pos = 0, 0
 
     def enqueue(self, obj: Any) -> None:
-        # enqueue function to add an element to the queue
         if self.rear_pos == (self.num_of_arr * self.size_of_arr) - 1:
             raise OverflowError("Queue is full")
 
@@ -28,12 +26,11 @@ class Queue:
         self.rear_pos += 1
 
     def dequeue(self) -> Any:
-        # dequeue function to remove an element from the queue
         if self.rear_pos == 0:
             raise RuntimeError("Queue is empty")
 
         obj = self.matrix[0][0]
-        # resetiing other elements' position
+        # resetting other elements' position
         for pos in range(1, self.rear_pos + 1):
             i = (pos) // self.size_of_arr
             j = (pos) % self.size_of_arr
@@ -45,7 +42,6 @@ class Queue:
         return obj
 
     def get_size(self) -> int:
-        # get_size function to get the size of the queue
         return self.rear_pos
 
 
