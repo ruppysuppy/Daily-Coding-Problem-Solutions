@@ -12,8 +12,7 @@ def get_set_bits(num: int) -> int:
     return sum([int(digit) for digit in bin_num])
 
 
-def get_next_int(num: int) -> int:
-    # function to get the next number with same number of set bits
+def get_next_number_with_same_count_of_set_bits(num: int) -> int:
     num_of_set_bits = get_set_bits(num)
     curr = num + 1
     while True:
@@ -23,7 +22,7 @@ def get_next_int(num: int) -> int:
 
 
 if __name__ == "__main__":
-    print(get_next_int(6))
+    print(get_next_number_with_same_count_of_set_bits(6))
 
 
 """

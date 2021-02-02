@@ -11,20 +11,21 @@ from sys import maxsize
 from typing import List, Tuple
 
 
-def get_distance(pt1: Tuple[int, int], pt2: Tuple[int, int]) -> float:
-    # helper function to get the distance between 2 points
+Point = Tuple[int, int]
+
+
+def get_distance(pt1: Point, pt2: Point) -> float:
     x1, y1 = pt1
     x2, y2 = pt2
     dist = sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2))
     return dist
 
 
-def get_nearest_points(pts_arr: List[Tuple[int, int]]) -> List[Tuple[int, int]]:
-    # function to get the nearest 2 points
+def get_nearest_points(pts_arr: List[Point]) -> List[Point]:
     length = len(pts_arr)
     dist = maxsize
     pt1, pt2 = None, None
-    # checking for all combinations
+    
     for index_1 in range(length):
         for index_2 in range(index_1 + 1, length):
             pt1_temp, pt2_temp = pts_arr[index_1], pts_arr[index_2]

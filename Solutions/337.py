@@ -7,25 +7,21 @@ over time?
 
 from random import randint
 
-from DataStructures.LinkedList import Node, LinkedList
+from DataStructures.LinkedList import LinkedList
 
 
 def shuffle(ll: LinkedList) -> LinkedList:
-    # base case, no shuffling possible
     length = len(ll)
     if length in (0, 1):
         return ll
-    # shuffling values
+
     for _ in range(length):
-        # generating 2 random positions
         pos1, pos2 = randint(0, length - 1), randint(0, length - 1)
         node1, node2 = ll.head, ll.head
-        # positioning the pointers at the proper poitions
         for _ in range(pos1):
             node1 = node1.next
         for _ in range(pos2):
             node2 = node2.next
-        # swaping values
         node1.val, node2.val = node2.val, node1.val
     return ll
 
@@ -37,9 +33,7 @@ if __name__ == "__main__":
         ll.add(i)
 
     print(ll)
-
     shuffle(ll)
-
     print(ll)
 
 

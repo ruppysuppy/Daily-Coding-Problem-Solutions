@@ -38,18 +38,16 @@ class Node:
         return bool(self.val)
 
     def insert_helper(self, string: str) -> None:
-        # helper function to insert a string into the tree
         if not string:
             return
-        # adding additional nodes to enable the function to be called on any of the
-        # current node's child
+
         if self.left is None:
             self.left = Node()
         if self.mid is None:
             self.mid = Node()
         if self.right is None:
             self.right = Node()
-        # adding the character at the necessary position
+
         char = string[0]
         if not self:
             self.val = char
@@ -62,10 +60,9 @@ class Node:
             self.right.insert_helper(string)
 
     def search_helper(self, string: str) -> bool:
-        # helper function to search for a string in the tree
         if not string:
             return True
-        # checking for string match
+
         char = string[0]
         length = len(string)
         if char == self.val:
@@ -89,11 +86,9 @@ class TernarySearchTree:
         self.root = None
 
     def insert(self, string: str) -> None:
-        # function to insert a string into the tree
         if not string:
             return
         if not self.root:
-            # empty tree - the entire string will be inserted as the chain in `mid`
             self.root = Node(string[0])
             string = string[1:]
             curr = self.root
@@ -104,7 +99,6 @@ class TernarySearchTree:
             self.root.insert_helper(string)
 
     def search(self, string: str) -> bool:
-        # function to search for a string in the tree
         if not string:
             return True
         if not self.root:

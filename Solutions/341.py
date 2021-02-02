@@ -29,8 +29,6 @@ from typing import List, Optional, Set, Tuple, Union
 def get_neighbours(
     pos: Tuple[int, int], dim: Tuple[int, int], seen: Set[int]
 ) -> List[Tuple[int, int]]:
-    # helper function to generate the neighbours of a given position inside the matrix
-    # and which has not been visited
     n, m = dim
     i, j = pos
     positions = [
@@ -42,27 +40,26 @@ def get_neighbours(
     valid_positions = []
     for position in positions:
         y, x = position
-        if 0 <= y < n and 0 <= x < m:
-            if position not in seen:
-                valid_positions.append(position)
+        if (0 <= y < n and 0 <= x < m) and (position not in seen):
+            valid_positions.append(position)
     return valid_positions
 
 
-def generate_word(
+def can_generate_word(
     matrix: List[List[str]],
     pos: Tuple[int, int],
     word: str,
     seen: Set[int],
     dim: Tuple[int, int],
 ) -> Union[bool, Optional[Set[int]]]:
-    # helper function to check if the current word exists in the matrix
+    # check if the current word can be generated from the matrix
     if word == "":
         return True, seen
     neighbours = get_neighbours(pos, dim, seen)
     for neighbour in neighbours:
         i, j = neighbour
         if matrix[i][j] == word[0]:
-            generated, seen_pos = generate_word(
+            generated, seen_pos = can_generate_word(
                 matrix, neighbour, word[1:], seen | set([neighbour]), dim
             )
             if generated:
@@ -71,7 +68,7 @@ def generate_word(
 
 
 def get_power_set(words: List[str]) -> List[List[str]]:
-    # function to generate the power set of the given list (eleminates the empty set)
+    # generate the power set of the given list except the empty set
     num_of_words = len(words)
     accumulator = []
     pow_set_size = pow(2, num_of_words)
@@ -88,11 +85,10 @@ def get_power_set(words: List[str]) -> List[List[str]]:
 
 
 def get_max_packed_helper(matrix: List[List[str]], words: Set[str]) -> int:
-    # helper function to get the maximum number of packed words
     n, m = len(matrix), len(matrix[0])
     count = 0
     seen = set()
-    # checking for all combinations of words and matrix characters
+
     for i in range(n):
         for j in range(m):
             char = matrix[i][j]
@@ -100,7 +96,7 @@ def get_max_packed_helper(matrix: List[List[str]], words: Set[str]) -> int:
                 if word[0] == char:
                     # a match has been found, trying to generate the entire word from
                     # the first character in the matrix
-                    generated, seen_temp = generate_word(
+                    generated, seen_temp = can_generate_word(
                         matrix, (i, j), word[1:], seen, (n, m)
                     )
                     if generated:
@@ -110,7 +106,6 @@ def get_max_packed_helper(matrix: List[List[str]], words: Set[str]) -> int:
 
 
 def get_max_packed(matrix: List[List[str]], words: Set[str]) -> int:
-    # function to get the maximum number of packed words
     words_list = get_power_set(list(words))
     max_words = 0
     for word_list in words_list:
@@ -125,9 +120,7 @@ if __name__ == "__main__":
                 ["e", "a", "n"],
                 ["t", "t", "i"],
                 ["a", "r", "a"]
-            ], {
-                "eat", "rain", "in", "rat"
-            },
+            ], {"eat", "rain", "in", "rat"},
         )
     )
 

@@ -14,12 +14,10 @@ Given N = 18, return 2 (9 + 9)
 from math import ceil, sqrt
 
 
-def get_min_squares_sum_dp(N: int) -> int:
-    # function to get the minimum number of square numbers which add up to N
+def get_min_squares_sum(N: int) -> int:
     dp = [0, 1, 2, 3]
     for i in range(4, N + 1):
         dp.append(i)
-        # going through all smaller numbers to find the minimum required numbers
         for x in range(1, int(ceil(sqrt(i))) + 1):
             square = pow(x, 2)
             if square > i:
@@ -29,9 +27,9 @@ def get_min_squares_sum_dp(N: int) -> int:
 
 
 if __name__ == "__main__":
-    print(get_min_squares_sum_dp(4))
-    print(get_min_squares_sum_dp(17))
-    print(get_min_squares_sum_dp(18))
+    print(get_min_squares_sum(4))
+    print(get_min_squares_sum(17))
+    print(get_min_squares_sum(18))
 
 
 """
