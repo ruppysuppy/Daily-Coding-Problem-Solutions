@@ -12,7 +12,10 @@ For example, given 100, you can reach 1 in five steps with the following route:
 """
 
 
-def get_closest_factors(num):
+from typing import Tuple
+
+
+def get_closest_factors(num: int) -> Tuple[int, int]:
     a, b = 1, num
     factor_1, factor_2 = 1, 1
     while b > a:
@@ -23,20 +26,18 @@ def get_closest_factors(num):
     return (factor_1, factor_2)
 
 
-def get_step_size(num, steps=0):
+def get_step_size(num: int, steps: int = 0) -> int:
     if num < 1:
         raise ValueError(f"Cannot reach 1 from {num}")
-    # base case
     if num == 1:
         return steps
     # generating the sequence to get the least number of steps
     largest_factor = max(get_closest_factors(num))
     if largest_factor == num:
         return get_step_size(num - 1, steps + 1)
-    else:
-        return min(
-            get_step_size(num - 1, steps + 1), get_step_size(largest_factor, steps + 1)
-        )
+    return min(
+        get_step_size(num - 1, steps + 1), get_step_size(largest_factor, steps + 1)
+    )
 
 
 if __name__ == "__main__":
@@ -48,5 +49,5 @@ if __name__ == "__main__":
 SPECS:
 
 TIME COMPLEXITY: O(n x log(n))
-Sfactor_1CE COMPLEXITY: O(n) [considering call-stack]
+SPACE COMPLEXITY: O(n) [considering call-stack]
 """

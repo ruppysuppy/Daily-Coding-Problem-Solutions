@@ -21,7 +21,7 @@ from typing import Dict, List, Union
 
 
 def generate_combinations(num: int) -> List[List[bool]]:
-    # function to generate all boolean combinations for num variables
+    # generate all boolean combinations for the given number of variables
     numbers = [num for num in range(pow(2, num))]
     combinations = []
     for number in numbers:

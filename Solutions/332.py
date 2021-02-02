@@ -13,7 +13,7 @@ def get_count(M: int, N: int) -> int:
     count = 0
     for i in range(1, M):
         # (a, b) and (b, a) are considered different entities.
-        # To consider them once, use range(1, M // 2)
+        # To consider them only once, use range(1, M // 2)
         if i ^ (M - i) == N:
             count += 1
     return count

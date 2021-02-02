@@ -59,20 +59,19 @@ def merge_trees(tree1: BinaryTree, tree2: BinaryTree) -> BinaryTree:
 
 
 if __name__ == "__main__":
-    # tree1 creation
     tree1 = BinaryTree()
     tree1.root = Node(1)
     tree1.root.left = Node(2)
     tree1.root.right = Node(3)
     tree1.root.left.right = Node(4)
     print(tree1)
-    # tree2 creation
+
     tree2 = BinaryTree()
     tree2.root = Node(2)
     tree2.root.right = Node(-3)
     tree2.root.right.right = Node(10)
     print(tree2)
-    # merged tree generation
+
     print(merge_trees(tree1, tree2))
 
 

@@ -14,12 +14,10 @@ Write a function that plays the 24 game.
 
 from typing import List
 
-# set of supported operations
 OPERATORS = set(["+", "-", "*", "/"])
 
 
 def game_24(arr: List[int]) -> bool:
-    # base case
     if len(arr) == 1:
         return arr[0] == 24
     # checking if 24 can be reached

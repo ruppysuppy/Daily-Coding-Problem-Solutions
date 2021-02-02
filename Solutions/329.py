@@ -43,7 +43,7 @@ def stable_marriage(
     woman_partners = {woman: None for woman in gal_preferences}
     man_free = {man: True for man in guy_preferences}
     free_count = len(guy_preferences)
-    # forming partners
+
     while free_count > 0:
         # random single man selection
         curr = None
@@ -55,7 +55,7 @@ def stable_marriage(
         for woman in guy_preferences[curr]:
             if not man_free[curr]:
                 break
-            # engaged the current man if a single woman is encountered
+            # engaging the current man if a single woman is encountered
             if not woman_partners[woman]:
                 woman_partners[woman] = curr
                 man_free[curr] = False

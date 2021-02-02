@@ -13,12 +13,10 @@ for beating a 1300-ranked player.
 Implement this system.
 """
 
-from sys import maxsize
 from typing import Optional
 
 
 class EloRating:
-    # class variables
     INITIAL_POINTS = 1400
     MEAN_SCORE_CHANGE = 30
 

@@ -17,11 +17,10 @@ from typing import List
 
 
 def get_max_mouse_dist(mouse_position: List[int], hole_position: List[int]) -> int:
-    # sorting the mice and holes to match them up
     mouse_position.sort()
     hole_position.sort()
     max_distance = 0
-    # calculating the max distance
+
     for mouse, hole in zip(mouse_position, hole_position):
         max_distance = max(max_distance, abs(mouse - hole))
     return max_distance
