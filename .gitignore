@@ -1,5 +1,4 @@
 # Byte-compiled / optimized / DLL files
-Solutions/DataStructures/__pycache__
 __pycache__/*
 *.py[cod]
 *.pyo
