@@ -2,7 +2,8 @@
 
 ## Before contributing
 
-Welcome to [Daily Coding Problem Solutions](https://github.com/ruppysuppy/Daily-Coding-Challenge-Solutions)!
+Welcome to
+[Daily Coding Problem Solutions](https://github.com/ruppysuppy/Daily-Coding-Challenge-Solutions)!
 Before sending your pull requests, make sure that you read the whole guidelines.
 
 ## Contributing
@@ -29,6 +30,70 @@ solution will not be accepted.
 **Improving comments** are also highly welcome. But **fake pull requests**, like
 _unnecessarily changing the wording, adding 'a' or 'the', etc_ are highly discouraged.
 Such pull requests will be closed immediately and labeled as `invalid`.
+
+1.  If you are a first-time contributor:
+
+    -   Go to
+        [https://github.com/ruppysuppy/Daily-Coding-Challenge-Solutions](https://github.com/ruppysuppy/Daily-Coding-Challenge-Solutions)
+        and click the `fork` button to create your own copy of the project.
+
+    -   Clone the project to your local computer:
+        ```
+        git clone https://github.com/<your-username>/Daily-Coding-Challenge-Solutions.git
+        ```
+    -   Change the directory:
+
+        ```
+        cd Daily-Coding-Challenge-Solutions
+        ```
+
+    -   Add the upstream repository:
+
+        ```
+        git remote add upstream https://github.com/ruppysuppy/Daily-Coding-Challenge-Solutions.git
+        ```
+
+    -   Now, git remote -v will show two remote repositories named:
+        -   **upstream**: which refers to the original repository in GitHub
+        -   **origin**: which refers to your personal fork
+
+2.  Develop your contribution:
+
+    -   Pull the latest changes from upstream:
+
+        -   ```
+            git checkout master
+            ```
+        -   ```
+            git pull upstream master
+            ```
+
+    -   Create a branch for the feature you want to work on. Since the branch name will
+        appear in the merge message, use a sensible name such as
+        **problem-200-optimization**:
+
+        ```
+        git checkout -b problem-200-optimization
+        ```
+
+    -   Commit locally as you progress
+        (`git add .` and `git commit -m "<you message>"`). Use a self-explanatory
+        commit message.
+
+3.  To submit your contribution:
+
+    -   Push your changes back to your fork on GitHub:
+
+        ```
+        git push origin problem-200-optimization
+        ```
+
+    -   Enter your GitHub username and password (repeat contributors or advanced users
+        can remove this step by connecting to GitHub with SSH).
+
+    -   Go to GitHub. The new branch will show up with a green Pull Request button.
+        Make sure the title and message are clear, concise, and self-explanatory. Then
+        click the button to submit it.
 
 ### Other Requirements for Submissions
 
