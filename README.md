@@ -1,4 +1,4 @@
-# Daily Coding Challenge
+# Daily Coding Problem Solutions
 
 This repository contains the **[Daily Coding Problem](https://www.dailycodingproblem.com)** solutions in python.
 
@@ -6,7 +6,7 @@ This repository contains the **[Daily Coding Problem](https://www.dailycodingpro
 
 Install the 3rd party packages, perform the following steps:
 
-1.  `cd Daily-Coding-Challenge-Solutions`
+1.  `cd Daily-Coding-Problem-Solutions`
 2.  Run `pip install -r requirements.txt`
 
 ## Contribution Guidelines
