@@ -1,9 +1,5 @@
 # Daily Coding Problem Solutions
 
-<div align="center">
-    <img src="https://firebasestorage.googleapis.com/v0/b/tapajyoti-bose.appspot.com/o/ProjectImg%2FDCP.webp?alt=media&token=b26030be-5d5f-4c36-931d-afc965cb80c6" style="width: 200px" />
-</div>
-
 This repository contains the **[Daily Coding Problem](https://www.dailycodingproblem.com)** solutions in python.
 
 ## Setup
