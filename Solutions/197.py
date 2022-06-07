@@ -65,7 +65,7 @@ if __name__ == "__main__":
 SPECS:
 
 rotate_array_right:
-TIME COMPLEXITY: originally said O(n ^ 2); in fact seeems O(n)
+TIME COMPLEXITY: O(n)
 SPACE COMPLEXITY: O(n)
 
 rotate_array_right_optimized:
