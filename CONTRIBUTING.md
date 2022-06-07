@@ -3,7 +3,7 @@
 ## Before contributing
 
 Welcome to
-[Daily Coding Problem Solutions](https://github.com/ruppysuppy/Daily-Coding-Challenge-Solutions)!
+[Daily Coding Problem Solutions](https://github.com/ruppysuppy/Daily-Coding-Problem-Solutions)!
 Before sending your pull requests, make sure that you read the whole guidelines.
 
 ## Contributing
@@ -34,23 +34,23 @@ Such pull requests will be closed immediately and labeled as `invalid`.
 1.  If you are a first-time contributor:
 
     -   Go to
-        [https://github.com/ruppysuppy/Daily-Coding-Challenge-Solutions](https://github.com/ruppysuppy/Daily-Coding-Challenge-Solutions)
+        [https://github.com/ruppysuppy/Daily-Coding-Problem-Solutions](https://github.com/ruppysuppy/Daily-Coding-Problem-Solutions)
         and click the `fork` button to create your own copy of the project.
 
     -   Clone the project to your local computer:
         ```
-        git clone https://github.com/<your-username>/Daily-Coding-Challenge-Solutions.git
+        git clone https://github.com/<your-username>/Daily-Coding-Problem-Solutions.git
         ```
     -   Change the directory:
 
         ```
-        cd Daily-Coding-Challenge-Solutions
+        cd Daily-Coding-Problem-Solutions
         ```
 
     -   Add the upstream repository:
 
         ```
-        git remote add upstream https://github.com/ruppysuppy/Daily-Coding-Challenge-Solutions.git
+        git remote add upstream https://github.com/ruppysuppy/Daily-Coding-Problem-Solutions.git
         ```
 
     -   Now, git remote -v will show two remote repositories named:
