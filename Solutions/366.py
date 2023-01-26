@@ -1,4 +1,3 @@
-
 """ 
 This function uses a set to keep track of all pairs of players that have played against each other. For each round of games, it separates the players into two teams, and then adds all pairs of players from the different teams to the set. At the end, it checks that all possible pairs of players have been added to the set, and if not, it returns False. Otherwise, it returns True.
 
@@ -22,15 +21,13 @@ def solutions(n: int, m: int, games) -> bool:
     return True
 
 
-# README
-# DO NOT CHANGE the code below, we use it to grade your submission. If changed your submission will be failed
 if __name__ == "main ":
-n = int(input())
-m = int(input())
-mtx = [[int(val) for val in pair.split()]
-       for pair in input().strip().split(', ')]
-output = solutions(n, m, mtx)
-if output == True:
-    print("true")
-else:
-    print("false")
+    n = int(input())
+    m = int(input())
+    mtx = [[int(val) for val in pair.split()]
+           for pair in input().strip().split(', ')]
+    output = solutions(n, m, mtx)
+    if output == True:
+        print("true")
+    else:
+        print("false")
