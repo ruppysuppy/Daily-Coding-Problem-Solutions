@@ -382,9 +382,9 @@ This problem was asked by Facebook.
 
 Implement regular expression matching with the following special characters:
 
--   . (period) which matches any single character
--   \* (asterisk) which matches zero or more of the preceding element
-    That is, implement a function that takes in a string and a valid regular expression and returns whether or not the string matches the regular expression.
+- . (period) which matches any single character
+- \* (asterisk) which matches zero or more of the preceding element
+  That is, implement a function that takes in a string and a valid regular expression and returns whether or not the string matches the regular expression.
 
 For example, given the regular expression "ra." and the string "ray", your function should return true. The same regular expression on the string "raymond" should return false.
 
@@ -806,8 +806,8 @@ This problem was asked by Microsoft.
 
 Implement a URL shortener with the following methods:
 
--   shorten(url), which shortens the url into a six-character alphanumeric string, such as zLg6wl.
--   restore(short), which expands the shortened string into the original url. If no such shortened string exists, return null.
+- shorten(url), which shortens the url into a six-character alphanumeric string, such as zLg6wl.
+- restore(short), which expands the shortened string into the original url. If no such shortened string exists, return null.
 
 Hint: What if we enter the same URL twice?
 
@@ -883,8 +883,8 @@ There is an N by M matrix of zeroes. Given N and M, write a function to count th
 
 For example, given a 2 by 2 matrix, you should return 2, since there are two ways to get to the bottom-right:
 
--   Right, then down
--   Down, then right
+- Right, then down
+- Down, then right
 
 Given a 5 by 5 matrix, there are 70 ways to get to the bottom-right.
 
@@ -949,8 +949,8 @@ This problem was asked by Google.
 
 Implement an LFU (Least Frequently Used) cache. It should be able to be initialized with a cache size n, and contain the following methods:
 
--   `set(key, value)`: sets key to value. If there are already n items in the cache and we are adding a new item, then it should also remove the least frequently used item. If there is a tie, then the least recently used key should be removed.
--   `get(key)`: gets the value at key. If no such key exists, return null.
+- `set(key, value)`: sets key to value. If there are already n items in the cache and we are adding a new item, then it should also remove the least frequently used item. If there is a tie, then the least recently used key should be removed.
+- `get(key)`: gets the value at key. If no such key exists, return null.
 
 Each operation should run in O(1) time.
 
@@ -1851,18 +1851,18 @@ This problem was asked by LinkedIn.
 
 Given a string, return whether it represents a number. Here are the different kinds of numbers:
 
--   "10", a positive integer
--   "-10", a negative integer
--   "10.1", a positive real number
--   "-10.1", a negative real number
--   "1e5", a number in scientific notation
+- "10", a positive integer
+- "-10", a negative integer
+- "10.1", a positive real number
+- "-10.1", a negative real number
+- "1e5", a number in scientific notation
 
 And here are examples of non-numbers:
 
--   "a"
--   "x 1"
--   "a -2"
--   "-"
+- "a"
+- "x 1"
+- "a -2"
+- "-"
 
 [Solution](Solutions/123.py)
 
@@ -1945,21 +1945,21 @@ All the disks start off on the first rod in a stack. They are ordered by size, w
 
 The goal of this puzzle is to move all the disks from the first rod to the last rod while following these rules:
 
--   You can only move one disk at a time.
--   A move consists of taking the uppermost disk from one of the stacks and placing it on top of another stack.
--   You cannot place a larger disk on top of a smaller disk.
+- You can only move one disk at a time.
+- A move consists of taking the uppermost disk from one of the stacks and placing it on top of another stack.
+- You cannot place a larger disk on top of a smaller disk.
 
 Write a function that prints out all the steps necessary to complete the Tower of Hanoi. You should assume that the rods are numbered, with the first rod being 1, the second (auxiliary) rod being 2, and the last (goal) rod being 3.
 
 For example, with n = 3, we can do this in 7 moves:
 
--   Move 1 to 3
--   Move 1 to 2
--   Move 3 to 2
--   Move 1 to 3
--   Move 2 to 1
--   Move 2 to 3
--   Move 1 to 3
+- Move 1 to 3
+- Move 1 to 2
+- Move 3 to 2
+- Move 1 to 3
+- Move 2 to 1
+- Move 2 to 3
+- Move 1 to 3
 
 [Solution](Solutions/128.py)
 
@@ -2001,9 +2001,9 @@ This question was asked by Riot Games.
 
 Design and implement a HitCounter class that keeps track of requests (or hits). It should support the following operations:
 
--   `record(timestamp)`: records a hit that happened at timestamp
--   `total()`: returns the total number of hits recorded
--   `range(lower, upper)`: returns the number of hits that occurred between timestamps lower and upper (inclusive)
+- `record(timestamp)`: records a hit that happened at timestamp
+- `total()`: returns the total number of hits recorded
+- `range(lower, upper)`: returns the number of hits that occurred between timestamps lower and upper (inclusive)
 
 Follow-up: What if our system has limited memory?
 
@@ -2025,9 +2025,9 @@ You have a large array with most of the elements as zero.
 
 Use a more space-efficient data structure, SparseArray, that implements the same interface:
 
--   `init(arr, size)`: initialize with the original large array and size.
--   `set(i, val)`: updates index at i with val.
--   `get(i)`: gets the value at index i.
+- `init(arr, size)`: initialize with the original large array and size.
+- `set(i, val)`: updates index at i with val.
+- `get(i)`: gets the value at index i.
 
 [Solution](Solutions/134.py)
 
@@ -2394,8 +2394,8 @@ For example, given the following matrix:
 
 Return `2`, as there are only two ways to get to the bottom right:
 
--   `Right, down, down, right`
--   `Down, right, down, right`
+- `Right, down, down, right`
+- `Down, right, down, right`
 
 The top left corner and bottom right corner will always be `0`.
 
@@ -2459,19 +2459,19 @@ This problem was asked by Square.
 
 Given a list of words, return the shortest unique prefix of each word. For example, given the list:
 
--   dog
--   cat
--   apple
--   apricot
--   fish
+- dog
+- cat
+- apple
+- apricot
+- fish
 
 Return the list:
 
--   d
--   c
--   app
--   apr
--   f
+- d
+- c
+- app
+- apr
+- f
 
 [Solution](Solutions/162.py)
 
@@ -2511,11 +2511,11 @@ Given an array of integers, return a new array where each element in the new arr
 
 For example, given the array `[3, 4, 9, 6, 1]`, return `[1, 1, 2, 1, 0]`, since:
 
--   There is 1 smaller element to the right of `3`
--   There is 1 smaller element to the right of `4`
--   There are 2 smaller elements to the right of `9`
--   There is 1 smaller element to the right of `6`
--   There are no smaller elements to the right of `1`
+- There is 1 smaller element to the right of `3`
+- There is 1 smaller element to the right of `4`
+- There are 2 smaller elements to the right of `9`
+- There is 1 smaller element to the right of `6`
+- There are no smaller elements to the right of `1`
 
 [Solution](Solutions/165.py)
 
@@ -2527,8 +2527,8 @@ This problem was asked by Uber.
 
 Implement a 2D iterator class. It will be initialized with an array of arrays, and should implement the following methods:
 
--   `next()`: returns the next element in the array of arrays. If there are no more elements, raise an exception.
--   `has_next()`: returns whether or not the iterator still has elements left.
+- `next()`: returns the next element in the array of arrays. If there are no more elements, raise an exception.
+- `has_next()`: returns whether or not the iterator still has elements left.
 
 For example, given the input `[[1, 2], [3], [], [4, 5, 6]]`, calling `next()` repeatedly should output `1, 2, 3, 4, 5, 6`.
 
@@ -2668,9 +2668,9 @@ This problem was asked by Microsoft.
 
 Describe and give an example of each of the following types of polymorphism:
 
--   Ad-hoc polymorphism
--   Parametric polymorphism
--   Subtype polymorphism
+- Ad-hoc polymorphism
+- Parametric polymorphism
+- Subtype polymorphism
 
 [Solution](Solutions/174.md)
 
@@ -3187,9 +3187,9 @@ This problem was asked by Apple.
 
 A Collatz sequence in mathematics can be defined as follows. Starting with any positive integer:
 
--   If `n` is even, the next number in the sequence is `n / 2`
--   If `n` is odd, the next number in the sequence is `3n + 1`
-    It is conjectured that every such sequence eventually reaches the number `1`. Test this conjecture.
+- If `n` is even, the next number in the sequence is `n / 2`
+- If `n` is odd, the next number in the sequence is `3n + 1`
+  It is conjectured that every such sequence eventually reaches the number `1`. Test this conjecture.
 
 Bonus: What input `n <= 1000000` gives the longest sequence?
 
@@ -3253,9 +3253,9 @@ The horizontal distance of a binary tree node describes how far left or right th
 
 More rigorously, we can define it as follows:
 
--   The horizontal distance of the root is `0`.
--   The horizontal distance of a left child is `hd(parent) - 1`.
--   The horizontal distance of a right child is `hd(parent) + 1`.
+- The horizontal distance of the root is `0`.
+- The horizontal distance of a left child is `hd(parent) - 1`.
+- The horizontal distance of a right child is `hd(parent) + 1`.
 
 For example, for the following tree, `hd(1) = -2`, and `hd(6) = 0`.
 
@@ -3564,10 +3564,10 @@ This problem was asked by MIT.
 
 Blackjack is a two player card game whose rules are as follows:
 
--   The player and then the dealer are each given two cards.
--   The player can then "hit", or ask for arbitrarily many additional cards, so long as their total does not exceed 21.
--   The dealer must then hit if their total is 16 or lower, otherwise pass.
--   Finally, the two compare totals, and the one with the greatest sum not exceeding 21 is the winner.
+- The player and then the dealer are each given two cards.
+- The player can then "hit", or ask for arbitrarily many additional cards, so long as their total does not exceed 21.
+- The dealer must then hit if their total is 16 or lower, otherwise pass.
+- Finally, the two compare totals, and the one with the greatest sum not exceeding 21 is the winner.
 
 For this problem, cards values are counted as follows: each card between 2 and 10 counts as their face value, face cards count as 10, and aces count as 1.
 
@@ -3628,9 +3628,9 @@ This problem was asked by Twitter.
 
 You are given an array of length 24, where each element represents the number of new subscribers during the corresponding hour. Implement a data structure that efficiently supports the following:
 
--   `update(hour: int, value: int)`: Increment the element at index hour by value.
--   `query(start: int, end: int)`: Retrieve the number of subscribers that have signed up between start and end (inclusive).
-    You can assume that all values get cleared at the end of the day, and that you will not be asked for start and end values that wrap around midnight.
+- `update(hour: int, value: int)`: Increment the element at index hour by value.
+- `query(start: int, end: int)`: Retrieve the number of subscribers that have signed up between start and end (inclusive).
+  You can assume that all values get cleared at the end of the day, and that you will not be asked for start and end values that wrap around midnight.
 
 [Solution](Solutions/242.py)
 
@@ -3944,10 +3944,10 @@ Create a basic sentence checker that takes in a stream of characters and determi
 
 We can consider a sentence valid if it conforms to the following rules:
 
--   The sentence must start with a capital letter, followed by a lowercase letter or a space.
--   All other characters must be lowercase letters, separators `(,,;,:)` or terminal marks `(.,?,!,‽)`.
--   There must be a single space between each word.
--   The sentence must end with a terminal mark immediately following a word.
+- The sentence must start with a capital letter, followed by a lowercase letter or a space.
+- All other characters must be lowercase letters, separators `(,,;,:)` or terminal marks `(.,?,!,‽)`.
+- There must be a single space between each word.
+- The sentence must end with a terminal mark immediately following a word.
 
 [Solution](Solutions/263.py)
 
@@ -4036,9 +4036,9 @@ This problem was asked by Microsoft.
 
 You are given an string representing the initial conditions of some dominoes. Each element can take one of three values:
 
--   `L`, meaning the domino has just been pushed to the left,
--   `R`, meaning the domino has just been pushed to the right, or
--   `.`, meaning the domino is standing still.
+- `L`, meaning the domino has just been pushed to the left,
+- `R`, meaning the domino has just been pushed to the right, or
+- `.`, meaning the domino is standing still.
 
 Determine the orientation of each tile when the dominoes stop falling. Note that if a domino receives a force from the left and right side simultaneously, it will remain upright.
 
@@ -4172,9 +4172,9 @@ UTF-8 is a character encoding that maps each symbol to one, two, three, or four 
 
 For example, the Euro sign, `€`, corresponds to the three bytes `11100010 10000010 10101100`. The rules for mapping characters are as follows:
 
--   For a single-byte character, the first bit must be zero.
--   For an `n`-byte character, the first byte starts with `n` ones and a zero. The other `n - 1` bytes all start with `10`.
-    Visually, this can be represented as follows.
+- For a single-byte character, the first bit must be zero.
+- For an `n`-byte character, the first byte starts with `n` ones and a zero. The other `n - 1` bytes all start with `10`.
+  Visually, this can be represented as follows.
 
 ```
  Bytes   |           Byte format
@@ -4625,8 +4625,8 @@ This problem was asked by Triplebyte.
 
 Implement a data structure which carries out the following operations without resizing the underlying array:
 
--   `add(value)`: Add a value to the set of values.
--   `check(value)`: Check whether a value is in the set.
+- `add(value)`: Add a value to the set of values.
+- `check(value)`: Check whether a value is in the set.
 
 The check method may return occasional false positives (in other words, incorrectly identifying an element as part of the set), but should always correctly identify a true element.
 
@@ -4714,8 +4714,8 @@ This problem was asked by Quantcast.
 
 You are presented with an array representing a Boolean expression. The elements are of two kinds:
 
--   `T` and `F`, representing the values `True` and `False`.
--   `&`, `|`, and `^`, representing the bitwise operators for `AND`, `OR`, and `XOR`.
+- `T` and `F`, representing the values `True` and `False`.
+- `&`, `|`, and `^`, representing the bitwise operators for `AND`, `OR`, and `XOR`.
 
 Determine the number of ways to group the array elements using parentheses so that the entire expression evaluates to `True`.
 
@@ -4767,8 +4767,8 @@ This problem was asked by Wayfair.
 
 You are given a `2 x N` board, and instructed to completely cover the board with the following shapes:
 
--   Dominoes, or `2 x 1` rectangles.
--   Trominoes, or L-shapes.
+- Dominoes, or `2 x 1` rectangles.
+- Trominoes, or L-shapes.
 
 For example, if `N = 4`, here is one possible configuration, where A is a domino, and B and C are trominoes.
 
@@ -4892,8 +4892,8 @@ Given a positive integer `N`, find the smallest number of steps it will take to 
 
 There are two kinds of permitted steps:
 
--   You may decrement `N` to `N - 1`.
--   If `a * b = N`, you may decrement `N` to the larger of `a` and `b`.
+- You may decrement `N` to `N - 1`.
+- If `a * b = N`, you may decrement `N` to the larger of `a` and `b`.
 
 For example, given `100`, you can reach `1` in five steps with the following route: `100 -> 10 -> 9 -> 3 -> 2 -> 1`.
 
@@ -5162,10 +5162,10 @@ You are given an N by N matrix of random letters and a dictionary of words. Find
 
 A word is considered to be able to be packed on the board if:
 
--   It can be found in the dictionary
--   It can be constructed from untaken letters by other words found so far on the board
--   The letters are adjacent to each other (vertically and horizontally, not diagonally).
--   Each tile can be visited only once by any word.
+- It can be found in the dictionary
+- It can be constructed from untaken letters by other words found so far on the board
+- The letters are adjacent to each other (vertically and horizontally, not diagonally).
+- Each tile can be visited only once by any word.
 
 For example, given the following dictionary:
 
@@ -5267,8 +5267,8 @@ You are given a set of synonyms, such as `(big, large)` and `(eat, consume)`. Us
 
 For example, the following two sentences are equivalent:
 
--   "He wants to eat food."
--   "He wants to consume food."
+- "He wants to eat food."
+- "He wants to consume food."
 
 Note that the synonyms `(a, b)` and `(a, c)` do not necessarily imply `(b, c)`: consider the case of `(coach, bus)` and `(coach, teacher)`.
 
@@ -5338,9 +5338,9 @@ x   b  e   r  e
 
 The tree is structured according to the following rules:
 
--   left child nodes link to words lexicographically earlier than the parent prefix
--   right child nodes link to words lexicographically later than the parent prefix
--   middle child nodes continue the current word
+- left child nodes link to words lexicographically earlier than the parent prefix
+- right child nodes link to words lexicographically later than the parent prefix
+- middle child nodes continue the current word
 
 For instance, since code is the first word inserted in the tree, and `cob` lexicographically precedes `cod`, `cob` is represented as a left child extending from `cod`.
 
@@ -5360,18 +5360,18 @@ Soundex maps every name to a string consisting of one letter and three numbers, 
 
 One version of the algorithm is as follows:
 
--   Remove consecutive consonants with the same sound (for example, change `ck -> c`).
--   Keep the first letter. The remaining steps only apply to the rest of the string.
--   Remove all vowels, including `y`, `w`, and `h`.
--   Replace all consonants with the following digits:
-    ```
-    b, f, p, v -> 1
-    c, g, j, k, q, s, x, z -> 2
-    d, t -> 3
-    l -> 4
-    m, n -> 5
-    r -> 6
-    ```
+- Remove consecutive consonants with the same sound (for example, change `ck -> c`).
+- Keep the first letter. The remaining steps only apply to the rest of the string.
+- Remove all vowels, including `y`, `w`, and `h`.
+- Replace all consonants with the following digits:
+  ```
+  b, f, p, v -> 1
+  c, g, j, k, q, s, x, z -> 2
+  d, t -> 3
+  l -> 4
+  m, n -> 5
+  r -> 6
+  ```
 
 If you don't have three numbers yet, append zeros until you do. Keep the first three numbers.
 Using this scheme, `Jackson` and `Jaxen` both map to `J250`.
@@ -5390,9 +5390,9 @@ Write a program that determines the smallest number of perfect squares that sum 
 
 Here are a few examples:
 
--   Given `N = 4`, return `1` `(4)`
--   Given `N = 17`, return `2` `(16 + 1)`
--   Given `N = 18`, return `2` `(9 + 9)`
+- Given `N = 4`, return `1` `(4)`
+- Given `N = 17`, return `2` `(16 + 1)`
+- Given `N = 18`, return `2` `(9 + 9)`
 
 [Solution](Solutions/350.py)
 
@@ -5426,9 +5426,9 @@ This problem was asked by Palantir.
 
 A typical American-style crossword puzzle grid is an `N x N` matrix with black and white squares, which obeys the following rules:
 
--   Every white square must be part of an "across" word and a "down" word.
--   No word can be fewer than three letters long.
--   Every white square must be reachable from every other white square.
+- Every white square must be part of an "across" word and a "down" word.
+- No word can be fewer than three letters long.
+- Every white square must be reachable from every other white square.
 
 The grid is rotationally symmetric (for example, the colors of the top left and bottom right squares must match).
 Write a program to determine whether a given matrix qualifies as a crossword grid.
@@ -5467,10 +5467,10 @@ More specifically, suppose your server has access to a set of client machines. Y
 
 Some questions you may want to consider as part of your solution are:
 
--   How will you reach as many pages as possible?
--   How can you keep track of pages that have already been visited?
--   How will you deal with your client machines being blacklisted?
--   How can you update your database when Wikipedia pages are added or updated?
+- How will you reach as many pages as possible?
+- How can you keep track of pages that have already been visited?
+- How will you deal with your client machines being blacklisted?
+- How can you update your database when Wikipedia pages are added or updated?
 
 [Solution](Solutions/354.md)
 
@@ -5484,8 +5484,8 @@ You are given an array `X` of floating-point numbers `x1, x2, ... xn`. These can
 
 Write an algorithm that finds an appropriate `Y` array with the following properties:
 
--   The rounded sums of both arrays should be equal.
--   The absolute pairwise difference between elements is minimized. In other words, `|x1- y1| + |x2- y2| + ... + |xn- yn|` should be as small as possible.
+- The rounded sums of both arrays should be equal.
+- The absolute pairwise difference between elements is minimized. In other words, `|x1- y1| + |x2- y2| + ... + |xn- yn|` should be as small as possible.
 
 For example, suppose your input is `[1.3, 2.3, 4.4]`. In this case you cannot do better than `[1, 2, 5]`, which has an absolute difference of `|1.3 - 1| + |2.3 - 2| + |4.4 - 5| = 1`.
 
@@ -5515,9 +5515,9 @@ If either `l` or `r` is null, it will be represented as a zero. Otherwise, it wi
 
 Here are a few examples:
 
--   A root node with no children: `(00)`
--   A root node with two children: `((00)(00))`
--   An unbalanced tree with three consecutive left children: `((((00)0)0)0)`
+- A root node with no children: `(00)`
+- A root node with two children: `((00)(00))`
+- An unbalanced tree with three consecutive left children: `((((00)0)0)0)`
 
 Given this representation, determine the depth of the tree.
 
@@ -5531,10 +5531,10 @@ This problem was asked by Dropbox.
 
 Create a data structure that performs all the following operations in `O(1)` time:
 
--   `plus`: Add a key with value 1. If the key already exists, increment its value by one.
--   `minus`: Decrement the value of a key. If the key's value is currently 1, remove it.
--   `get_max`: Return a key with the highest value.
--   `get_min`: Return a key with the lowest value.
+- `plus`: Add a key with value 1. If the key already exists, increment its value by one.
+- `minus`: Decrement the value of a key. If the key's value is currently 1, remove it.
+- `get_max`: Return a key with the highest value.
+- `get_min`: Return a key with the lowest value.
 
 [Solution](Solutions/358.py)
 
@@ -5630,33 +5630,12 @@ This problem was asked by Google.
 
 A quack is a data structure combining properties of both stacks and queues. It can be viewed as a list of elements written left to right such that three operations are possible:
 
--   `push(x)`: add a new item `x` to the left end of the list
--   `pop()`: remove and return the item on the left end of the list
--   `pull()`: remove the item on the right end of the list.
+- `push(x)`: add a new item `x` to the left end of the list
+- `pop()`: remove and return the item on the left end of the list
+- `pull()`: remove the item on the right end of the list.
 
 Implement a quack using three stacks and `O(1)` additional memory, so that the amortized time for any push, pop, or pull operation is `O(1)`.
 
 [Solution](Solutions/365.py)
 
 ---
-
-### Problem 366
-This problem was asked by Open AI.
-
-There are `n (n is even)` players, conveniently labelled 1, 2, ...n. These players will play m rounds of games. In each round of games, the players are split into two teams of n/2 players each. Two players `× < y` are said to have played against each other if they were on different teams for one of the m games.
-You are given three arguments: n, m, games. Your task is to check that for all pairs of players `1 <= x, y <= n`, player x has played against y. games is a 2-dimensional list that represents the m rounds of games among n players.
-Write a function `check(n, m, games)` that takes in 3 arguments.
-Inputs
-It is guaranteed that n, m are integers and 1 <= n <= 20,000, 1 <= m <= 30. It is also guaranteed that n is even. games is a 2 dimensional list with m rows and n columns, where games[il is a permutation of 1,2,3,...n representing round number i. In particular for round `i`, `games[i][0], games[i][1], games[i][n/2-1]` is on one team, `games[i][n/2], games[i][n/2+1], games[i][n-1]` is on the other team.
-Outputs
-`check(n, m, games)` should return a boolean, True if and only if all pairs of players have played against each other in the m rounds of games.
-
-`Examples`
-```
-check(2, 1, [[1, 2]]) = True
-check(4, 2, [[1, 2, 3, 4], [4, 3, 1, 2]1) = False
-check(4, 2, [1, 2, 3, 4], [1, 3, 2, 4]]) = True
-check(6, 6, [[1, 6, 3, 4, 5, 2], [6, 4, 2, 3, 1, 5], [4, 2, 1, 5, 6, 3], [4, 5, 1, 6, 2, 3], [3, 2, 5, 1, 6, 4], [2, 3, 6, 4, 1, 5]]) = True
-check(6, 6, [3, 1, 4, 5, 6, 2], [5, 3, 2, 4, 1, 6], [5, 3, 6, 4, 2, 1], [6, 5, 3, 2, 1, 4], [5, 4, 1, 2, 6, 3], [4, 1, 6, 2, 5, 3]]) = False
-```
-[Solution](Solutions/366.py)
