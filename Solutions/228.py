@@ -15,15 +15,11 @@ class CustomInt:
         self.value = str(value)
 
     def __lt__(self, other: CustomInt) -> bool:
-        if self.value == other.value:
-            return False
-        for c1, c2 in zip(self.value, other.value):
+        for c1, c2 in zip(self.value + other.value, other.value + self.value):
             if c1 > c2:
                 return False
             elif c1 < c2:
                 return True
-        if len(self.value) > len(other.value):
-            return True
         return False
 
 
