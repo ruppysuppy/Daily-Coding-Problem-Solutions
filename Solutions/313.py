@@ -57,7 +57,8 @@ def get_min_moves_helper(
     temp = maxsize
     for move in moves:
         temp = min(
-            temp, get_min_moves_helper(move, pattern, dead_ends, seen, accumulator + 1),
+            temp,
+            get_min_moves_helper(move, pattern, dead_ends, seen, accumulator + 1),
         )
     return temp
 
@@ -87,4 +88,3 @@ TIME COMPLEXITY: O(n ^ n)
 SPACE COMPLEXITY: O(n ^ n)
 [n = max(pattern)]
 """
-

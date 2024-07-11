@@ -15,7 +15,7 @@ def is_palindrome(num: int) -> bool:
         num_copy = num_copy // 10
     # checking for palindrome condition
     for i in range((digits) // 2 + 1):
-        digit1 = (num // (10 ** i)) % 10
+        digit1 = (num // (10**i)) % 10
         digit2 = (num % (10 ** (digits - i + 1))) // (10 ** (digits - i))
         if digit1 != digit2:
             return False

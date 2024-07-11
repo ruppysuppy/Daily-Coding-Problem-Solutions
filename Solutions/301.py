@@ -21,16 +21,16 @@ from random import shuffle
 
 class BloomFilter:
 
-    """ 
-    Class for Bloom filter, using murmur3 hash function 
+    """
+    Class for Bloom filter, using murmur3 hash function
     """
 
     def __init__(self, items_count: int, fp_prob: float) -> None:
-        """ 
-        items_count : int 
-            Number of items expected to be stored in bloom filter 
-        fp_prob : float 
-            False Positive probability in decimal 
+        """
+        items_count : int
+            Number of items expected to be stored in bloom filter
+        fp_prob : float
+            False Positive probability in decimal
         """
         # False posible probability in decimal
         self.fp_prob = fp_prob
@@ -48,12 +48,11 @@ class BloomFilter:
         self.bit_array.setall(0)
 
     def add(self, item: str) -> None:
-        """ 
-        Add an item in the filter 
+        """
+        Add an item in the filter
         """
         digests = []
         for _ in range(self.hash_count):
-
             # create digest for given item.
             # i work as seed to mmh3.hash() function
             # With different seed, digest created is different
@@ -64,13 +63,12 @@ class BloomFilter:
             self.bit_array[digest] = True
 
     def check(self, item: str) -> bool:
-        """ 
-        Check for existence of an item in filter 
+        """
+        Check for existence of an item in filter
         """
         for _ in range(self.hash_count):
             digest = hash(item) % self.size
             if self.bit_array[digest] == False:
-
                 # if any of bit is False then,its not present
                 # in filter
                 # else there is probability that it exist
@@ -79,29 +77,29 @@ class BloomFilter:
 
     @staticmethod
     def get_size(n: int, p: float) -> int:
-        """ 
-        Return the size of bit array(m) to used using 
-        following formula 
-        m = -(n * lg(p)) / (lg(2)^2) 
-        n : int 
-            number of items expected to be stored in filter 
-        p : float 
-            False Positive probability in decimal 
+        """
+        Return the size of bit array(m) to used using
+        following formula
+        m = -(n * lg(p)) / (lg(2)^2)
+        n : int
+            number of items expected to be stored in filter
+        p : float
+            False Positive probability in decimal
         """
         m = -(n * log(p)) / (log(2) ** 2)
         return int(m)
 
     @staticmethod
     def get_hash_count(m: int, n: int) -> int:
-        """ 
-        Return the hash function(k) to be used using 
-        following formula 
-        k = (m/n) * lg(2) 
-  
-        m : int 
-            size of bit array 
-        n : int 
-            number of items expected to be stored in filter 
+        """
+        Return the hash function(k) to be used using
+        following formula
+        k = (m/n) * lg(2)
+
+        m : int
+            size of bit array
+        n : int
+            number of items expected to be stored in filter
         """
         k = (m / n) * log(2)
         return int(k)

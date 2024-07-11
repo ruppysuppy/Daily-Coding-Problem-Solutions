@@ -25,7 +25,7 @@ def get_nearest_points(pts_arr: List[Point]) -> List[Point]:
     length = len(pts_arr)
     dist = maxsize
     pt1, pt2 = None, None
-    
+
     for index_1 in range(length):
         for index_2 in range(index_1 + 1, length):
             pt1_temp, pt2_temp = pts_arr[index_1], pts_arr[index_2]

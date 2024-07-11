@@ -20,7 +20,12 @@ def get_strobogrammatic_numbers_helper(N: int) -> List[str]:
     strob_numbers = []
     for x in smaller_strobogrammatic_numbers:
         strob_numbers.extend(
-            ["1" + x + "1", "6" + x + "9", "9" + x + "6", "8" + x + "8",]
+            [
+                "1" + x + "1",
+                "6" + x + "9",
+                "9" + x + "6",
+                "8" + x + "8",
+            ]
         )
     return strob_numbers
 

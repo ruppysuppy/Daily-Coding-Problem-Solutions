@@ -28,17 +28,13 @@ def get_max_profit(
             get_max_profit(
                 prices[1:], fee, profit, (-prices[0] - fee), False
             ),  # buying
-            get_max_profit(
-                prices[1:], fee, profit, 0, True
-            ),  # holding
+            get_max_profit(prices[1:], fee, profit, 0, True),  # holding
         )
     return max(
         get_max_profit(
             prices[1:], fee, (profit + current + prices[0]), 0, True
         ),  # selling
-        get_max_profit(
-            prices[1:], fee, profit, current, False
-        ),  # holding
+        get_max_profit(prices[1:], fee, profit, current, False),  # holding
     )
 
 

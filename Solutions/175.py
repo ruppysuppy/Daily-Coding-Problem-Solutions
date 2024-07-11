@@ -44,7 +44,7 @@ def get_transitions(
 ) -> Dict[str, int]:
     # generating graph
     graph = GraphDirectedWeighted()
-    for (node1, node2, probability) in transitions:
+    for node1, node2, probability in transitions:
         graph.add_edge(node1, node2, probability)
     # generating visited map
     visited = {node: 0 for node in graph.connections}

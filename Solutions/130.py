@@ -45,7 +45,12 @@ def get_max_profit_helper(
     return max(
         # wait and hold for selling at a different price
         get_max_profit_helper(
-            arr, curr_index + 1, curr_profit, buys_left, sells_left, length,
+            arr,
+            curr_index + 1,
+            curr_profit,
+            buys_left,
+            sells_left,
+            length,
         ),
         # sell at the current price
         get_max_profit_helper(

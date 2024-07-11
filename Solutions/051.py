@@ -13,6 +13,7 @@ Hint: Make sure each one of the 52! permutations of the deck is equally likely.
 from random import randint
 from typing import List
 
+
 # implementation of a function that generates perfectly random numbers between 1 and k
 def generate_random_number_in_range(k: int) -> int:
     return randint(1, k)

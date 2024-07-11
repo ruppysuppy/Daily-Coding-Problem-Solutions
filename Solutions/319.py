@@ -182,14 +182,14 @@ def heur(
     """
     Heuristic template that provides the current and target position for each number
     and the total function.
-    
+
     Parameters:
     puzzle - the puzzle
     item_total_calc - takes 4 parameters: current row, target row, current col, target
-        col. 
+        col.
         Returns int.
     total_calc - takes 1 parameter, the sum of item_total_calc over all entries, and
-        returns int. 
+        returns int.
         This is the value of the heuristic function
     """
     t = 0
@@ -232,7 +232,9 @@ def h_linear(puzzle: EightPuzzle) -> Union[int, float]:
 
 def h_linear_lsq(puzzle: EightPuzzle) -> Union[int, float]:
     return heur(
-        puzzle, lambda r, tr, c, tc: (tr - r) ** 2 + (tc - c) ** 2, lambda t: sqrt(t),
+        puzzle,
+        lambda r, tr, c, tc: (tr - r) ** 2 + (tc - c) ** 2,
+        lambda t: sqrt(t),
     )
 
 

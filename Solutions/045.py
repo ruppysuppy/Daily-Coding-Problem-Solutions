@@ -9,6 +9,7 @@ probability, implement a function rand7() that returns an integer from 1 to 7
 from random import randint
 import matplotlib.pyplot as plt
 
+
 # rand5 implementation
 def rand5() -> int:
     return randint(1, 5)
